@@ -1,0 +1,12 @@
+<h1 class="h2 text-uppercase">{$category->name}</h1>
+
+{if $category->description}
+	<article class="content expandable" data-expandable="categoryText">
+		<div class="expandable__inner">
+	    	{$category->description|noescape}
+	    </div>
+	</article>
+	<button type="button" data-expandable-btn="categoryText" data-expandable-title='{_strings.show_less} <i class="fa fa-fw fa-angle-up"></i>' class="expandable__btn">
+		{_strings.show_more} <i class="fa fa-fw fa-angle-down"></i>
+	</button>
+{/if}

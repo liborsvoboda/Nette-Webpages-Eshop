@@ -1,0 +1,27 @@
+<div class="divider mb-4"></div>
+<div class="row">
+    <div class="col-lg-6">
+		<h2 class="h4">{_footer.mailchimp_title}</h2>
+        <p>{_footer.mailchimp_text|noescape}</p>
+	</div>
+	<div class="col-lg-6 align-self-end">
+        <form action="https://app.us12.list-manage.com/subscribe/post?u=68937d3781d8d4dd26a4550c8&amp;id=2152e8306c"
+              method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+              class="validate" target="_blank">
+            <div class="row no-gutters align-items-center">
+				<div class="col-sm-8 col-md-9 col-lg-8 pr-sm-3">
+                	<input type="email" required class="form-control" placeholder="Váš email">
+				</div>
+				<div class="col-sm-4 col-md-3 col-lg-4">
+                	<button type="submit" class="btn btn-secondary rounded-pill btn-block mx-0 mt-3 my-sm-0">{_footer.mailchimp_button}</button>
+				</div>
+            </div>
+            <div class="custom-control custom-checkbox mt-3 mb-4 mb-lg-0 font-size-sm">
+                <input class="custom-control-input" type="checkbox" value="" id="gdprAgree" required>
+                <label class="custom-control-label text-muted" for="gdprAgree">
+                    {_footer.mailchimp_agree|noescape}
+                </label>
+            </div>
+        </form>
+    </div>
+</div>

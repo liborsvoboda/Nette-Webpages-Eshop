@@ -1,0 +1,103 @@
+{* aktualni verze verze <nav class="topNav sticky-top bg-white mb-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-3 d-lg-none">
+				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#mainNav" aria-expanded="false">
+					<i class="fa fa-bars"></i>
+				</button>
+			</div>
+			<div class="col-6 col-lg-9 col-xl-10 offset-xl-1 align-self-center d-flex justify-content-xl-center pr-xl-0">
+				<div class="collapse mainNav" id="mainNav">
+					{include 'menu.latte'}
+				</div>
+			</div>
+			<div class="col-3 col-lg-3 col-xl-1 align-self-center d-flex justify-content-center justify-content-md-end">
+				{control cartCount}
+			</div>
+		</div>
+	</div>
+</nav>*}
+
+<nav class="topNav sticky-top bg-white py-2 px-0 shadow"> {*<nav class="topNav sticky-top bg-white mb-3">*}
+	<div class="container position-relative">
+		<div class="row">
+			<div class="col-6 col-sm-8 col-md-9 d-lg-none">
+				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#mainNav" aria-expanded="false">
+					<i class="fa fa-bars"></i>
+				</button>
+			</div>
+			<div class="col-12 order-3 col-lg-9 order-lg-1 col-xl-10 offset-xl-1 d-flex align-self-center justify-content-xl-center position-static">
+				<div class="collapse mainNav" id="mainNav">
+					{include 'menu.latte'}
+				</div>
+			</div>
+			<div class="col-6 col-sm-4 col-md-3 col-lg-3 order-lg-2 col-xl-1 d-flex align-self-center justify-content-end">
+				{control cartCount}
+			</div>
+		</div>
+	</div>
+</nav>
+
+
+{*<nav class="topNav sticky-top bg-white mb-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 col-sm-8 col-md-9 d-lg-none">
+				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#mainNav" aria-expanded="false">
+					<i class="fa fa-bars"></i>
+				</button>
+			</div>
+			<div class="col-6 col-sm-4 col-md-3 col-lg-2 order-lg-2 col-xl-1">
+				{control cartCount}
+			</div>
+			<div class="col-12 col-lg-10 order-lg-1 col-xl-10 offset-xl-1">
+				<div class="collapse mainNav" id="mainNav">
+					{include 'menu.latte'}
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>*}
+
+{*<nav class="topNav sticky-top py-1 bg-white">
+	<div class="container">
+		<div class="row">
+			<div class="col-6 col-sm-8 col-md-9 d-lg-none">
+				<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#mainNav" aria-expanded="false">
+					<i class="fa fa-bars"></i>
+				</button>
+			</div>
+			<div class="col-12 col-lg-12 order-lg-1 pr-lg-4">
+				<div class="collapse mainNav" id="mainNav">
+					{include 'menu.latte'}
+				</div>
+			</div>
+			<div class="col-6 col-sm-4 col-md-6 col-xl-4 text-right">
+				<div>
+					{if $user->isLoggedIn()}
+						<a n:href="Account:edit" class="d-inline-block py-3 mx-2 text-nowrap font-weight-bold link-underline-never text-secondary">
+							<span class="border border-secondary border-radius p-2 mr-1"><i class="fa fa-fw fa-user"></i></span>
+							{_account.my_account}
+						</a>
+						<a n:href="Account:favorites" class="d-inline-block py-2 mx-2 text-nowrap font-weight-bold link-underline-never text-secondary">
+							<span class="border border-secondary border-radius p-2 mr-1"><i class="fa fa-fw fa-heart"></i></span>
+							{_account.favourites}
+						</a>
+					{else}
+						<a n:href="Sign:in" class="d-inline-block py-3 mx-2 text-nowrap font-weight-bold link-underline-never text-secondary">
+							<span class="border border-secondary border-radius p-2 mr-1"><i class="fa fa-fw fa-user"></i></span>
+							{_account.log_in}
+						</a>
+						<a n:href="Sign:up" class="d-inline-block py-2 mx-2 text-nowrap font-weight-bold link-underline-never text-secondary">
+						<span class="border border-secondary border-radius p-2 mr-1"><i class="fa fa-fw fa-user-plus"></i></span>
+						{_account.registration}
+						</a>
+					{/if}
+				</div>	
+			</div>
+			<div class="col-6 col-sm-4 col-md-3 col-lg-2 order-lg-2 pl-xxl-5 text-right">
+				{control cartCount}
+			</div>
+		</div>
+	</div>
+</nav>*}

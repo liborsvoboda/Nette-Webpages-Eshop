@@ -1,0 +1,28 @@
+summary: "Prehľad"
+dashboard: "Nástenka"
+orders: "Objednávky"
+gallery: "Galéria"
+customers: "Zákazníci"
+user_levels: 'Zákazníckej skupiny'
+catalogue: "Katalóg"
+products: "Produkty"
+categories: "Kategórie"
+manufacturers: "Výrobcovia"
+atributes: "Atribúty"
+margins: "Marže"
+content: "Obsah"
+pages: "Stránky"
+blog_posts: "Články"
+menu: "Navigácia"
+slider: "Posuvník"
+banners: "Banery"
+settings: "Nastavenia"
+company_informations: "Firemné údaje"
+accounting: "Účtovníctvo"
+shipping: "Doprava"
+payments: "Platobné metódy"
+order_statuses: "Stavy objednávok"
+email_statuses: 'E-maily objednávok'
+enum: 'Číselné rady'
+review: 'Recenzie'
+locale: 'Jazyky/meny'

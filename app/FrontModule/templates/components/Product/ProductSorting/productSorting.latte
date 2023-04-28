@@ -1,0 +1,19 @@
+<div n:snippet="productSort" class="d-inline-block">
+	<form n:name="form" n:class="$isAjax ? ajax" data-disable-ajax-append="productList">
+		<div class="dropdown d-inline-block">
+			<button type="button" class="btn btn-gray-100 font-weight-bold" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fa fa-fw fa-sort"></i>
+				{_$defaultValue}
+				<i class="fa fa-fw fa-angle-down"></i>
+			</button>
+			<div class="dropdown-menu dropdown-menu-right text-right py-3">
+				{foreach $form[sort]->items as $key => $value}
+					<label class="dropdown-item font-size-sm ajax-click-submit">
+						<input n:name="sort:$key" class="invisible mr--3" data-auto-submit>
+						{_$value}
+					</label>
+				{/foreach}
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,33 @@
+{form form}
+    <div class="row">
+        <div class="col-2"><strong>Provízie</strong></div>
+        {foreach $levels as $level}
+            {continueIf $iterator->isLast()}
+            {continueIf $iterator->isFirst()}
+            <div class="col-1" style="font-size: 95%">
+                {$level['name']}
+            </div>
+        {/foreach}
+    </div>
+    {foreach $tree as $key => $subs}
+        {continueIf count($subs) == 0}
+        <div class="row my-2">
+            <div class="col-2">
+                <strong>
+                    {$levels[$key]['name']}
+                </strong>
+            </div>
+            {foreach $subs as $sub}
+                <div class="col-1">
+                    {var $name = $key . 's' . $sub['id']}
+                {input $name, 'class' => 'form-control'}
+                </div>
+            {/foreach}
+        </div>
+    {/foreach}
+    <div class="row mt-2">
+        <div class="col-12">
+            <button n:name="submit" class="btn btn-primary">{_form.save}</button>
+        </div>
+    </div>
+{/form}

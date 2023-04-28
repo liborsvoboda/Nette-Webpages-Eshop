@@ -1,0 +1,71 @@
+/**
+ * Main DooTheme stylesheet
+ */
+
+// Custom variables and mixins
+//@import url('https://fonts.googleapis.com/css?family=Audiowide|Montserrat:400,700&display=swap&subset=latin-ext');
+//@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,700;0,900;1,400&family=Alegreya:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+@import 'utils/variables';
+
+// Build custom Bootstrap
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/tables';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/dropdown';
+@import 'bootstrap/scss/input-group';
+@import 'bootstrap/scss/custom-forms';
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/breadcrumb';
+@import 'bootstrap/scss/alert';
+@import 'bootstrap/scss/modal';
+@import 'bootstrap/scss/utilities';
+
+// @import 'bootstrap/scss/bootstrap';
+
+// Hamburgers menu
+// @import 'hamburgers/_sass/hamburgers/base';
+// @import 'hamburgers/_sass/hamburgers/types/spring';
+
+// WA Media box
+// @import 'vendor/wa-mediabox.min.css';
+
+// Tiny slider
+@import 'tiny-slider/src/tiny-slider.scss';
+
+// Mixins
+@import 'utils/mixins';
+
+// Helpers
+@import 'utils/helpers';
+
+// Custom elements
+@import 'utils/elements';
+@import 'utils/nprogress';
+
+// Typography
+@import 'utils/fonts';
+
+// Forms + buttons
+@import 'utils/forms';
+
+// Parts
+@import 'parts/header';
+@import 'parts/slider';
+@import 'parts/footer';
+@import 'parts/filter';
+@import 'parts/flashes';
+@import 'parts/productTag';

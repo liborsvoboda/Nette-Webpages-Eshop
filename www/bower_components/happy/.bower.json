@@ -1,0 +1,14 @@
+{
+  "name": "happy",
+  "homepage": "https://github.com/paveljanda/happy",
+  "version": "2.0.1",
+  "_release": "2.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.1",
+    "commit": "f33f5098a21c5b3ceb553a249a8ac9c9a08fe98a"
+  },
+  "_source": "https://github.com/paveljanda/happy.git",
+  "_target": ">= 1.0.0",
+  "_originalSource": "happy"
+}

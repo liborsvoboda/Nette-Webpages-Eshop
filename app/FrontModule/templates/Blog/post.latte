@@ -1,0 +1,45 @@
+{block content}
+    {capture $title}{_strings.blog}{/capture}
+    <section class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                {include '../others/breadcrumbs.latte', breads => ['blog' => $title, $blog->slug => $blog->title], align => left}
+
+                <h1 class="mb-3">{$blog->title}</h1>
+                <time class=" font-weight-bold text-secondary">
+                    <img src="{$basePath}{$tplSetting->getSvg('calendar_blog')}" alt="{$blog->timestamp->format('d. m. Y')}" class="align-text-top mr-1" style="width: 20px">
+                    {$blog->timestamp->format('d. m. Y')}
+                </time>
+
+                <article class="content content--post my-5">
+                    {$blog->text|noescape}
+                </article>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {$blog->title}
+{/block}
+
+    {* <section>
+        <div class="container">
+            <nav aria-label="breadcrumb" class="my-3">
+                <ol class="breadcrumb breadcrumb--white text-uppercase mb-0">
+                    <li class="breadcrumb-item"><a href="/" class="text-orange">Úvod</a></li>
+                    <li class="breadcrumb-item" aria-current="page"><a n:href="Blog:default" class="text-orange">Blog</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{$blog->title}</li>
+                </ol>
+            </nav>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <article>
+                        <h1 class="mb-3 text-center">{$blog->title}</h1>
+                        {$blog->text|noescape}
+                    </article>
+                </div>
+            </div>
+
+        </div>
+    </section> *}

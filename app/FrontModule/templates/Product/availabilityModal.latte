@@ -1,0 +1,23 @@
+<div class="text-right mb-3 mt--3">
+    <a href="#availabilityModal" data-toggle="modal" class="btn btn-link">
+        {if $product->onStock > 0}
+            {_products.check_availability}
+        {else}
+            {_products.check_availability_out_of_stock}
+        {/if}
+    </a>
+</div>
+
+<div class="modal fade" id="availabilityModal" tabindex="-1" role="dialog" aria-labelledby="availabilityModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="h5 modal-title" id="availabilityModalLabel">{_products.check_availability_title}</h2>
+                <a href="#" class="close" data-dismiss="modal"><i class="fa fa-fw fa-times"></i></a>
+            </div>
+            <div class="modal-body pb-4">
+                {control availabilityForm}
+            </div>
+        </div>
+    </div>
+</div>

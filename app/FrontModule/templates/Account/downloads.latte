@@ -1,0 +1,20 @@
+{block content}
+    <section class="my-4 pt-3">
+        <div class="container" id="cart-step-1">
+            <div class="row">
+                <div class="col-lg-3 border-lg-right">
+                    {include 'menu.latte'}
+                </div>
+                <div class="col-lg-9">
+                    <article class="content">
+                        <h1 class="h2 title title--border mb-3"><i class="fa fa-fw fa-barcode mr-3"></i>{_account.downloads}</h1>
+                        {$content|noescape}
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {_account.downloads}
+{/block}

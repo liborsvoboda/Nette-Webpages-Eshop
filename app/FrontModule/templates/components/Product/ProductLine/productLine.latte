@@ -1,0 +1,20 @@
+{snippet productLine}
+    <section class="my-4">
+        <div class="container">
+            {if $products->count() > 0}
+                <div class="mx--2">
+                    <div class="row justify-content-center no-gutters">
+                        {foreach $products as $key => $product}
+                            <div class="col-sm-6 col-lg-4 col-xl-3 px-2">
+                                {control productBox-$product->productId}
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            {else}
+                <div class="alert alert-info"><i class="fa fa-info-circle mr-2"></i> {_products.no_products}</div>
+            {/if}
+        </div>
+    </section>
+{/snippet}
+

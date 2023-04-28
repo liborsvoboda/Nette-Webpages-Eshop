@@ -1,0 +1,37 @@
+{
+	"name": "paysys/paysys",
+	"type": "library",
+	"description": "Universal library for implement payment gateways in Nette framework.",
+	"keywords": ["bank", "gateway", "nette"],
+	"homepage": "https://github.com/PaySys/PaySys",
+	"license": ["MIT"],
+	"authors": [
+		{
+			"name": "Roman Mátyus",
+			"homepage": "http://romiix.org",
+			"email": "romanmatyus@romiix.org"
+		}
+	],
+	"support": {
+		"email": "romanmatyus@romiix.org",
+		"issues": "https://github.com/PaySys/CardPay/issues"
+	},
+	"require": {
+		"php": ">=7.0",
+		"nette/application": ">=2.0",
+		"nette/utils": ">=2.4"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "~0.8",
+		"nette/tester": "~1.7",
+		"phpstan/phpstan-nette": "~0.6"
+	},
+	"autoload": {
+		"psr-0": {
+			"PaySys\\PaySys": "src/"
+		},
+		"classmap": [
+			"src/PaySys/PaySys/exceptions.php"
+		]
+	}
+}

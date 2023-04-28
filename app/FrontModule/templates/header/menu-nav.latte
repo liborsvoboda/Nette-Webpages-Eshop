@@ -1,0 +1,73 @@
+<ul class="topMenu__ul pageMenu mr-lg--2 mr-xl--0">
+    <li n:foreach="$menuItems[menu] as $item">
+        <a href="/{$item[slug]}">{$item[name]}</a>
+    </li>
+    <li n:if="$user->isLoggedIn()">
+        <a n:href="Account:edit">{_account.my_account}</a>
+    </li>
+    <li n:if="!$user->isLoggedIn()">
+        <a n:href="Sign:in">{_account.log_in}</a>
+    </li>
+    <li class="wider">
+        <a n:href="Homepage:whereToBuy">
+            <svg class="pin" width="20px" height="26px" viewBox="0 0 20 26" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(-920.000000, -51.000000)" stroke-width="2">
+                        <g transform="translate(921.250000, 52.000000)">
+                            <path d="M4.33416108,15.9108969 C1.74716506,14.4535596 0,11.6808159 0,8.5 C0,3.80557963 3.80557963,-1.77635684e-14 8.5,-1.77635684e-14 C13.1944204,-1.77635684e-14 17,3.80557963 17,8.5 C17,11.6808159 15.2528349,14.4535596 12.6658389,15.9108969 L9.40906482,23.0165858 C9.30922541,23.2344173 9.13448617,23.4091565 8.91665471,23.508996 C8.41459207,23.739108 7.82104722,23.5186485 7.59093518,23.0165858 L4.33416108,15.9108969 Z"></path>
+                            <circle cx="8.5" cy="8.5" r="3.5"></circle>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+            <span class="d-lg-none ml-2">{_strings.where_to_find_us}</span>
+        </a>
+    </li>
+    <li class="wider">
+        <a n:href="Account:favorites">
+            <svg class="heart" width="20px" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+				<path d="M376,30c-27.783,0-53.255,8.804-75.707,26.168c-21.525,16.647-35.856,37.85-44.293,53.268
+					c-8.437-15.419-22.768-36.621-44.293-53.268C189.255,38.804,163.783,30,136,30C58.468,30,0,93.417,0,177.514
+					c0,90.854,72.943,153.015,183.369,247.118c18.752,15.981,40.007,34.095,62.099,53.414C248.38,480.596,252.12,482,256,482
+					s7.62-1.404,10.532-3.953c22.094-19.322,43.348-37.435,62.111-53.425C439.057,330.529,512,268.368,512,177.514
+					C512,93.417,453.532,30,376,30z"/>
+			</svg>
+
+            <span class="d-lg-none ml-2">{_account.favourite_products}</span>
+        </a>
+    </li>
+    <li class="wider">
+        <div class="langs">
+            <a href="#" data-offcanvas="langMenu">
+                {foreach $locales as $localeId => $locale}
+                    {if $localeId == $langId}
+                        {$locale['code']}
+                    {/if}
+                {/foreach}
+                <span class="caret d-none d-lg-inline-block ml-1 svg-black">
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         x="0px" y="0px"
+                         width="444.819px" height="444.819px" viewBox="0 0 444.819 444.819"
+                         style="enable-background:new 0 0 444.819 444.819;"
+                         xml:space="preserve">
+						<path d="M434.252,114.203l-21.409-21.416c-7.419-7.04-16.084-10.561-25.975-10.561c-10.095,0-18.657,3.521-25.7,10.561
+							L222.41,231.549L83.653,92.791c-7.042-7.04-15.606-10.561-25.697-10.561c-9.896,0-18.559,3.521-25.979,10.561l-21.128,21.416
+							C3.615,121.436,0,130.099,0,140.188c0,10.277,3.619,18.842,10.848,25.693l185.864,185.865c6.855,7.23,15.416,10.848,25.697,10.848
+							c10.088,0,18.75-3.617,25.977-10.848l185.865-185.865c7.043-7.044,10.567-15.608,10.567-25.693
+							C444.819,130.287,441.295,121.629,434.252,114.203z"/>
+					</svg>
+				</span>
+            </a>
+            <div class="langMenu">
+                {foreach $locales as $localeId => $locale}
+                    {if $localeId != $langId}
+                        <div class="langMenu__item"><a href="{$locale['url']}">{$locale['code']}</a></div>
+                    {/if}
+                {/foreach}
+            </div>
+        </div>
+    </li>
+</ul>

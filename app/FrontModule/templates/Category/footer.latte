@@ -1,0 +1,7 @@
+{if isset($category->description_end) && $category->description_end}
+    <article class="content expandable" data-expandable="categoryText">
+        <div class="expandable__inner">
+            {$category->description_end|noescape}
+        </div>
+    </article>
+{/if}

@@ -1,0 +1,159 @@
+{block content}
+    <section class="pt-3 bg-white">
+        {include 'menu.latte'}
+        <div class="container py-4">
+            <div class="card border">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6">
+                            Môj obchodný účet: <span
+                                    class="badge badge-pill badge-dark {if $userLevel ==3}bronzePartner{/if}{if $userLevel ==4}silverPartner{/if}{if $userLevel >=5}goldPartner{/if}" style="font-size: 100%;">{$userLevelName[$userLevel]->name}</span>
+                        </div>
+                        <div class="col-6 text-right">
+                            Osobné referenčné číslo: <span
+                                    class="badge badge-pill badge-dark" style="font-size: 100%;">{$user->getIdentity()->ref_no}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <a n:href="Account:newOrder" class="btn partner-menu-btn" style="padding: 0px !important;height: 140px;" role="button">
+						        <img src="/assets/front/img/6a1.jpg" style="width: 300px; height:140px; margin-bottom: 15px">
+				        </a>
+                        <a n:href="Account:newOrder" class="btn partner-menu-btn" style="padding: 0px !important;height: 140px;" role="button">
+						        <img src="/assets/front/img/12a2.jpg" style="width: 300px; height:140px; margin-bottom: 15px">
+				        </a>
+                        <a n:href="Account:newOrder" class="btn partner-menu-btn" style="padding: 0px !important;height: 140px;" role="button">
+						        <img src="/assets/front/img/24a4.jpg" style="width: 300px; height:140px; margin-bottom: 15px">
+				        </a>
+                    </div>
+                   {* <div class="row">
+                        <hr></hr>
+                    </div>
+                   *}
+
+                    <div class="row justify-content-center">
+                        <a n:href="Office:profile" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>
+                            MÔJ OBCHODNÝ ÚČET
+                        </a>
+                        {if $userLevel > 2}
+                        <a n:href="Account:createUser" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+                            NOVÁ REGISTRÁCIA
+                        </a>
+                        {/if}
+                        <a n:href="Account:newOrder" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="far fa-file-alt mr-2" aria-hidden="true"></i>
+                            VYTVORIŤ OBJEDNÁVKU
+                        </a>
+                    </div>
+                    <div class="row justify-content-center">
+                        <a n:href="Office:orders" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>
+                            UHRADENÉ OBJ.
+                        </a>
+                        <a n:href="Office:unpaidOrders" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>
+                            NEUHRADENÉ OBJ.
+                        </a>
+                        {if $userLevel > 2}
+                        <a n:href="Account:marketingGallery" class="btn btn-xs btn-primary">
+                            <i class="fas fa-image mr-2"> </i>
+                              MARKETINGOVÁ GALÉRIA
+                            </a>
+                        <a n:href="Office:stats, 'uid' => $userId" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="fa fa-plus mr-2" aria-hidden="true"></i>
+                            MOJE ŠTATISTIKY
+                        </a>
+                        <a n:href="Office:commissions, 'uid' => $userId" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="far fa-file-alt mr-2" aria-hidden="true"></i>
+                            MESAČNE PROVÍZIE
+                        </a>
+                        <a n:href="Office:profile, 'uid' => $userId" class="btn btn-xs btn-primary partner-menu-btn">
+                            <i class="far fa-file-alt mr-2" aria-hidden="true"></i>
+                            MÔJ PROFIL
+                        </a>
+                        {/if}
+                    </div>
+                    {if $userLevel > 2}
+                    <div class="row justify-content-center px-5 my-4">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">Váš affiliate link:</span>
+                            </div>
+                            <input type="text" class="form-control" value="{$rootUrl}?ref_no={$user->getIdentity()->ref_no}"
+                                   readonly=""
+                                   style="cursor: text; background-color: #fafad2; color: #555; text-align: center; height: 64px;"
+                                   id="aff-link">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <button class="btn" type="button" style="margin: 0; color: #555;" id="aff-link-btn" onclick=copyAffiliateLink()
+                                            data-clipboard-target="#aff-link" data-toggle="tooltip" data-placement="right"
+                                            title="" data-trigger="click" data-original-title="URL link bol skopírovaný">
+                                        <i class="fas fa-copy mr-2"></i>
+                                        <span style="font-size:12px;">kopírovať</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    {/if}
+                    {* <div class="row">
+                        <hr></hr>
+                    </div>
+                    *}
+                      <div class="row">
+                        <div class="col text-center">
+                            <p class="mb-1">Môj obrat tento mesiac:</p>
+                            <p><strong>{$selfMonthTurnover|price}</strong></p>
+                        </div>
+                        <div class="col text-center">
+                            <p class="mb-1">Môj celkový Obrat:</p>
+                            <p><strong>{$myTotalTurnover|price}</strong></p>
+                        </div>
+                        {*<div class="col text-center">
+                            <p class="mb-1">Osobný obrat za posledné 3 mesiace:</p>
+                            <p><strong>{$lastThreeMonthTurnover|price}</strong></p>
+                        </div>
+                        <div class="col text-center">
+                            <p class="mb-1">Obrat celej štruktúry za posledné 3 mesiace:</p>
+                            <p><strong>{$lastThreeSelfMonthTurnover|price}</strong></p>
+                        </div>
+                        *}
+                    </div>
+                </div>
+            </div>
+            {if $userLevel > 2}
+            <div class="card border mt-4">
+                <div class="card-header">
+                    Moji zákazníci a partneri
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        {control customerGrid}
+                    </div>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </section>
+
+
+{block addJs}
+    <script src="{$basePath}/assets/front/js/custom.js"></script>
+    <script src="{$basePath}/bower_components/happy/dist/happy.js"></script>
+    <script src="{$basePath}/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid.js"></script>
+    <script src="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid-instant-url-refresh.js"></script>
+    <script src="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid-spinners.js"></script>
+{/block}
+{block addCss}
+    <link rel="stylesheet" type="text/css" href="{$basePath}/bower_components/happy/dist/happy.css">
+    <link rel="stylesheet" type="text/css"
+          href="{$basePath}/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" type="text/css" href="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid.css">
+    <link rel="stylesheet" type="text/css"
+          href="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid-spinners.css">
+
+{/block}

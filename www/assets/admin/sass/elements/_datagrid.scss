@@ -1,0 +1,25 @@
+/**
+ * Datagrid style fixes
+ */
+
+.datagrid {
+	.form-control,
+	.input-group-addon {
+		height: 31px;
+	}
+	.input-group-addon {
+		width: auto;
+		border: none;
+	}
+
+	.col-action .btn {
+		line-height: 36px;
+	}
+
+	.datagrid-settings .btn,
+	.datagrid-tree .datagrid-tree-item .datagrid-tree-item-content .datagrid-tree-item-right .btn {
+		margin-top: 0;
+		height: 31px;
+		line-height: 30px;
+	}
+}

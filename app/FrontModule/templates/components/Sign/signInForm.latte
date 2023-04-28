@@ -1,0 +1,18 @@
+<form n:name="form" class="loginForm px-3 py-4 mb-5 bg-gray-1">
+    <div class="row justify-content-center">
+        <div class="col-sm-9 col-md-6 col-lg-8">
+            <h2 class="h3 mt-2 mb-4 text-center text-uppercase font-family-normal">{_cart.registered_customer}</h2>
+            <div class="form-group">
+                <input n:name="email" class="form-control" placeholder="{_strings.email}" autocomplete="username">
+            </div>
+            <div class="form-group">
+                <input n:name="password" class="form-control" placeholder="{_strings.password}" autocomplete="current-password">
+            </div>
+            <div class="form-group mb-2">
+                <button n:name="submit" class="btn btn-info btn-md btn-block m-0 rounded-pill">
+                    {_strings.login}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

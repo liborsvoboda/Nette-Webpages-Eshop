@@ -1,0 +1,40 @@
+<table cellspacing="0" cellpadding="3" width="100%" style="font-size: 8px;">
+    <tr>
+        <td width="40%" style="border: 0.5px solid #dddddd; background-color: #f5f5f5;">
+            {$settings['companyName']}
+        </td>
+        <td width="20%" style="padding: 15px;"></td>
+        <td width="40%" style="border: 0.5px solid #dddddd; background-color: #f5f5f5; border-radius: 5px;text-transform: uppercase">{_invoice.customer}</td>
+    </tr>
+    <tr>
+        <td width="40%" style="border: 0.5px solid #dddddd;">
+            {$settings['companyStreet']} <br/>
+            {$settings['companyZip']} {$settings['companyCity']}<br/>
+            {$settings['companyCountry']}<br/><br/>
+            {_cart.address.ico}: {$settings['companyIco']}<br/>
+            {_cart.address.dic}: {$settings['companyDic']}<br/>
+            {_cart.address.icdph}: {$settings['companyIcDph']}
+        </td>
+        <td width="20%" style="padding: 15px;"></td>
+        <td width="40%" style="border: 0.5px solid #dddddd;">
+            {if $orderData->isCompany}
+                {$orderData->companyName}<br>
+            {else}
+                {$orderData->firstName} {$orderData->lastName}<br>
+            {/if}
+            {$orderData->street}<br>
+            {$orderData->zip} {$orderData->city}
+            {if $orderData->isCompany}
+                <br>
+                {_cart.address.ico}: {$orderData->ico}<br>
+                {_cart.address.dic}: {$orderData->dic}<br>
+                {_cart.address.icdph}: {$orderData->icdph}
+            {/if}
+            <br><br>
+            {$orderData->email}<br>
+            {$orderData->phone}
+        </td>
+    </tr>
+</table>
+<br/>
+<br/>

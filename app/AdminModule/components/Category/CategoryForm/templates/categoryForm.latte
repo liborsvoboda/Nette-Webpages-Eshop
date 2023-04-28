@@ -1,0 +1,142 @@
+{snippet productForm}
+
+    <form n:name="form">
+
+        <fieldset class="mb-3">
+            <div class="form-row">
+                <div class="form-group col-md-6 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="visible" class="form-check-input">
+                        <label n:name="visible" class="form-check-label">{_$_form[visible]->caption}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label parent_id /}
+                    {input parent_id, class => "form-control select2"}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label heureka_id /}
+                    {input heureka_id, class => "form-control select2"}
+                </div>
+                <div class="form-group col-md-6">
+                    {label pricemania_id /}
+                    {input pricemania_id, class => "form-control select2"}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label gtaxonomy_id /}
+                    {input gtaxonomy_id, class => "form-control select2"}
+                </div>
+            </div>
+        </fieldset>
+
+        {ifset $userLevels}
+            <legend>{_form.product.group_settings}</legend>
+            <fieldset class="mb-3">
+                <div class="form-row">
+                    {foreach $userLevels as $userLevel}
+                        <div class="form-group col-md-6">
+                            {label usrlvl{$userLevel->id} /}
+                            {input usrlvl{$userLevel->id}, class => form-control}
+                        </div>
+                    {/foreach}
+                </div>
+            </fieldset>
+        {/ifset}
+
+        <fieldset class="mb-3">
+            <legend>{_form.image}</legend>
+
+            <div class="form-row">
+                <div n:ifset="$image" class="form-group col-md-6">
+                    <p class="mb-2">{_form.current_image}</p>
+                    <img src="{$image}" alt="" class="img-fluid" style="max-width: 400px;">
+                </div>
+                <div class="form-group col-md-6">
+                    {label image, class => $_form[image]->isRequired() ? required}
+                    <div>{input image}</div>
+                </div>
+            </div>
+        </fieldset>
+
+        <nav>
+            <div class="nav nav-tabs" id="locales-tab" role="tablist">
+                {foreach $locales as $nlocale}
+                    <a class="nav-item nav-link {if $iterator->first}active{/if}" id="nav-locale-{$nlocale->id}"
+                       data-toggle="tab"
+                       href="#tab-locale-{$nlocale->id}" role="tab"
+                       aria-controls="nav-locale-{$nlocale->id}"
+                       aria-selected="{if $iterator->first}true{else}false{/if}">
+                       <span>
+                           <img src="{$basePath}/assets/admin/img/flags/{$nlocale->lang->locale}.svg"
+                                alt="{$nlocale->lang->locale}"
+                                style="height: 15px;margin-top: -6px;" class="mr-2">
+                       </span>
+                        {$nlocale->lang->name}
+                    </a>
+                {/foreach}
+            </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+            {foreach $locales as $tlocale}
+                <div class="tab-pane fade {if $iterator->first}show active{/if}" id="tab-locale-{$tlocale->id}"
+                     role="tabpanel"
+                     aria-labelledby="nav-locale-{$tlocale->id}">
+                    {formContainer locale$tlocale->id}
+                        <fieldset class="mb-3">
+                            <legend>{_form.product.identification}</legend>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    {label name, class => $_form[name]->isRequired() ? required /}
+                                    {input name, class => form-control}
+                                </div>
+                                {*
+                                <div class="form-group col-md-6">
+                                    {label slug, class => $_form[slug]->isRequired() ? required /}
+                                    {input slug, class => form-control}
+                                </div>
+                                *}
+                            </div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <legend>{_form.description}</legend>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {* {label description} *}
+                                    {input description, class => editor}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label description_end /}
+                                    {input description_end, class => editor}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label seoDescription /}
+                                    {input seoDescription, class => form-control}
+                                </div>
+                            </div>
+                        </fieldset>
+                    {/formContainer}
+                </div>
+            {/foreach}
+        </div>
+        <hr>
+        <div class="form-group">
+            <button n:name="submit" class="btn btn-primary btn-lg">{_$_form[submit]->caption}</button>
+        </div>
+    </form>
+{/snippet}

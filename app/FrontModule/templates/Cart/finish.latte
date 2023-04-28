@@ -1,0 +1,83 @@
+{block content}
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-xl-8 text-center my-sm-4 my-md-5">
+                <h1 class="my-4">{_cart.finished.order_on_way}</h1>
+                <p class="text-muted font-size-h3 mt-4">{_cart.finished.thank_you_text}</p>
+                {if $tplSetting->getFbPagePluginAppId() && $tplSetting->getSocials()['facebook']}
+                    <p class="text-muted font-size-h3 mb-4">{_cart.finished.follow_us_facebook}</p>
+
+                    <div class="fb-page" data-href="{$tplSetting->getSocials()['facebook']}" data-tabs="timeline" data-width="290" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="{$tplSetting->getSocials()['facebook']}" class="fb-xfbml-parse-ignore"><a href="{$tplSetting->getSocials()['facebook']}">{$tplSetting->getSiteName()}</a></blockquote>
+                    </div>
+                {/if}
+                <div class="mt-5">
+                    <a href="/" class="btn btn-lg btn-success rounded-pill">
+                        <i class="fa fa-fw fa-chevron-left mr-2"></i>
+                        {_cart.finished.back_to_home}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {_cart.finish_title}
+{/block}
+{block addafterbody}
+    {if $tplSetting->getFbPagePluginAppId() && $tplSetting->getSocials()['facebook']}
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v6.0&appId={$tplSetting->getFbPagePluginAppId()}&autoLogAppEvents=1"></script>
+    {/if}
+{/block}
+
+{block conversionjs}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            currency: {$order->getOrder()->locale->currency->iso},
+            pageType: 'finish',
+            order_id: {$order->getOrder()->number},
+            products: [
+                {foreach $order->getItems() as $item}
+                {
+                    productId: {$item->product->id},
+                    productSku: {$item->product->sku},
+                    name: {$item->product->related('product_lang')->fetch()->name},
+                    brand: {$item->product->producer ? $item->product->producer->name},
+                    quantity: {$item->item->count},
+                    price: {round($item->price_unit_with_vat, 2)}
+                },
+                {/foreach}
+            ],
+            total: {round($order->getTotal(), 2)},
+            total_with_vat: {round($order->getTotal(true), 2)},
+            total_vat: {round($order->getTotalVat(), 2)},
+            total_items: {round($order->getItemsPrice(), 2)},
+            total_items_with_vat: {round($order->getItemsPrice(true), 2)},
+            total_items_vat: {round($order->getItemsPriceVat(), 2)},
+            total_shipping: {round($order->getShippingPrice(), 2)},
+            total_shipping_with_vat: {round($order->getShippingPrice(true), 2)},
+            total_shipping_vat: {round($order->getShippingPriceVat(), 2)},
+            total_payment: {round($order->getPaymentPrice(), 2)},
+            total_payment_with_vat: {round($order->getPaymentPrice(true), 2)},
+            total_payment_vat: {round($order->getPaymentPriceVat(), 2)},
+
+            transactionId: {$order->getOrder()->number},
+            transactionTotal: {round($order->getTotal(), 2)},
+            transactionShipping: {round($order->getShippingPrice(), 2)},
+            transactionTax: {round($order->getTotalVat(), 2)},
+            transactionProducts: [
+                {foreach $order->getItems() as $item}
+                {
+                    sku: {$item->product->sku},
+                    name: {$item->product->related('product_lang')->fetch()->name},
+                    quantity: {$item->item->count},
+                    price: {round($item->price_unit_with_vat, 2)}
+                },
+                {/foreach}
+            ],
+            event: 'orderFinished'
+        });
+    </script>
+{/block}

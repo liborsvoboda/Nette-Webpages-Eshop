@@ -1,0 +1,310 @@
+{*
+<div class="card mb-4 p-4">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="btn-group">
+                <a n:href="makeProforma $order->id" class="btn btn-primary mr-4" target="_blank">Proforma</a>
+                <a n:href="makeInvoice $order->id" class="btn btn-primary mr-4" target="_blank">Faktura</a>
+                <a n:href="makeStorno $order->id" class="btn btn-primary"target="_blank">Dobropis</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+*}
+<article class="col-12 mb-5 card p-4">
+    <div class="jarviswidget well jarviswidget-color-darken" id="wid-id-0" data-widget-sortable="false"
+         data-widget-deletebutton="false" data-widget-editbutton="false" data-widget-colorbutton="false">
+        <header class="card-header">
+            <div class="row align-items-center">
+                <div class="col-auto mr-auto">
+                    <h1><i class="fa fa-barcode"></i> Objednávka {$order->number}</h1>
+                </div>
+                <div class="col-auto">
+                    {if !$order->fhbId}
+                        <a n:href="sendIsklad! $order->id" class="btn btn-success">Odoslať do FHB</a>
+                    {/if}
+                    {if !$order->sfId}
+                        <a n:href="sendSf! $order->id" class="btn btn-info ml-3">Odoslať do SuperFaktury</a>
+                    {/if}
+                    {if $order->sfId}
+                        <a n:href="downloadSf! $order->number, $order->sfId" class="btn btn-info ml-3" target="_blank">Stiahnuť Faktúru</a>
+                    {/if}
+                    {if !$order->isPaid}
+                        <a n:href="setPaid!" class="btn btn-info ml-3">Označiť zaplatená</a>
+                    {/if}
+                </div>
+            </div>
+        </header>
+
+        <div>
+
+            <div class="card-body">
+
+                <div class="widget-body-toolbar">
+
+
+
+                </div>
+
+                <div class="padding-10">
+                    <div class="row">
+                        <div class="col-12">
+                            {if $order->tracking_link}
+                                <p>
+                                    Odkaz na sledovanie zásilky: <a href="{$order->tracking_link}" target="_blank">{$order->tracking_link}</a>
+                                </p>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="row productDetailTable">
+                        <br/>
+                        <br/>
+                        <div class="col-sm-4">
+
+                            <table class="table table-hover table-bordered">
+                                <tr>
+                                    <td><strong> Číslo objednávky </strong></td>
+                                    <td> {$order->number} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Dátum objednania </strong></td>
+                                    <td> {$order->timestamp|date:'d.m.Y G:i'} </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-4">
+                            <table class="table table-hover table-bordered">
+                                <tr>
+                                    <td><strong> Doprava </strong></td>
+                                    <td> {$order->shipping->name} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Spôsob platby </strong></td>
+                                    <td> {$order->payment->name} </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-4">
+                            <table class="table table-hover table-bordered">
+                                <tr>
+                                    <td><strong> Aktuálny stav </strong></td>
+                                    <td> <span class="badge badge-{$orderStatuses[$order->order_status_id]->color}">{$orderStatuses[$order->order_status_id]->name}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Suma </strong></td>
+                                    <td> {$order->price}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row productDetailTable">
+                        <div class="col-sm-4">
+                            <h3 class="semi-bold">Kontaktné údaje</h3>
+                            <table class="table table-hover table-bordered">
+                                <tr>
+                                    <td class="firstTableItem"><strong> Meno </strong></td>
+                                    <td> {$order->firstName} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Priezvisko </strong></td>
+                                    <td> {$order->lastName} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Email </strong></td>
+                                    <td> {$order->email} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Telefón </strong></td>
+                                    <td> {$order->phone} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Krajina </strong></td>
+                                    <td> {$order->country->name} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Mesto </strong></td>
+                                    <td> {$order->city} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> Ulica </strong></td>
+                                    <td> {$order->street} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong> PSČ </strong></td>
+                                    <td> {$order->zip} </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3 class="semi-bold">Fakturačné údaje</h3>
+                            {if $order->isCompany}
+                                <table class="table table-hover table-bordered">
+                                    <tr>
+                                        <td class="firstTableItem"> <strong> Názov firmy </strong> </td>
+                                        <td> {$order->companyName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> IČO </strong> </td>
+                                        <td> {$order->ico} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> DIČ </strong> </td>
+                                        <td> {$order->dic} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> IČ DPH </strong> </td>
+                                        <td> {$order->icdph} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Krajina </strong> </td>
+                                        <td> {$order->country->name} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Mesto </strong> </td>
+                                        <td> {$order->city} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Ulica </strong> </td>
+                                        <td> {$order->street} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> PSČ </strong> </td>
+                                        <td> {$order->zip} </td>
+                                    </tr>
+                                </table>
+                            {/if}
+                        </div>
+                        <div class="col-sm-4">
+                            <h3 class="semi-bold">Adresa doručenia</h3>
+                            {if $order->otherAddress }
+                                <table class="table table-hover table-bordered">
+                                    <tr>
+                                        <td class="firstTableItem"> <strong> Meno </strong> </td>
+                                        <td> {$order->otherName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Priezvisko </strong> </td>
+                                        <td> {$order->otherSurname} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Mesto </strong> </td>
+                                        <td> {$order->otherCity} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Ulica </strong> </td>
+                                        <td> {$order->otherStreet} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> PSČ </strong> </td>
+                                        <td> {$order->otherZip} </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <strong> Krajina </strong> </td>
+                                        <td> {$otherCountryName} </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong> Telefón </strong></td>
+                                        <td> {$order->otherPhone} </td>
+                                    </tr>
+                                </table>
+                            {/if}
+                        </div>
+                    </div>
+
+
+                    <strong>Poznámka</strong><br>
+                    {*{$order->message}*}
+                    <br><br><br>
+
+                    <h3> Položky </h3>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Obrázok</th>
+                            <th>Kód</th>
+                            <th>Položka</th>
+                            <th>Množstvo</th>
+                            <th>Cena za kus</th>
+                            <th  class="text-center">Cena dokopy</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach $items as $item}
+                            <tr>
+                                <td><img width="100" src="{$item->product->image}"></td>
+                                <td>{$item->product->sku}</td>
+                                <td><a href="/{$item->product->related('product_lang')->fetch()->slug}" target="_blank">
+                                        {$item->product->related('product_lang')->fetch()->name}</a></td>
+                                <td class="text-center">{$item->count}
+                                    {if $item->freeAmount >0}
+                                        <div style="color:orange;" >{$item->freeAmount} zdarma</div>
+                                    {/if}
+                                </td>
+                                <td class="text-center">{$item->price|price}</td>
+                                <td class="text-right">{$item->price * ($item->count - $item->freeAmount)|price}</td>
+                            </tr>
+                        {/foreach}
+                        <tr>
+                            <td colspan="5">Doprava</td>
+                            <td class="text-right"><strong>{$shippingPrice|price}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">Spôsob platby</td>
+                            <td class="text-right"><strong>{$order->payment->price|price}</strong></td>
+                        </tr>
+                        {*
+                        {if $order->rp}
+                            <tr>
+                                <td colspan="5">RP/AP</td>
+                                <td><strong>{priceFormat($order->rp)} {getCurrency()}</strong></td>
+                            </tr>
+                        {/if}
+*}
+                        {if isset($order->isVoucher) && $order->isVoucher}
+                            <tr>
+                                <td colspan="5">Zľava: ( Kupón - {$order->voucherCode} )</td>
+                                <td class="text-right"><strong>{$order->discount|price}</strong></td>
+                            </tr>
+                        {/if}
+                        <tr>
+                            <td colspan="5">Dokopy</td>
+                            <td class="text-right"><strong>{$order->price|price}</strong></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    {*
+                                            <h3> Zmena stavu objednávky </h3>
+                                            {foreach FaOrderstatus::gi()->get() os ov}
+                                                <strong>{$os->name}</strong><br />
+                                            {$os->description} <br /><br />
+                                            {/foreach}
+                                            <br />
+                                            <form method="post">
+                                                Správa pre zákazníka
+                                                <textarea class="form-control" name="message" rows="5" placeholder="Správa ku zmene stavu"></textarea>
+                                                <br />
+                                                Stav objednávky
+                                                <select class="select2" name="orderstatus">
+                                                    {foreach FaOrderstatus::gi()->get() os ov}
+                                                        <option value="{$os->id}" {if $os->id == $order->orderStatus}{/if}>{$os->name}</option>
+                                                    {/foreach}
+                                                </select>
+                                                <input type="checkbox" name="sendEmail"> Odoslať email zákazníkovi <br />
+                                                <input type="submit" name="changeState" value="Zmeniť stav" class="btn btn-success">
+                                            </form>
+                    *}
+                </div>
+
+            </div>
+            <!-- end widget content -->
+
+        </div>
+        <!-- end widget div -->
+
+    </div>
+    <!-- end widget -->
+</article>

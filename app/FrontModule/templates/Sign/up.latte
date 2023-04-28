@@ -1,0 +1,18 @@
+{block content}
+    <div class="container pb-4">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                {if $flashes}
+                    {foreach $flashes as $flash}
+                        <div class="alert alert-{$flash->type}">{$flash->message}</div>
+                    {/foreach}
+                {/if}
+                {control registerForm}
+            </div>
+        </div>
+        <div class="font-size-lg text-center">
+            <a n:href="Sign:in">{_account.log.login_link}</a><br>
+            <a n:href="Account:lostPassword">{_account.log.reset_password_link}</a>
+        </div>
+    </div>
+{/block}

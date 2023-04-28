@@ -1,0 +1,45 @@
+{cache intagram, expiration => '20 minutes'}
+	<div class="bg-gray-100 border-radius p-4 flex-grow-1">
+		{* <div class="row align-items-center my-2">
+			<div class="col-3 col-sm-2 text-center pr-0">
+				<a href="{$feed->externalUrl}" target="_blank" rel="noreferer,noopened">
+					<img src="{$feed->profilePicture}" class="img-fluid rounded-circle imgHover" style="max-width: 50px">
+				</a>
+			</div>
+			<div class="col">
+				<p class="font-size-xs text-gray-200 mb-0">{$feed->biography|noescape}</p>
+			</div>
+		</div>
+
+		<div class="mx--1">
+			<div class="row no-gutters mt-3">
+				<div n:foreach="$feed->medias as $img" class="col-6 col-sm-4 p-1 text-center">
+					<a href="{$img->link}" target="_blank" rel="noreferer,noopener" n:class="$iterator->counter > 6 ? d-xl-none">
+						<img src="{$img->thumbnails[0]->src}" alt="{$img->caption}" class="img-fluid imgHover">
+					</a>
+					{breakIf $iterator->counter >= 9}
+				</div>
+			</div>
+		</div> *}
+
+		<div class="mx--3 mx-sm--2">
+			<instagram-widget username="@{$userName}" image-width="30%" items-limit="9" border-corners="0" border-spacing="1.5%" mouse-hover="type1" cache="disabled"></instagram-widget>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/@ptkdev/webcomponent-instagram-widget@latest/dist/lib/en/instagram-widget.min.js"></script>
+
+		<a href="https://www.instagram.com/{$userName}" target="_blank" rel="noreferer,noopener" class="btn btn-gray font-size-sm btn-block mt-3 py-3">
+			<svg class="mr-2" width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					<g transform="translate(-329.000000, -227.000000)">
+						<g transform="translate(329.000000, 227.000000)">
+							<rect stroke="#A4A4A4" stroke-width="2" x="1" y="1" width="15" height="15" rx="5"></rect>
+							<circle stroke="#A4A4A4" stroke-width="2" cx="8.5" cy="8.5" r="3.5"></circle>
+							<circle fill="#A4A4A4" cx="13" cy="4" r="1"></circle>
+						</g>
+					</g>
+				</g>
+			</svg>
+			{_strings.more_images}
+		</a>
+	</div>
+{/cache}

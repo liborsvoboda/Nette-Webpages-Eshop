@@ -1,0 +1,382 @@
+{snippet productForm}
+
+    <form n:name="form">
+
+        <fieldset class="mb-3">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label sku, class => $_form[sku]->isRequired() ? required /}
+                    {input sku, class => form-control}
+                </div>
+                <div class="form-group col-md-6">
+                    {label ean, class => $_form[ean]->isRequired() ? required /}
+                    {input ean, class => form-control}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label producer_id, class => $_form[producer_id]->isRequired() ? required /}
+                    {input producer_id, class => "form-control select2"}
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="commission" class="form-check-input">
+                        <label n:name="commission" class="form-check-label">{_$_form[commission]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="featured" class="form-check-input">
+                        <label n:name="featured" class="form-check-label">{_$_form[featured]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="active" class="form-check-input">
+                        <label n:name="active" class="form-check-label">{_$_form[active]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="new_tag" class="form-check-input">
+                        <label n:name="new_tag" class="form-check-label">{_$_form[new_tag]->caption}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label unit, class => $_form[unit]->isRequired() ? required /}
+                    {input unit, class => "form-control"}
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="sale_tag" class="form-check-input">
+                        <label n:name="sale_tag" class="form-check-label">{_$_form[sale_tag]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="inStock" class="form-check-input">
+                        <label n:name="inStock" class="form-check-label">{_$_form[inStock]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="tip_tag" class="form-check-input">
+                        <label n:name="tip_tag" class="form-check-label">{_$_form[tip_tag]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="not_for_sale" class="form-check-input">
+                        <label n:name="not_for_sale" class="form-check-label">{_$_form[not_for_sale]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-1 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="shop_only" class="form-check-input">
+                        <label n:name="shop_only" class="form-check-label">{_$_form[shop_only]->caption}</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label order_min, class => $_form[order_min]->isRequired() ? required /}
+                    {input order_min, class => form-control}
+                </div>
+                <div class="form-group col-md-6">
+                    {label order_max, class => $_form[order_max]->isRequired() ? required /}
+                    {input order_max, class => form-control}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {label category_id, class => $_form[category_id]->isRequired() ? required /}
+                    {input category_id, class => "form-control select2"}
+                </div>
+                <div class="form-group col-md-6">
+                    {label multiCat, class => $_form[multiCat]->isRequired() ? required /}
+                    {input multiCat, class => "form-control select2"}
+                </div>
+            </div>
+			<div class="form-row">
+                <div class="form-group col-md-6">
+                    {label sort, class => $_form[sort]->isRequired() ? required /}
+                    {input sort, class => "form-control"}
+                </div>
+                <div class="form-group col-md-6">
+                    {label comProductAmount, class => $_form[comProductAmount]->isRequired() ? required /}
+                    {input comProductAmount, class => "form-control"}
+                </div>
+            </div>
+
+{*			<div class="form-row">
+                <div class="form-group col-md-2 pt-md-4 mt-md-3">
+                    <div class="form-check">
+                        <input n:name="is_combo" class="form-check-input">
+                        <label n:name="is_combo" class="form-check-label">{_$_form[is_combo]->caption}</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    {label combo_products, class => $_form[combo_products]->isRequired() ? required /}
+                    {input combo_products, class => "form-control select2"}
+                </div>
+            </div>
+*}
+        </fieldset>
+
+        <fieldset class="mb-3">
+            <legend>{_form.image}</legend>
+
+            <div class="form-row">
+                <div n:ifset="$mainImage" class="form-group col-md-6">
+                    <p class="mb-2">{_form.current_image}</p>
+                    <img src="{$mainImage}" alt="" class="img-fluid" style="max-width: 400px;">
+                </div>
+                <div class="form-group col-md-6">
+                    {label image, class => $_form[image]->isRequired() ? required}
+                    <div>{input image}</div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset n:if="count($attributes) > 0" class="mb-3">
+            <legend>{_form.product.attributes}</legend>
+
+            <div class="form-row">
+                <div n:foreach="$attributes as $attribute" class="form-group col-md-4">
+                    {label 'attr' . $attribute->id /}
+                    {input 'attr' . $attribute->id}
+                </div>
+            </div>
+        </fieldset>
+
+        <nav>
+            <div class="nav nav-tabs" id="locales-tab" role="tablist">
+                {foreach $locales as $nlocale}
+                    <a class="nav-item nav-link {if $iterator->first}active{/if}" id="nav-locale-{$nlocale->id}"
+                       data-toggle="tab"
+                       href="#tab-locale-{$nlocale->id}" role="tab"
+                       aria-controls="nav-locale-{$nlocale->id}"
+                       aria-selected="{if $iterator->first}true{else}false{/if}">
+                       <span>
+                           <img src="{$basePath}/assets/admin/img/flags/{$nlocale->lang->locale}.svg"
+                                alt="{$nlocale->lang->locale}"
+                                style="height: 15px;margin-top: -6px;" class="mr-2">
+                       </span>
+                        {$nlocale->lang->name}
+                    </a>
+                {/foreach}
+            </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+            {foreach $locales as $tlocale}
+                <div class="tab-pane fade {if $iterator->first}show active{/if}" id="tab-locale-{$tlocale->id}"
+                     role="tabpanel"
+                     aria-labelledby="nav-locale-{$tlocale->id}">
+                    {formContainer locale$tlocale->id}
+                        <fieldset class="mb-3">
+                            <legend>{_form.product.identification}</legend>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    {label name, class => $_form[name]->isRequired() ? required /}
+                                    {input name, class => form-control}
+                                </div>
+                                {if $productId}
+                                <div class="form-group col-md-6">
+                                    {label slug, class => $_form[slug]->isRequired() ? required /}
+                                    {input slug, class => form-control, disabled}
+                                </div>
+                                {/if}
+                            </div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label perex}
+                                    {input perex, class => editor}
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label description}
+                                    {input description, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label description2}
+                                    {input description2, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label sale_text}
+                                    {input sale_text, class => form-control}
+                                </div>
+                            </div>
+							<div class="form-row">
+                                <div class="form-group col-12">
+                                    {label below_button}
+                                    {input below_button, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label ingredients}
+                                    {input ingredients, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label nutritional}
+                                    {input nutritional, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label warnings}
+                                    {input warnings, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label taking}
+                                    {input taking, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label faq}
+                                    {input faq, class => editor}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    {label benefits}
+                                    {input benefits, class => editor}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="mb-3">
+                            <legend>{_form.product.price_politics}</legend>
+                        <div class="row">
+                                {foreach $groupLevels as $groupLevel}
+                                <div class="form-group col-md-2">
+                                    {label price{$groupLevel->id}, class => required /}
+                                    <div class="input-group">
+                                        {input price{$groupLevel->id}, class => form-control}
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">{$tlocale->currency->symbol}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/foreach}
+                        </div>
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    {label orig_price_vat /}
+                                    <div class="input-group">
+                                        {input orig_price_vat, class => form-control}
+                                        <div class="input-group-append mr-2">
+                                            <span class="input-group-text">{$tlocale->currency->symbol}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-5">
+                                    {label vat{$tlocale->id}, class => required /}
+                                    <div class="input-group">
+                                        {input vat{$tlocale->id}, class => form-control}
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </fieldset>
+
+                        {formContainer commissions}
+                    <fieldset class="mb-3">
+                        <legend>{_form.product.commissions}</legend>
+                            {var $userLevelsHorizontal = array_reverse($userLevels)}
+                            <table class="table table-responsive">
+                            <tr>
+                            {foreach $userLevels as $vertical}
+                                {continueIf $vertical->user_group_id == 1}
+                                <th>{$vertical->name}</th>
+                            {/foreach}
+                            </tr>
+                                {foreach $userLevelsHorizontal as $vertical}
+                                    <tr>
+                                {foreach $userLevels as $horizontal}
+                                    {continueIf $horizontal->user_group_id == 1}
+                                    {if $horizontal >= $vertical}
+                                        <td></td>
+                                    {else}
+                                        <td><input n:name="'commission'.$vertical.'h'.$horizontal" class="form-control"></td>
+                                    {/if}
+                                {/foreach}
+                                    </tr>
+                                {/foreach}
+                            </table>
+                        {*
+                        <div class="form-row">
+                            {foreach $userLevelsVertical as $userLevel}
+                                <div class="form-group col-md-2">
+                                    {label commission{$userLevel->id}, class => required /}
+                                    <div class="input-group">
+                                        {input commission{$userLevel->id}, class => form-control}
+                                    </div>
+                                </div>
+                            {/foreach}
+                        </div>
+                        *}
+                    </fieldset>
+                        {/formContainer}
+                        {/formContainer}
+                </div>
+            {/foreach}
+        </div>
+        <hr>
+        <div class="form-group">
+            <button n:name="submit" class="btn btn-primary btn-lg">{_$_form[submit]->caption}</button>
+        </div>
+    </form>
+{/snippet}
+{ifset $productId}
+    {snippet comboGrid}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4>Varianty</h4>
+                <form n:name="comboForm" class="ajax">
+                    <div class="row">
+                        <div class="col-4 form-group">
+                            {label product_id, class => 'required'}
+                            {input product_id, class=>"form-control"}
+                        </div>
+                        <div class="col-3 form-group">
+                            {label amount, class => 'required'}
+                            <input n:name="amount" class= "form-control">
+                        </div>
+                        <div class="col-2 form-group">
+                            <label>&nbsp;</label>
+                            <button n:name="submit" class='btn btn-primary form-control'>Pridať</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row no-gutters">
+                    <div class="col no-gutters">
+                        {control comboGrid}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/snippet}
+{/ifset}

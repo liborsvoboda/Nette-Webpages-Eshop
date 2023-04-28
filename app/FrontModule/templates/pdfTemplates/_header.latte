@@ -1,0 +1,15 @@
+<br/>
+<table cellspacing="0">
+    <tr>
+        <td width="25%" style="padding: 15px;"><img src="{$basePath}{$tplSetting->getInvoiceLogo()}" style="width: 200px;">
+        </td>
+        <td width="25%" style="padding: 15px;"></td>
+        <td width="50%" style="padding: 15px; text-align: right;">
+        	<h1>{_invoice.$type} {$invoiceNumber}</h1>
+        	{_invoice.order_number, [number => $orderData->number]}
+        </td>
+    </tr>
+</table>
+<br/>
+<br/>
+<br/>

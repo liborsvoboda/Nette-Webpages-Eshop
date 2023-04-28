@@ -1,0 +1,159 @@
+/**
+ * Forms + buttons
+ */
+
+// Hamburger button
+.hamburger {
+	line-height: 1;
+
+	&:hover,
+	&:active,
+	&:focus {
+		outline: none;
+	}
+}
+
+.btn {
+	&-primary {
+		color: $white;
+	}
+	&-outline-primary {
+		&:not(:disabled):not(.disabled):active,
+		&:not(:disabled):not(.disabled).active,
+		&:hover {
+			color: $white;
+		}
+	}
+	&-outline-dark {
+		color: $gray-400;
+		border-color: $gray-400;
+	}
+
+	&-collapse {
+		transform: rotate(90deg);
+		transition: transform .25s ease-in-out;
+		will-change: transform;
+
+		&.collapsed {
+			transform: rotate(0deg);
+		}
+	}
+	/*&-roundedIcon {
+		width: 36px;
+		height: 36px;
+		line-height: 36px;
+		@include font-size($font-size-lg);
+		padding: 0;
+		border-radius: 50%;
+		color: $white;
+		background: $black;
+		transition: background .25s ease-in-out;
+		will-change: background;
+
+		&:hover {
+			text-decoration: none;
+			background: $primary;
+			@include styleInnerSvg() {
+				fill: $white;
+			}
+		}
+	}*/
+
+	&-roundedIcon {
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		@include font-size($font-size-lg);
+		padding: 0;
+		border-radius: 50%;
+		color: $white;
+		background: $black;
+		transition: background .25s ease-in-out;
+		will-change: background;
+
+		&:hover {
+			text-decoration: none;
+			background: $primary;
+			@include styleInnerSvg() {
+				fill: $white;
+			}
+		}
+	}
+}
+
+.form-control {
+	&-rounded {
+		border-radius: 19px;
+
+		&.form-control-lg {
+			border-radius: 24px;
+		}
+	}
+}
+
+
+/** Number spinner */
+.spinner {
+	flex-grow: 0;
+	display: flex;
+	flex-flow: column;
+	justify-content: stretch;
+	border: $border-width solid $input-border-color;
+	overflow: hidden;
+
+	&__btn {
+		appearance: none;
+		border: none;
+		display: block;
+		height: 50%;
+		line-height: 1;
+		background: $white;
+		color: $black;
+
+		&:hover,
+		&:active,
+		&:focus {
+			outline: none;
+			// box-shadow: $input-focus-box-shadow;
+			background: $gray-100;
+		}
+	}
+	&__input-group {
+		max-width: 100px;
+		display: inline-flex;
+	}
+}
+.input-group-append .spinner {
+	border-top-right-radius: $input-border-radius;
+	border-bottom-right-radius: $input-border-radius;
+}
+.input-group-lg .input-group-append .spinner {
+	border-top-right-radius: $input-border-radius-lg;
+	border-bottom-right-radius: $input-border-radius-lg;
+}
+.input-group-sm .input-group-append .spinner {
+	border-top-right-radius: $input-border-radius-sm;
+	border-bottom-right-radius: $input-border-radius-sm;
+}
+input[type="number"][data-spinner] {
+	-moz-appearance: textfield;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		appearance: none;
+    	margin: 0;
+	}
+}
+
+label {
+	font-weight: $font-weight-bold;
+}
+
+#nprogress .spinner {
+	border: none;
+}
+
+#frm-signInForm-email::placeholder,
+#frm-signInForm-password::placeholder{
+	color: #00000078;
+}

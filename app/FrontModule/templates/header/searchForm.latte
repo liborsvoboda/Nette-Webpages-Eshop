@@ -1,0 +1,11 @@
+<form action="{plink Search:default}" method="get">
+    <div class="quickSearch">
+        <input id="quickSearch" name="hladat" class="form-control form-control-lg quickSearch__input" placeholder="{_'strings.search'}">
+        <button class="btn btn-link btn-lg quickSearch__button text-primary">
+            <i class="fa fa-search"></i>
+        </button>
+        {snippet quickSuggestion}
+            {include searchSuggestion.latte quickResult => $quickResult}
+        {/snippet}
+    </div>
+</form>

@@ -1,0 +1,38 @@
+{block detail}
+    <div class="card">
+        <div class="card-body">
+            {var $orders = $item->related('orders')->order('id DESC')->fetchAll()}
+            {if $orders}
+                <h4>Objednávky</h4>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Číslo</th>
+                        <th>Datum</th>
+                        <th>Cena</th>
+                        <th>Stav</th>
+                        <th>Zaplaceno</th>
+                        <th>Detail</th>
+                    </tr>
+                    {foreach $orders as $order}
+                        <tr>
+                            <td>{$order->number}</td>
+                            <td>{$order->timestamp|date:'d.m.Y G:i'}</td>
+                            <td>{$order->price|number:2}</td>
+                            <td>{$order->order_status->name}</td>
+                            <td>
+                                {if $order->isPaid == 1}
+                                    <span class="text-success"><i class="fas fa-check"></i></span>
+                                {else}
+                                    <span class="text-danger"><i class="fas fa-times"></i></span>
+                                {/if}
+                            </td>
+                            <td><a href="{plink Order:detail $order->id}" target="_blank">Detail</a></td>
+                        </tr>
+                    {/foreach}
+                </table>
+            {else}
+                <h4>Zatím žádná objednávka</h4>
+            {/if}
+        </div>
+    </div>
+{/block}

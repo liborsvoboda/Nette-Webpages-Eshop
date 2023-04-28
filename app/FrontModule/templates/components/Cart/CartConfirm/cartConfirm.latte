@@ -1,0 +1,15 @@
+<form n:name="form" class="border-top ml-lg--3 ml-xl--4 pl-lg-3 pl-lg-4 py-4">
+    <div class="form-check font-size-sm my-2">
+        <input n:name="private" class="form-check-input" data-gdpr-agree>
+        <label n:name="private" class="form-check-label">
+            {_cart.confirm_gdpr|noescape}
+        </label>
+    </div>
+
+    <div n:if="!$user->isLoggedIn()" class="form-check font-size-sm my-2">
+        <input n:name="addAccount" class="form-check-input">
+        <label n:name="addAccount" class="form-check-label">
+            {_cart.confirm_new_account}
+        </label>
+    </div>
+</form>

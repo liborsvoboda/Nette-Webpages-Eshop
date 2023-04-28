@@ -1,0 +1,63 @@
+{block content}
+    {capture $title}{_strings.blog}{/capture}
+    <section class="features9 cid-skDAkQBy5O" id="features9-10">
+        <div class="container">
+            <div class="row flex-column justify-content-center">
+                <div class="col-sm-12 col-md-12">
+                    {foreach $blogs as $blog}
+                        <div class="row justify-content-center align-items-center wrapper reverse">
+                            <div class="col-sm-10 col-md-7 col-xl-6 image align-right">
+                                <img src="{$basePath}{$blog->image}" alt="{$blog->title}" title="{$blog->title}">
+                            </div>
+                            <div class="mt-md-0 mb-md-0 col-sm-10 col-md-5 col-xl-4 content__block">
+                                <h2 class="mbr-section-title mbr-fonts-style display-5">{$blog->title}</h2>
+                                <p class="mbr-text mbr-fonts-style display-4">{$blog->text|striptags|truncate:80,'...'}</p>
+                                <div class="mbr-section-btn"><a class="btn btn-md btn-warning-outline display-4" n:href="Blog:post $blog->id">Čítať
+                                        viac</a></div>
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+
+
+{block contentaa}
+    <div class="">
+        <div class="container">
+            {include '../others/breadcrumbs.latte', breads => ['blog' => $title], align => left}
+            <h1 class="h2 mb-4 text-uppercase">{$title}</h1>
+
+            <div class="row">
+                <div n:foreach="$blogs as $blog" n:class="col-md-6, col-xl-5, my-3, $iterator->isOdd() % 2 == 0 ? offset-xl-1">
+                    <article class="row my-1">
+                        <div class="col-sm-4 pr-md-0 pr-lg-2">
+                            <a n:href="Blog:post, $blog->id"
+                                    class="d-block border-radius text-center text-sm-right text-lg-center">
+                                <img src="{if $blog->image !== NULL}{imgSize($blog->image,'sm')}{else}{$basePath}/assets/front/img/no-image.jpg{/if}"
+                                     alt="{$blog->title}" class="img-fluid border-radius mb-3 mb-sm-0">
+                            </a>
+                        </div>
+                        <div class="col-sm-8 font-size-xs">
+                            <h3 class="font-family-serif line-height-lg pb-1"><a n:href="Blog:post, $blog->id"
+                                        class="text-black">{$blog->title}</a></h3>
+                            <time class=" font-weight-bold text-secondary">
+                                <img src="{$basePath}{$tplSetting->getSvg('calendar_blog.svg')}"
+                                     alt="{$blog->timestamp->format('d. m. Y')}" class="align-text-top mr-1"
+                                     style="width: 20px">
+                                {$blog->timestamp->format('d. m. Y')}
+                            </time>
+                            <p class="text-gray-400 mt-2 pt-1 mb-0">{$blog->text|striptags|truncate:80,'...'}</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    {* {include '../others/newsletter.latte'} *}
+{/block}
+{block title}
+    {_strings.blog}
+{/block}

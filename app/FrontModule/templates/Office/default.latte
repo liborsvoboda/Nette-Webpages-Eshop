@@ -1,0 +1,142 @@
+{block content}
+    <div class="container-fluid my-5 bg-white">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        {include sideMenu.latte}
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>Základné informácie</h3>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Meno, priezvisko:</th>
+                                        <td>{$userData->firstName} {$userData->lastName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>E-mail:</th>
+                                        <td>{$userData->email}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telefón:</th>
+                                        <td>{$userData->phone}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Referenčné číslo:</th>
+                                        <td>{$userData->ref_no}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Dosiahnutý stupeň:</th>
+                                        <td>{$levels[$userData->user_level_id]}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Počet obch. partnerov:</th>
+                                        <td>
+                                            <a n:href="Office:partners">{$directPartnersCount} priame registrácie, {$allPartnersCount} celkovo</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Referenčný partner:</th>
+                                        <td>
+                                            {if $referral}
+                                                <a n:href="Office:default, 'uid' => $referralId">{$referral}</a>
+                                            {else}
+                                                nikto
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Váš affiliate link:</th>
+                                        <td><a href="{$rootUrl}?ref_no={$userData->ref_no}">{$rootUrl}?ref_no={$userData->ref_no}</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                         </div>
+                    <br />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h3>Provizné obraty / Celkové obraty</h3>
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Osobný</th>
+                                        <th>Skupina</th>
+                                        <th>Osobný</th>
+                                        <th>Skupina</th>
+                                    </tr>
+                                    </thead>
+                                    <tr style="background-color: #fafad2;">
+                                        <th title="včetně nezaplacených">Dnes:</th>
+                                        <td class="text-right">{$turnovers['stToday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtToday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllToday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllToday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                    <tr style="background-color: #fafad2;">
+                                        <th title="včetně nezaplacených">Včera:</th>
+                                        <td class="text-right">{$turnovers['stYesterday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtYesterday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllYesterday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllYesterday']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                    <tr style="background-color: #fafad2;">
+                                        <th title="včetně nezaplacených">Tento mesiac:</th>
+                                        <td class="text-right">{$turnovers['stThisMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtThisMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllThisMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllThisMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Predošlý mesiac:</th>
+                                        <td class="text-right">{$turnovers['stPrevMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtPrevMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllPrevMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllPrevMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Posledné 3 mesiace:	</th>
+                                        <td class="text-right">{$turnovers['stThreeMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtThreeMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllThreeMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllThreeMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Posledných 6 mesiacov:</th>
+                                        <td class="text-right">{$turnovers['stSixMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtSixMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllSixMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllSixMonth']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'};</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tento rok:</th>
+                                        <td class="text-right">{$turnovers['stThisYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtThisYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllThisYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllThisYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>                                    
+                                    <tr>
+                                        <th>Predošlý rok:</th>
+                                        <td class="text-right">{$turnovers['stLastYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtLastYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllLastYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllLastYear']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Celkom od registrácie:</th>
+                                        <td class="text-right">{$turnovers['stAll']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAll']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['stAllAll']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                        <td class="text-right">{$turnovers['gtAllAll']|number:2, ',', ''}&nbsp;{($turnovers['currencyId'] == 2) ? 'Kč' : '€'}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}

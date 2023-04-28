@@ -1,0 +1,124 @@
+{snippetArea addressForm}
+    <form n:name=form class="row justify-content-between flex-wrap">
+        <div class="col-sm-6 mt-3 mb-4 mb-sm-0 mt-sm-0">
+            <h3 class="h6 title title--border mb-3">{_cart.address.private_info}</h3>
+            <div class="form-group mb-3">
+                <input n:name="firstName" class="form-control quickSearch-input" placeholder="{_cart.address.name}">
+            </div>
+            <div class="form-group mb-3">
+                <input n:name="lastName" class="form-control quickSearch-input " placeholder="{_cart.address.surname}">
+            </div>
+            <div class="form-group mb-3">
+                <input n:name="email" class="form-control quickSearch-input " placeholder="{_strings.email}">
+            </div>
+            <div class="form-group mb-3">
+                <input n:name="phone" class="form-control quickSearch-input " placeholder="{_cart.address.phone}">
+            </div>
+        </div>
+        <div class="col-sm-6 mt-3 mt-sm-0">
+            <h3 class="h6 title title--border mb-3">{_cart.address.invoice_address}</h3>
+            <div class="form-group mb-3">
+                <input n:name="street" class="form-control quickSearch-input " placeholder="{_cart.address.street}">
+            </div>
+            <div class="form-group mb-3">
+                <input n:name="city" class="form-control quickSearch-input " placeholder="{_cart.address.city}">
+            </div>
+            <div class="form-group mb-3">
+                <input n:name="zip" class="form-control quickSearch-input " placeholder="{_cart.address.zip}">
+            </div>
+            <div class="form-group mb-3">
+                <select n:name="country" class="form-control quickSearch-input country-select "></select>
+            </div>
+        </div>
+
+        <div class="col-sm-6 mb-sm-4">
+            <div class="custom-control custom-checkbox font-size-md mt-2 mb-3">
+                <input n:name="isCompany" class="custom-control-input company-toggle">
+                <label n:name="isCompany" class="custom-control-label text-muted">
+                    {_cart.address.invoice_to_company}
+                </label>
+            </div>
+            <div class="company-data" {if !$form['isCompany']->getValue()}style="display: none;"{/if}>
+                <div class="form-group mb-3">
+                    <input n:name="companyName" class="form-control quickSearch-input " placeholder="{_cart.address.company}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="ico" class="form-control quickSearch-input " placeholder="{_cart.address.ico}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="dic" class="form-control quickSearch-input " placeholder="{_cart.address.dic}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="icdph" class="form-control quickSearch-input " placeholder="{_cart.address.icdph}">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 mb-4">
+            <div class="custom-control custom-checkbox font-size-md mt-2 mb-3">
+                <input n:name="otherAddress" class="custom-control-input other-address-toggle">
+                <label n:name="otherAddress" class="custom-control-label text-muted">
+                    {_cart.address.different_delivery}
+                </label>
+            </div>
+            <div class="other-address" {if !$form['otherAddress']->getValue()}style="display: none;"{/if}>
+                <div class="form-group mb-3">
+                    <input n:name="otherName" class="form-control quickSearch-input " placeholder="{_cart.address.name}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="otherSurname" class="form-control quickSearch-input " placeholder="{_cart.address.surname}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="otherStreet" class="form-control quickSearch-input " placeholder="{_cart.address.street}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="otherCity" class="form-control quickSearch-input " placeholder="{_cart.address.city}">
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="otherZip" class="form-control quickSearch-input " placeholder="{_cart.address.zip}">
+                </div>
+                <div class="form-group mb-3">
+                    <select n:name="otherCountry" class="form-control quickSearch-input otherCountry-select "></select>
+                </div>
+                <div class="form-group mb-3">
+                    <input n:name="otherPhone" class="form-control quickSearch-input " placeholder="{_cart.address.phone}">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 mt-3 mb-4 mt-sm-0">
+            <h3 class="h6 title title--border mb-3">{_cart.delivery}</h3>
+            {snippet shippingOptions}
+                {var $form = $_form = $control['form']}
+                <div class="btn-group-toggle my-3" data-toggle="buttons">
+                    {foreach $form[shipping]->items as $key => $label}
+                        <label n:name="shipping:$key" class="btn btn-block btn-lg btn-shipping rounded-pill px-1 py-3 {if $shipping && $shipping == $key}active{/if}">
+                            <input n:name="shipping:$key" type="radio" autocomplete="off" class="shipping-select sr-only" >
+                            {$label}
+                        </label>
+                    {/foreach}
+                </div>
+                {if count($form[shipping]->items) < 1}
+                    <p class="text-muted">{_cart.select_country}</p>
+                {/if}
+            {/snippet}
+        </div>
+        <div class="col-sm-6 mt-3 mb-4 mt-sm-0">
+            <h3 class="h6 title title--border mb-3">{_cart.payment}</h3>
+            {snippet paymentOptions}
+                {var $form = $_form = $control['form']}
+                <div class="btn-group-toggle my-3" data-toggle="buttons">
+                    {foreach $form[payment]->items as $key => $label}
+                        <label n:name="payment:$key" class="btn btn-block btn-lg btn-shipping rounded-pill px-1 py-3 {if $payment && $payment == $key}active{/if}">
+                            <input n:name="payment:$key" type="radio" autocomplete="off" class="payment-select sr-only">
+                            {$label}
+                        </label>
+                    {/foreach}
+                </div>
+                {if count($form[shipping]->items) < 1}
+                    <p class="text-muted">{_cart.select_delivery}</p>
+                {/if}
+            {/snippet}
+        </div>
+    </form>
+{/snippetArea}

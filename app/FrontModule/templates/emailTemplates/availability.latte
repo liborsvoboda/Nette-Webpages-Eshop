@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    {* <title>{ifset $title}{$title}{else}{$tplSetting->getMetaTitle()} - {_email.lost_password}{/ifset}</title> *}
+    <title>{_email.availability_request}</title>
+
+    {include 'order/_orderStyles.latte'}
+</head>
+
+<body bgcolor="#f7f7f7">
+<table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
+    {include 'emailHeader.latte'}
+    <tr>
+        <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
+            <center>
+                <table cellspacing="0" cellpadding="0" width="600" class="w320">
+                    <tr>
+                        <td class="header-lg">
+                            {_email.availability_request}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="free-text" style="text-align: left">
+                            {_email.hello},<br>
+                            {capture $productUrl}
+                                {link Front:Homepage:default}{$values->productSlug}
+                            {/capture}
+                            {_email.availability_request_text, [productName => $values->productName, productUrl => $productUrl]}
+                            <br><br>
+                            <strong>{_email.full_name}:</strong> {$values->name} {$values->surname}<br>
+                            <strong>{_strings.email}:</strong> {$values->email}<br>
+                            <strong>{_email.phone}:</strong> {$values->phone}<br>
+                            <strong>{_email.message}</strong><br>{$values->message}
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+    {include 'emailFooter.latte'}
+</table>
+</body>
+</html>

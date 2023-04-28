@@ -1,0 +1,8 @@
+<nav class="py-4 background-transparent" aria-label="breadcrumb">
+	<ol class="pl-0 breadcrumb">
+		<li class="breadcrumb-item"><a href="/">{_strings.home}</a></li>
+		<li n:foreach="$breads as $slug => $name" class="breadcrumb-item">
+			<a href="{$baseUrl}/{$slug}">{$name}</a>
+		</li>
+	</ol>
+</nav>

@@ -1,0 +1,13 @@
+{snippet sliderForm}
+    {ifset $image}
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <p>Aktuální obrázek</p>
+            </div>
+            <div class="col-sm-9">
+                <img src="{$basePath}{$image}" alt="" style="max-height: 120px; width: auto;">
+            </div>
+        </div>
+    {/ifset}
+    {control form}
+{/snippet}

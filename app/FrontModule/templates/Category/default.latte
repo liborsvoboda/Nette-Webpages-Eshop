@@ -1,0 +1,65 @@
+{block content}
+    <section class="extShop mbr-gallery cid-skyDnHREst pt-5" id="shop6-f">
+        <div class="container">
+			<h2 class="mbr-section-title mbr-bold mbr-fonts-style display-5 mb-4 text-center text-lg-left">{_products.our_products}</h2>
+            <div class="mbr-shop">
+                <div class="row mbr-shop__row">
+                    {include 'productsList.latte'}
+                    {include 'productFilter.latte'}
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+
+{block contento}
+    <div class="container">
+        <div class="row">
+            {*<aside class="filters__wrap col-lg-3 col-xxl-2 py-lg-4" n:snippet="productFilter">
+                {control productFilter}
+                {control categoryTree}
+            </aside>*}
+            <div class="col">
+                {include '../others/breadcrumbs.latte', breads => $breads}
+                {include 'header.latte'}
+                {include 'children.latte'}
+                {include 'bestSellers.latte'}
+                {include 'listTitle.latte'}
+                {snippetArea products}
+                    {include 'productsList.latte'}
+                    {include 'pagination.latte'}
+                {/snippetArea}
+                {include 'footer.latte'}
+            </div>
+        </div>
+    </div>
+{/block}
+{block title}
+    {$category->name}
+{/block}
+{block addcssModule}
+    <link rel="stylesheet" href="{$basePath}{$tplSetting->getAssetPath('css/vendor/nouislider.min.css')}">
+{/block}
+{block addjsModule}
+    <script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/nouislider.min.js')}"></script>
+{/block}
+{block conversionjs}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            currency: {$currency},
+            pageType: 'category',
+            products: [
+                {foreach $products as $product}
+                    {
+                        productId: {$product->id},
+                        productSku: {$product->sku},
+                        name: {$product->name},
+                        brand: {$product->producer ? $product->producer->name},
+                        price: {getPriceVat($product->productId)}
+                    },
+                {/foreach}
+            ]
+        });
+    </script>
+{/block}

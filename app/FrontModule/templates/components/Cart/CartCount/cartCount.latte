@@ -1,0 +1,22 @@
+{* <div class="d-flex">
+    <div class="smallCartImage">
+        <span class="smallCartCount">{$count}</span>
+    </div>
+    <strong class="ml-3">{$total|number:2} €</strong>
+</div>
+ *}
+
+{* <div class="row">
+	<div class="col-5 pr-0">{_strings.cart_count}:</div>
+	<div class="col-7 text-right"><strong>{$count}</strong></div>
+</div>
+<div class="row">
+	<div class="col-5 pr-0">{_strings.cart_total}:</div>
+	<div class="col-7 text-right"><strong>{$total|price}</strong></div>
+</div> *}
+
+<a href="{plink Cart:default}" class="cartCount">
+    <i class="fas fa-shopping-cart mr-2 font-size-h2"></i>
+    {_cart.cart}
+    {*_cart.count, [count => $count]*}
+</a>

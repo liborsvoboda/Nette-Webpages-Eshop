@@ -1,0 +1,173 @@
+{block content}
+    <div class="row">
+        <div class="col-xl-2">
+            <div class="card" style="height: 100%">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Objednávky dnes</h6>
+                    <div class="dashboard-figure">
+                        {$todayOrdersSum|number:2,',',' '}&nbsp;€
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                    <div class="dashboard-figure">
+                        {$todayOrdersSumCzk|number:2,',',' '}&nbsp;Kč
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card" style="height: 100%">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Objednávky týden</h6>
+                    <div class="dashboard-figure">
+                        {$weekOrdersSum|number:2,',',' '}&nbsp;€
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                    <div class="dashboard-figure">
+                        {$weekOrdersSumCzk|number:2,',',' '}&nbsp;Kč
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card" style="height: 100%">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Objednávky měsíc</h6>
+                    <div class="dashboard-figure">
+                        {$monthOrdersSum|number:2,',',' '}&nbsp;€
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                    <div class="dashboard-figure">
+                        {$monthOrdersSumCzk|number:2,',',' '}&nbsp;Kč
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card" style="height: 100%">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Objednávky za rok</h6>
+                    <div class="dashboard-figure">
+                        {$yearOrdersSum|number:2,',',' '}&nbsp;€
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                    <div class="dashboard-figure">
+                        {$yearOrdersSumCzk|number:2,',',' '}&nbsp;Kč
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card" style="height: 100%">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Objednávky celkově</h6>
+                    <div class="dashboard-figure">
+                        {$allOrdersSum|number:2,',',' '}&nbsp;€
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                    <div class="dashboard-figure">
+                        {$allOrdersSumCzk|number:2,',',' '}&nbsp;Kč
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {*
+    <div class="row mt-4">
+        <div class="col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Profit dnes</h6>
+                    <div class="dashboard-figure">
+                        {$todayProfitability|number:2,',',' '} €
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Profit týden</h6>
+                    <div class="dashboard-figure">
+                        {$weekProfitability|number:2,',',' '} €
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Profit měsíc</h6>
+                    <div class="dashboard-figure">
+                        {$monthProfitability|number:2,',',' '} €
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Profit rok</h6>
+                    <div class="dashboard-figure">
+                        {$yearProfitability|number:2,',',' '} €
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-2">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Profit celkově</h6>
+                    <div class="dashboard-figure">
+                        {$allProfitability|number:2,',',' '} €
+                        <section style="margin-top: 10px; font-size: 0.75em;">
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    *}
+    <div class="row mt-4">
+        <div class="col">
+            <h3>Objednávky</h3>
+            {control orderGrid}
+        </div>
+    </div>
+{/block}
+{block dashboardTitle}
+    <small>CMPshop</small>
+    <h1>Dashboard</h1>
+{/block}

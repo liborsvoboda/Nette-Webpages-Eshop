@@ -1,0 +1,22 @@
+{block content}
+    <table class="table table-striped">
+        <tr>
+            <th>Zúčtovacie obdobie</th>
+            <th>Počet partnerov na vyplatenie</th>
+            <th>Provízie celkom</th>
+            <th>Detail</th>
+        </tr>
+        {foreach $periods as $period}
+            <tr>
+            <td>{$period['date']}</td>
+            <td>{$period['count']}</td>
+            <td>{$period['sum']}</td>
+            <td><a n:href="month, $period['month'], $period['year']">Otvoriť</a></td>
+            </tr>
+        {/foreach}
+    </table>
+{/block}
+{block dashboardTitle}
+    <small>Prehľad</small>
+    <h1>Mesačné provízie</h1>
+{/block}

@@ -1,0 +1,15 @@
+parameters:
+	app:
+		prod: true
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=db'
+	user: db
+	password: db
+
+tracy:
+    maxDepth: 5
+    maxLength: 500
+
+session:
+	debugger: true

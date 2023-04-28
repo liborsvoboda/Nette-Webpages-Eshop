@@ -1,0 +1,15 @@
+﻿################################################################################
+# Tento soubor .gitignore byl automaticky vytvořen aplikací Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+temp/
+log/
+www/logs/
+www/.htaccess
+/.vs/vianutra/v16/.suo
+Bootstrap.php
+/.vs/slnx.sqlite-journal
+/.vs/VSWorkspaceState.json
+/.vs/vianutra/config/applicationhost.config

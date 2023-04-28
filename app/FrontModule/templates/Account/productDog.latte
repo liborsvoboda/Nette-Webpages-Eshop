@@ -1,0 +1,35 @@
+{block content}
+    <section class="pt-3">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-lg-3 border-lg-right border-danger">
+                    {include 'menu.latte'}
+                </div>
+                <div class="col-lg-9">
+                    <h1 class="h2 title title--border mb-3"><i class="fa fa-fw fa-eye mr-3"></i>{_account.product_dog}</h1>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{_account.watchdog.name}</th>
+                                    <th class="text-right">{_account.orders.price}</th>
+                                    <th class="text-right">{_account.watchdog.remove}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr n:foreach="$productDog as $item">
+                                    <td><a href="/{$products[$item->product_id]['slug']}">{$products[$item->product_id]['name']}</a></td>
+                                    <td class="text-right">{$item->price|price}</td>
+                                    <td class="text-right"><a n:href="productDogRemove! $item->id">{_account.watchdog.remove}</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {_account.product_dog}
+{/block}

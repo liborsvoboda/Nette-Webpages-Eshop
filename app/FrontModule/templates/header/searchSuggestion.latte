@@ -1,0 +1,16 @@
+{if $quickResult}
+    <div class="quickSearch__suggestions py-2 px-3">
+        {foreach $quickResult as $item}
+            <a href="/{$item['slug']}" class="quickSearch__suggestion">
+                <div class="row py-2 line-height-sm text-left">
+                    <div class="col-2 pl-4 pr-0">
+                        {if $item['img']}
+                            <img src="{imgSize($item['img'], xs)}" alt="" style="max-height: 32px;" class="img-fluid">
+                        {/if}
+                    </div>
+                    <div class="col pr-4">{$item['name']}</div>
+                </div>
+            </a>
+        {/foreach}
+    </div>
+{/if}

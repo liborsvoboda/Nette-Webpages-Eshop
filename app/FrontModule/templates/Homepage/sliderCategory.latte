@@ -1,0 +1,60 @@
+<section class="mbr-gallery gallery2 cid-skymTTvnQk pt-4" id="gallery2-6">
+
+
+    <div class="container">
+
+        <div class="row align-items-stretch justify-content-center justify-content-md-between">
+            <div class="col-xl-4 col-lg-6 d-flex justify-content-center">
+                <div class="d-flex flex-column justify-content-center block__inner text-center">
+                    <p class="mbr-text mbr-bold mbr-fonts-style display-7">{_strings.social_heading}</p>
+                    <span class="span__text mbr-fonts-style display-4">{_strings.social_text}</span>
+                    <div class="icons-menu">
+                        <div class="soc-item">
+                            <a href="https://www.facebook.com/app" target="_blank" class="social__link">
+                                <span class="mbr-iconfont socicon-facebook socicon" style="font-size: 20px; color: rgb(24, 119, 242); fill: rgb(24, 119, 242);">
+                                </span>
+                            </a>
+                        </div>
+                        {* <div class="soc-item">
+                            <a href="https://www.instagram.com/app/?hl=sk" target="_blank" class="social__link">
+                                <span class="mbr-iconfont socicon-twitter socicon" style="font-size: 20px; color: rgb(29, 161, 242); fill: rgb(29, 161, 242);">
+                                </span>
+                            </a>
+                        </div> *}
+                        <div class="soc-item">
+                            <a href="https://www.instagram.com/app/?hl=sk" target="_blank" class="social__link">
+                                <span class="mbr-iconfont socicon-instagram socicon" style="font-size: 20px; color: rgb(167, 22, 156); fill: rgb(167, 22, 156);">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.youtube.com/channel/UCReMlBnE0OWkdTwbFlIJ2rA" target="_blank" class="social__link">
+                                <span class="mbr-iconfont socicon-youtube socicon" style="font-size: 20px; color: rgb(255, 0, 0); fill: rgb(255, 0, 0);">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="https://www.linkedin.com/company/app/about/" target="_blank" class="social__link">
+                                <span class="mbr-iconfont socicon-linkedin socicon" style="font-size: 20px; color: rgb(10, 102, 194); fill: rgb(10, 102, 194);">
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-5 col-md-12 col-sm-9 images">
+                <div class="row row-gallery" id="gallery">
+                    {foreach $blogs as $blog}
+                        <div class="item-wrapper">
+                            <a n:href="Blog:post $blog->id" class="blogTeaser">
+                                <img src="{imgSize($blog->image, md)}" alt="{$blog->title}" title="{$blog->title}">
+								<h2 class="blogTeaser__title">{$blog->title}</h2>
+                            </a>
+                        </div>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

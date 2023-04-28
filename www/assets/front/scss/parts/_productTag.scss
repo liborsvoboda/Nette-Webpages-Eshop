@@ -1,0 +1,117 @@
+.productTag {
+    
+    display: block;
+    margin-bottom: 5px;
+    font-weight: $font-weight-bold;
+
+  
+    &--freeDelivery {
+        background: $green;
+        color: $white;
+        font-size: 15px;
+        width: 100px;
+        text-align: center;
+    }
+
+    &--discount {
+        background: $red;
+        color: $white;
+        font-size: 17px;
+        border-radius: 100%;
+        width: 60px;
+        height: 60px;
+        display: block;
+        position: relative;
+    }
+
+    &--action {
+        width: 100px;
+        font-size: 15px;
+        background: $red;
+        color: $white;
+        text-align: center;
+    }
+
+    &--new {
+        width: 100px;
+        font-size: 15px;
+        background: $blue;
+        color: $white;
+        text-align: center;
+    }
+}
+
+.productBox {
+    position: relative;
+}
+
+.productTagsLeft{
+    position: absolute;
+    top: 12px;
+    left: 0;
+    z-index: 5;
+}
+
+.productTagsRight{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    z-index: 5;
+}
+
+.productTagText{
+    position: absolute;
+    width: inherit;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.productTag .productTag--tip{
+    margin-left: 20px;
+    background: #BB9468;
+    color: #fff;
+    font-size: 11px;
+    border-radius: 100%;
+    width: 36px;
+    height: 36px;
+    display: block;
+    position: relative;
+}
+
+.productTag--discount {
+    background: #BB9468;
+    color: #fff;
+    font-size: 11px;
+    border-radius: 100%;
+    width: 36px;
+    height: 36px;
+    display: block;
+    position: relative;
+}
+
+.text-striked-gray {
+    position: relative;
+}
+.text-striked-gray:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    right: -10%;
+    margin-top: -1px;
+    height: 2px;
+    background: #bfc3c8;
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+
+/*.productTagsLeft .productTag{
+    display: block;
+    margin-bottom: 5px;
+    //float: left;
+    //clear: left; //doprava zdarma se presune z prave strany pod stitek nalevo
+    
+}*/
+

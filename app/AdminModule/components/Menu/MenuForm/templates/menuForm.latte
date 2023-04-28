@@ -1,0 +1,128 @@
+{snippet categoryForm}
+<form n:name="form">
+    <div class="form-group row required">
+        <div class="col-sm-3 col-form-label">
+            {label position, class => $_form[position]->isRequired() ? required /}
+        </div>
+        <div class="col-sm-9">
+            {input position, class => form-control}
+        </div>
+    </div>
+    <div class="form-group row required">
+        <div class="col-sm-3 col-form-label">
+            {label parent_id, class => $_form[parent_id]->isRequired() ? required /}
+        </div>
+        <div class="col-sm-9">
+            {input parent_id, class => form-control}
+        </div>
+    </div>
+    <div class="form-group row required">
+        <div class="col-sm-3 col-form-label">
+            {label sort, class => $_form[sort]->isRequired() ? required /}
+        </div>
+        <div class="col-sm-9">
+            {input sort, class => form-control}
+        </div>
+    </div>
+    <nav>
+        <div class="nav nav-tabs" id="locales-tab" role="tablist">
+            {foreach $locales as $nlocale}
+                <a class="nav-item nav-link {if $iterator->first}active{/if}" id="nav-locale-{$nlocale->id}" data-toggle="tab"
+                   href="#tab-locale-{$nlocale->id}" role="tab"
+                   aria-controls="nav-locale-{$nlocale->id}"
+                   aria-selected="{if $iterator->first}true{else}false{/if}">
+                       <span>
+                           <img src="{$basePath}/assets/admin/img/flags/{$nlocale->lang->locale}.svg"
+                                alt="{$nlocale->lang->locale}"
+                                style="height: 15px;margin-top: -6px;"class="mr-2">
+                       </span>
+                    {$nlocale->lang->name}
+                </a>
+            {/foreach}
+        </div>
+    </nav>
+    <div class="tab-content pt-3" id="nav-tabContent">
+        {foreach $locales as $tlocale}
+            <div class="tab-pane fade {if $iterator->first}show active{/if}" id="tab-locale-{$tlocale->id}"
+                 role="tabpanel"
+                 aria-labelledby="nav-locale-{$tlocale->id}">
+                {formContainer locale$tlocale->id}
+                    <div class="form-group row required">
+                        <div class="col-sm-3 col-form-label">
+                            {label title, class => required /}
+                        </div>
+                        <div class="col-sm-9">
+                            {input title, class => form-control}
+                        </div>
+                    </div>
+                    <div class="form-group row required">
+                        <div class="col-sm-3 col-form-label">
+                            {label slug, class => required /}
+                        </div>
+                        <div class="col-sm-9">
+                            {input slug, class => 'form-control quickSearch', autocomplete => 'off'}
+                            {snippet categoryFormSearchResult}
+                                {ifset $searchResult}
+                                    {if $searchResult}
+                                        <div class="main-search-suggestion">
+                                            {foreach $searchResult as $item}
+                                                <a href="/{$item['slug']}" data-slug="{$item['slug']}">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <p>{$item['name']}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            {/foreach}
+                                        </div>
+                                    {/if}
+                                {/ifset}
+                            {/snippet}
+                        </div>
+                    </div>
+
+                {/formContainer}
+            </div>
+        {/foreach}
+    </div>
+    <hr>
+    <div class="form-group row required">
+        <div class="col-sm-3 col-form-label"></div>
+        <div class="col-sm-9">
+            {input submit, class => 'btn btn-primary button'}
+        </div>
+    </div>
+</form>
+{/snippet}
+
+{block script}
+    <script>
+        var quickSearch = $('.quickSearch');
+        quickSearch.on('keyup', function () {
+            $.nette.ajax({
+                type: 'GET',
+                url: {link quickSearch!},
+                data: {
+                    'menuForm-string': quickSearch.val()
+                }
+            });
+        });
+        quickSearch.on('blur', function () {
+            setTimeout(function () {
+                $('.quick-search-suggestion').addClass('d-none')
+            }, 300);
+        });
+        quickSearch.on('focus', function () {
+            $('.quick-search-suggestion').removeClass('d-none')
+        });
+    </script>
+
+    <script>
+        $('body').on('click', '.main-search-suggestion a', function (e) {
+            e.preventDefault();
+            let slug = $(this).attr('data-slug');
+            $('.quickSearch').val(slug);
+            $(this).parent().hide();
+        });
+    </script>
+{/block}

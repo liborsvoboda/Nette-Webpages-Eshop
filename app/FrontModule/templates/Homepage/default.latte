@@ -1,0 +1,18 @@
+{block content}
+    {include 'slideshow.latte'}
+    {* {include 'features.latte'} *}
+    {include 'productHome.latte'}
+    {*snippetArea productHome}
+        {control productLine}
+    {/snippetArea*}
+
+	{include 'certificates.latte'}
+    {include 'sliderCategory.latte'}
+    {*include 'listTitle.latte'}
+    {include 'basicInfo.latte'*}
+
+{/block}
+
+{*block addjsModule}
+    <script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/tiny-slider.js')}"></script>
+{/block*}

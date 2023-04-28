@@ -1,0 +1,37 @@
+{block content}
+    <section class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-xl-8 text-center my-sm-4 my-md-5">
+                <h1 class="my-4">{_cart.finished.order_on_way}</h1>
+                <p class="text-muted font-size-h3 mt-4">{_cart.finished.thank_you_text}</p>
+                {if $tplSetting->getFbPagePluginAppId() && $tplSetting->getSocials()['facebook']}
+                    <p class="text-muted font-size-h3 mb-4">{_cart.finished.follow_us_facebook}</p>
+
+                    <div class="fb-page" data-href="{$tplSetting->getSocials()['facebook']}" data-tabs="timeline" data-width="290" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="{$tplSetting->getSocials()['facebook']}" class="fb-xfbml-parse-ignore"><a href="{$tplSetting->getSocials()['facebook']}">{$tplSetting->getSiteName()}</a></blockquote>
+                    </div>
+                {/if}
+                <div class="mt-5">
+                    <a href="/" class="btn btn-lg btn-success rounded-pill">
+                        <i class="fa fa-fw fa-chevron-left mr-2"></i>
+                        <form action="{$payForm['url']}" method="post">
+                            {foreach $payForm as $key => $value}
+                                <input type="text" name="{$key}" value="{$value}" class="d-none">
+                            {/foreach}
+                            <button type="submit" class="btn btn-primary">{_strings.pay}</button>
+                        </form>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {_cart.finish_title}
+{/block}
+{block addafterbody}
+    {if $tplSetting->getFbPagePluginAppId() && $tplSetting->getSocials()['facebook']}
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/cs_CZ/sdk.js#xfbml=1&version=v6.0&appId={$tplSetting->getFbPagePluginAppId()}&autoLogAppEvents=1"></script>
+    {/if}
+{/block}

@@ -1,0 +1,29 @@
+{block content}
+    <section class="container pt-3 pb-5">
+		{*include '../others/breadcrumbs.latte', breads => ['blog' => $title], align => left*}
+        <h1 class="h2 mb-4 mt-3">{_strings.gallery}</h1>
+        
+        <div class="row">
+            <div n:foreach="$galleries as $gallery" n:class="col-md-6, col-xl-4, my-3">
+                    <div class="col-sm-6">
+                        <h3 class="font-family-serif line-height-lg pb-2 mt-3"><a n:href="Gallery:gallery, $gallery->id" class="text-gray-400 font-size-base">{$gallery->title}</a></h3>
+                    </div>
+                <article class="row my-1">
+                    <div class="col-sm-4 pr-md-0 pr-lg-2 mt-4 ml-3">
+                        <a n:href="Gallery:gallery, $gallery->id" class="d-block border-radius text-center text-sm-right text-lg-center h-100">
+                            <img src="{if $gallery->image !== NULL}{imgSize($gallery->image,'sm')}{else}{$basePath}/assets/front/img/no-image.jpg{/if}" alt="{$gallery->title}" class="img-fluid img-thumbnail mb-3 mb-sm-0">
+                        </a>
+                    </div>
+                </article>
+                    <div class="col-sm-6 font-size-xs">
+                        <p class="text-gray-400 mt-3 pt-1 mb-0">{$gallery->description|striptags|truncate:80,'...'}</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+    {* {include '../others/newsletter.latte'} *}
+{/block}
+{block title}
+    {_strings.gallery}
+{/block}
+

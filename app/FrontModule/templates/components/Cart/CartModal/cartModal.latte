@@ -1,0 +1,34 @@
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    {ifset $product}
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="h5 modal-title" id="exampleModalLabel">{_products.added_to_cart}</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-2 text-center">
+                            <img src="{if $product->image !== NULL}{$product->image}{else}{$basePath}/assets/front/img/no-image.png{/if}"
+                                 alt="{$product->name}"
+                                 class="img-fluid">
+                        </div>
+                        <div class="col-7">
+                            <h3 class="h5 font-weight-bold font-family-normal mb-0">{$product->name}</h3>
+                        </div>
+                        <div class="col-3 text-right">
+                            <strong class="text-success">{($row['price'] * $amount)|price}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal"><i
+                                class="fa fa-fw fa-chevron-left mr-1"></i> {_strings.continue_shopping}</button>
+                    <a href="{plink Cart:default}" class="btn btn-sm btn-success">{_strings.go_to_cart} <i
+                                class="fa fa-fw fa-chevron-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+    {/ifset}
+</div>
+<button type="button" id="cartModalTrigger" data-toggle="modal" data-target="#cartModal" class="d-none"></button>

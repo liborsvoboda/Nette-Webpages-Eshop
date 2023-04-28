@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="{$tplSetting->getLocale()}" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <title>{ifset title}{include title|stripHtml} | {/ifset}{$tplSetting->getMetaTitle()}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="web_author" content="{$tplSetting->getMetaAuthor()}">
+    <meta name="robots" content="{$tplSetting->getMetaRobots()}">
+    <meta name="description" content="{ifset description}{include description}{else}{$mainMetaDescription}{/ifset}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{$basePath}/assets/front/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{$basePath}/assets/front/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{$basePath}/assets/front/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{$basePath}/assets/front/img/favicon/site.webmanifest">
+    <link rel="shortcut icon" href="{$basePath}/assets/front/img/favicon/favicon.ico">
+
+    {if isset($tplSetting->getGtmLang()[$langId])}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){
+            w[l]=w[l]||[];w[l].push({
+                'gtm.start': new Date().getTime(),event:'gtm.js'
+            });
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer',{$tplSetting->getGtmLang()[$langId]});</script>
+        <!-- End Google Tag Manager -->
+    {/if}
+
+    {if $tplSetting->getLocale() == 'sk'}
+        <meta name="facebook-domain-verification" content="mr7suin9552bhhk1e2p93gh5ksb2ne" />
+    {/if}
+    {if $tplSetting->getLocale() == 'cs'}
+        <meta name="facebook-domain-verification" content="fwnsyl896yozcyv8yotcymfbashjwx" />
+    {/if}
+
+    {* Facebook meta *}
+    <meta property="og:title" content="{ifset title}{include title|stripHtml} | {/ifset}{$tplSetting->getMetaTitle()}"/>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{$baseUrl}{link 'this'}">
+    <meta property="og:image" content="{ifset ogImage}{include ogImage}{else}{$baseUrl}/img/logo-og.jpg{/ifset}">
+    <meta property="og:site_name" content="{$tplSetting->getSiteName()}">
+    <meta property="og:description" content="{ifset description}{include description}{else}{$mainMetaDescription}{/ifset}">
+
+    <link rel='dns-prefetch' href='//s.w.org'/>
+
+    {* Stylesheets *}
+    {block addcssModule}{/block}
+    <link rel="stylesheet" href="{$basePath}{$tplSetting->getAssetPath('css/style.css')}">
+
+    {*Mobirise*}
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/web/assets/mobirise-icons/mobirise-icons.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/tether/tether.min.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/dropdown/css/style.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/socicon/css/styles.css">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/theme/css/style.css?v={time()}">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/gallery/style.css">
+    <link rel="preload" as="style" href="{$basePath}/assets/front/mobir/mobirise/css/mbr-additional.css?v={time()}">
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/mobirise/css/mbr-additional.css?v={time()}" type="text/css">
+    {*Mobirise*}
+
+
+    <link rel="stylesheet" href="{$basePath}/assets/front/mobir/custom.css?v={$tplSetting->getAssetsVersion()}">
+    {block addCss}{/block}
+
+    {* Font Awesome *}
+    <script defer src="{$basePath}{$tplSetting->getAssetPath('js/vendor/all.js')}"></script>
+
+    {* jQuery :( *}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    {* Favicons *}
+    <link rel="icon" href="{$basePath}/assets/front/img/favicon/nelapek-favicon.png" sizes="16x16" />
+    {*<link rel="icon" href="{$basePath}/assets/front/img/favicon-100x100.png" sizes="32x32" />*}
+    {*<link rel="icon" href="{$basePath}/assets/front/img/favicon.png" sizes="192x192" />*}
+    {*<link rel="apple-touch-icon-precomposed" href="{$basePath}/assets/front/img/favicon.png" />*}
+    <meta name="msapplication-TileImage" content="{$basePath}/assets/front/img/favicon.png" />
+
+    {* <link rel="apple-touch-icon" sizes="180x180" href="{$basePath}/assets/front/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{$basePath}/assets/front/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{$basePath}/assets/front/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="{$basePath}/assets/front/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="{$basePath}/assets/front/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="{$basePath}/assets/front/img/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-config" content="{$basePath}/assets/front/img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff"> *}
+</head>
+<body class="" data-lang-id="{$langId}">
+<noscript n:ifset="$tplSetting->getGtmLang()[$langId]"><iframe src="https://www.googletagmanager.com/ns.html?id={$tplSetting->getGtmLang()[$langId]}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div id="hore"></div>
+{block addafterbody}{/block}
+
+{snippetArea header}
+    {include 'header/header.latte'}
+{/snippetArea}
+
+<section class="content">
+    {include content}
+</section>
+
+{snippet cartModal}
+	{control cartModal}
+{/snippet}
+
+{include 'footer/footer.latte'}
+
+{include 'others/cookie-banner.latte'}
+
+
+<script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/netteForms.js')}"></script>
+<script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/nette.ajax.js')}"></script>
+<script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/cookies-eu-banner.js')}"></script>
+<script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/nprogress.js')}"></script>
+<script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/nprogress.js')}"></script>
+<script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/tiny-slider.js')}"></script>
+<script src="{$basePath}{$tplSetting->getAssetPath('js/bootstrap.native/bootstrap.native.js')}"></script>
+{block addjsModule}{/block}
+<script src="{$basePath}{$tplSetting->getAssetPath('js/app.js')}"></script>
+
+{*Mobirise*}
+<script src="{$basePath}/assets/front/mobir/tether/tether.min.js"></script>
+<script src="{$basePath}/assets/front/mobir/smoothscroll/smooth-scroll.js"></script>
+<script src="{$basePath}/assets/front/mobir/dropdown/js/nav-dropdown.js"></script>
+<script src="{$basePath}/assets/front/mobir/dropdown/js/navbar-dropdown.js"></script>
+<script src="{$basePath}/assets/front/mobir/touchswipe/jquery.touch-swipe.min.js"></script>
+<script src="{$basePath}/assets/front/mobir/theme/js/script.js"></script>
+{*Mobirise*}
+{block addJs}{/block}
+<script>
+    $(function() {
+        $.nette.init();
+    });
+    var quickSearch = $('#quickSearch');
+    var quickSearchTimeout;
+    var quickSearchVal = '';
+    quickSearch.on('keyup', function() {
+        if (quickSearchTimeout) clearTimeout(quickSearchTimeout);
+        quickSearchTimeout = setTimeout(function() {
+            if (quickSearchVal == quickSearch.val()) return;
+            quickSearchVal = quickSearch.val();
+            $.nette.ajax({
+                type: 'GET',
+                url: {link quickSearch!},
+                data: {
+                    'string': quickSearch.val()
+                }
+            });
+        }, 300);
+    });
+    quickSearch.on('blur', function () {
+        setTimeout(function () {
+            $('.quick-search-suggestion').addClass('d-none')
+        }, 300);
+    });
+    quickSearch.on('focus', function () {
+        $('.quick-search-suggestion').removeClass('d-none')
+    });
+</script>
+
+{block conversionjs}
+{/block}
+<script>
+    new CookiesEuBanner(function() {
+        var marketing = new CustomEvent('marketing');
+        window.dispatchEvent(marketing);
+    }, true);
+</script>
+{block addjs}
+{/block}
+</body>
+</html>

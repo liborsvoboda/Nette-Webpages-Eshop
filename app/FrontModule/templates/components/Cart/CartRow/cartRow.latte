@@ -1,0 +1,53 @@
+<div class="border-bottom border-gray-1 py-2">
+    <div class="row align-items-center">
+        <div class="col-4 col-sm-2 my-1 pr-0 text-center">
+            <a href="{plink Product:default $product->id}">
+                <img src="{$basePath}{if $product->image !== NULL}{$product->image}{else}/assets/front/img/no-image.png{/if}" alt="{$product->name}" class="img-fluid my--1" style="max-height: 50px">
+            </a>
+        </div>
+        <div class="col-8 col-sm-5 col-md-6 col-lg-5 col-xxl-6 my-1">
+            <h3 class="h6 mb-0 font-family-normal font-weight-bold"><a href="{plink Product:default $product->id}" class="text-body">{$product->name}</a></h3>
+            {*if $product->onStock}
+                <small class="text-success font-size-sm text-nowrap">{_products.in_stock} {ifset $product->stock }
+					{$product->stock|noescape}
+				{else}
+					{_products.stock|noescape}
+				{/ifset} {$product->unit}</small>
+            {else}
+                <small class="text-danger font-size-sm text-nowrap">{_products.out_of_stock}</small>
+            {/if*}
+            <small n:class="text-right, font-size-sm, font-weight-bold, $product->onStock > 0 ? text-success : text-danger">
+            {ifset $product->stock }
+					{$product->stock|noescape}
+				{else}
+					{_products.stock|noescape}
+				{/ifset}
+            </small>
+        </div>
+        <div class="col-4 col-sm-2 my-1 pr-0 text-center font-weight-bold">
+            <div n:if="!$isSummary" class="input-group spinner__input-group align-middle">
+                <input type="number" min="{$min}" {if $max > 0}max="{$max}" {/if}required class="form-control text-center px-2 ajax-change-submit" value="{$row['amount']}" name="cart-{$row['id']}" data-spinner="productCount-{$row[id]}" data-auto-submit>
+                <div class="input-group-append font-size-sm">
+                    <span class="spinner">
+                        <button type="button" class="spinner__btn spinner__btn--more py-0" data-spin-more="productCount-{$row[id]}">
+                            <i class="fa fa-chevron-up"></i>
+                        </button>
+                        <button type="button" class="spinner__btn spinner__btn--less py-0" data-spin-less="productCount-{$row[id]}">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                    </span>
+                </div>{if $row['freeAmount'] > 0} <span style="color:orange;" >{$row['freeAmount']} zdarma</span> {/if}
+            </div>
+            {if $isSummary}{$row['amount']} {$product->unit}{/if}
+        </div>
+        <div class="col-8 col-sm-3 col-md-2 col-lg-3 col-xxl-2 my-1 pl-lg-0 text-right">
+            <strong class="font-size-h6">{(($row['amount'] - $row['freeAmount']) * $row['price'])|price}</strong>
+            <div n:if="!$isSummary">
+                <a n:href="cartRemove! $row['id']" class="text-danger ajax btn btn-link btn-sm px-0 link-underline-never p-1 m-0 mt-2" style="font-size: 80%; height: auto;">
+                    <i class="fa fa-fw fa-trash"></i>
+                    {_cart.remove}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

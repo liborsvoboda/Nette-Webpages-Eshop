@@ -1,0 +1,142 @@
+/**
+ * Sliders styles
+ */
+
+.slideshow {
+	position: relative;
+	overflow: hidden;
+	background: $white;
+	// height: 60vh;
+
+	&__slide {
+		position: relative;
+		// min-height: 100%;
+		// height: 70vh;
+		&::before {
+			content: '';
+			display: block;
+			padding-top: 553/1957*100%;
+		}
+	}
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100% !important;
+		// max-width: 2000px;
+		// margin-left: auto;
+		// margin-right: auto;
+		object-fit: cover;
+		// @include media-breakpoint-up(sm) {
+		// 	object-position: right center;
+		// }
+		// @include media-breakpoint-up(md) {
+		// 	object-position: 83% center;
+		// }
+		// @include media-breakpoint-up(xxl) {
+		// 	object-position: 70% center;
+		// }
+	}
+	&__content {
+		position: relative;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: flex-start;
+		text-align: left;
+		height: 100vh;
+//		padding-top: 3rem;
+//		padding-bottom: 3rem;
+		background-size: cover;
+		background-position: center;
+
+
+	}
+	&__title {
+		@include font-size($display4-size);
+		line-height: $line-height-sm;
+		font-weight: $font-weight-bold;
+		margin-bottom: 20px;
+	}
+	&__text {
+		@include font-size($h4-font-size);
+	}
+	&__anim {
+		transform: translateY(20px);
+		opacity: 0;
+		transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+		will-change: transform, opacity;
+		@for $i from 1 through 4 {
+			&--#{$i} {
+				transition-delay: $i * 0.2s;
+			}
+		}
+	}
+	.tns-slide-active .slideshow__anim {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	.tns-nav {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 20px;
+		text-align: center;
+		margin-bottom: -5px;
+
+		button {
+			-webkit-apearance: none;
+			border-style: /*none*/solid;
+			border-color: $white; // Nav minibutton border color
+			background: $white;
+			transition: background .25s ease-in-out;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			margin: 0 6px;
+			// height: 6px;
+			// margin: 0 6px;
+
+			&.tns-nav-active {
+				background: $primary;
+			}
+		}
+	}
+
+	.tns-controls button {
+		position: absolute;
+		top: 50%;
+		z-index: 99;
+		width: 36px;
+		height: 36px;
+		margin-top: -19px;
+		appearance: none;
+		background: none;
+		border: none;
+		text-indent: -300em;
+		overflow: hidden;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 100% auto;
+		opacity: 0;
+		@include transition(opacity .25s ease-in-out);
+		will-change: opacity;
+
+		&[data-controls="prev"] {
+			background-image: url($svgPath + '/chevron-left.svg');
+			left: 20px;
+		}
+		&[data-controls="next"] {
+			background-image: url($svgPath + '/chevron-right.svg');
+			right: 20px;
+		}
+	}
+
+	&:hover .tns-controls button {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,33 @@
+{snippet contactForm}
+    <div n:if="$sent" class="alert alert-success">{_strings.contact.sent}</div>
+    <form n:if="!$sent" n:name="form" class="ajax">
+        {if $form->hasErrors()}
+            {foreach $form->errors as $error}
+                <div class="alert alert-danger">{$error}</div>
+            {/foreach}
+        {/if}
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input n:name="name" class="form-control bg-white " placeholder="{_$form['name']->caption}">
+            </div>
+            <div class="col-md-6 form-group">
+                <input n:name="surname" class="form-control bg-white " placeholder="{_$form['surname']->caption}">
+            </div>
+            <div class="col-md-6 form-group">
+                <input n:name="phone" class="form-control bg-white " placeholder="{_$form['phone']->caption}">
+            </div>
+            <div class="col-md-6 form-group">
+                <select n:name="country" class="form-control bg-white "></select>
+            </div>
+            <div class="col-12 form-group">
+                <input n:name="email" class="form-control bg-white " placeholder="{_$form['email']->caption}">
+            </div>
+            <div class="col-12 form-group">
+                <textarea n:name="message" class="form-control bg-white " placeholder="{_$form['message']->caption}"></textarea>
+            </div>
+            <div class="col-12 form-group">
+                <button n:name="submit" class="btn btn-primary rounded-pill">{_$form['submit']->caption}</button>
+            </div>
+        </div>
+    </form>
+{/snippet}

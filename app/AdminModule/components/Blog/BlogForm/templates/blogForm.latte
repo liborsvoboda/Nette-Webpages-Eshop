@@ -1,0 +1,89 @@
+{snippet blogForm}
+    {ifset $image}
+        <div class="row mb-3">
+            <div class="col-sm-3">Aktuální obrázek</div>
+            <div class="col-sm-9">
+                <img src="{$image}" alt="" style="max-height: 100px;">
+            </div>
+        </div>
+    {/ifset}
+    <form n:name="form">
+        <div class="form-row mb-3">
+            <div class="form-check">
+                <input class="form-check-input" n:name="active" id="frm-pageForm-form-active" checked="">
+                <label class="form-check-label" n:name="active">Aktivní</label>
+            </div>
+        </div>
+        <div class="form-row mb-3">
+            {label image class=>"col-sm-3" /}
+            {input image, class=>"col-sm-9"}
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {label blog_category_id /}
+                {input blog_category_id, class => "form-control select2"}
+            </div>
+        </div>
+        {*
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {label related_products /}
+                {input related_products, class => "form-control select2"}
+            </div>
+            <div class="form-group col-md-6">
+                {label related_blogs /}
+                {input related_blogs, class => "form-control select2"}
+            </div>
+        </div>
+        *}
+        <nav>
+            <div class="nav nav-tabs" id="locales-tab" role="tablist">
+                {foreach $locales as $nlocale}
+                    <a class="nav-item nav-link {if $iterator->first}active{/if}" id="nav-locale-{$nlocale->id}"
+                       data-toggle="tab"
+                       href="#tab-locale-{$nlocale->id}" role="tab"
+                       aria-controls="nav-locale-{$nlocale->id}"
+                       aria-selected="{if $iterator->first}true{else}false{/if}">
+                       <span>
+                           <img src="{$basePath}/assets/admin/img/flags/{$nlocale->lang->locale}.svg"
+                                alt="{$nlocale->lang->locale}"
+                                style="height: 15px;margin-top: -6px;" class="mr-2">
+                       </span>
+                        {$nlocale->lang->name}
+                    </a>
+                {/foreach}
+            </div>
+        </nav>
+        <div class="tab-content pt-3" id="nav-tabContent">
+            {foreach $locales as $tlocale}
+                <div class="tab-pane fade {if $iterator->first}show active{/if}" id="tab-locale-{$tlocale->id}"
+                     role="tabpanel"
+                     aria-labelledby="nav-locale-{$tlocale->id}">
+                    {formContainer locale$tlocale->id}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label title, class => required /}
+                                {input title, class => form-control}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label text, class => required /}
+                                {input text, class => editor}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label slug, class => required /}
+                            {input slug, class => 'form-control'}
+                            </div>
+                        </div>
+                    {/formContainer}
+                </div>
+            {/foreach}
+            <hr>
+            <div class="form-group">
+                <button n:name="submit" class="btn btn-primary btn-lg">{_$_form[submit]->caption}</button>
+            </div>
+    </form>
+{/snippet}

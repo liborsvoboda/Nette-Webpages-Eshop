@@ -1,0 +1,149 @@
+{block content}
+<div class="py-4">
+	<section class="container my-4">
+		{if $items}
+			<div id="cart-step-1" class="row">
+				<div class="col-lg-6 pr-lg-4 pr-xxl-5 mb-4">
+					{if !$user->isLoggedIn()}
+						{control signInForm}
+					{/if}
+					{snippet cartItems}
+
+                    {if $user->isLoggedIn()}
+                        {if $parnerItemsAmount < 6}
+                            <p class="line-height-md pt-3 mb-0">
+                                <span class="d-block align-middle alert bronzePartner">{_cart.buy} {6-$parnerItemsAmount} {if (6-$parnerItemsAmount == 1)} {_cart.oneItem} {else} {_cart.moreItem}{/if} {_cart.bronzeTarget|noescape} {if $reachedLevelId < 3 } {_cart.bronzeLevel} {/if}</span>
+                            </p>
+                        {/if}
+                        {if $parnerItemsAmount >= 6 && $parnerItemsAmount < 12}
+                            <p class="line-height-md pt-3 mb-0">
+                                <span class="d-block align-middle alert silverPartner">{_cart.buy} {12-$parnerItemsAmount} {if (12-$parnerItemsAmount == 1)} {_cart.oneItem} {else} {_cart.moreItem}{/if} {_cart.silverTarget|noescape} {if $reachedLevelId < 4 } {_cart.silverLevel} {/if}</span>
+                            </p>
+                        {/if}
+                        {if $parnerItemsAmount >= 12 && $parnerItemsAmount < 24}
+                            <p class="line-height-md pt-3 mb-0">
+                                <span class="d-block align-middle alert goldPartner">{_cart.buy} {24-$parnerItemsAmount} {if (24-$parnerItemsAmount == 1)} {_cart.oneItem} {else} {_cart.moreItem}{/if} {_cart.goldTarget|noescape} {if $reachedLevelId < 5 } {_cart.goldLevel} {/if}</span>
+                            </p>
+                        {/if}
+
+                        {* zpravy o poctu zdarma *}
+                        {if $parnerItemsAmount >= 6 && $parnerItemsAmount < 12 && $parnerGratisItemsAmount == 0}
+                            <p class="line-height-md pt-3 mb-0">
+                                <a n:href="Category:default 1"><span class="d-block align-middle alert bronzePartner">{_cart.selectItem} 1 ks {_cart.justItem} {_cart.selectGratisItem}</span></a>
+                            </p>
+                        {/if}
+                        {if $parnerItemsAmount >= 12 && $parnerItemsAmount < 24 && $parnerGratisItemsAmount < 2}
+                            <p class="line-height-md pt-3 mb-0">
+                                <a n:href="Category:default 1"><span class="d-block align-middle alert silverPartner">{_cart.selectItem} {2-$parnerGratisItemsAmount} ks {_cart.justItem} {_cart.selectGratisItem}</span></a>
+                            </p>
+                        {/if}
+                        {if $parnerItemsAmount >= 24 && $parnerGratisItemsAmount < 4}
+                            <p class="line-height-md pt-3 mb-0">
+                                <a n:href="Category:default 1"><span class="d-block align-middle alert goldPartner">{_cart.selectItem} {4-$parnerGratisItemsAmount} ks {_cart.justItem} {_cart.selectGratisItem}</span></a>
+                            </p>
+                        {/if}
+                    {/if}
+
+						{control cartItemsForm}
+                            {if $user->isLoggedIn()}
+                                <p class="line-height-md mb-0">
+                                    <span class="d-block pt-3 align-middle"> {_cart.reached_level} {$reachedLevel}</span>
+                                </p>
+                            {/if}
+                        {if $freeDeliveryRemains > 0}
+                            <p class="line-height-md pt-3 mb-0">
+                                <span class="d-block align-middle alert alert-success"><i class="fas fa-truck mr-1"></i> {_cart.delivery_remains} {$freeDeliveryRemains|price} {_cart.delivery_remains1}</span>
+                            </p>
+                        {/if}
+						{control cartTotal}
+					{/snippet}
+				</div>
+				<div class="col-lg-6 border-lg-left border-gray-1 pl-lg-4 pl-xxl-5">
+					{if !$user->isLoggedIn()}
+						<h2 class="h3 title title--border mb-3">{_cart.new_customer}</h2>
+					{/if}
+					{control cartAddress}
+				</div>
+			</div>
+			<div class="text-right border-top border-gray-1 pt-4 mt-3">
+				<button name="submit" type="submit" form="frm-cartAddress" class="btn btn-success btn-lg rounded-pill">
+					{_cart.continue}
+					<i class="fa fa-fw fa-chevron-right ml-2"></i>
+				</button>
+			</div>
+		{else}
+			<div class="alert alert-info">
+				<i class="fa fa-fw fa-info-circle mr-2"></i>
+				{_cart.empty}
+			</div>
+			<div class="border-top border-danger pt-4 mt-3">
+				<a href="/" name="submit" type="submit" class="btn btn-secondary btn-lg">
+					<i class="fa fa-fw fa-chevron-left mr-2"></i>
+					{_cart.back_to_shop}
+				</a>
+			</div>
+		{/if}
+	</section>
+</div>
+{/block}
+
+{block addjs}
+    <script>
+        let parent = $('#cart-step-1');
+        parent.on('click', '.ajax-click-submit', function() {
+            $(this).closest('form').submit();
+        });
+        parent.on('change', '.ajax-change-submit', function() {
+            $(this).closest('form').submit();
+        });
+        parent.on('click', '.shipping-select', function() {
+            $.nette.ajax({
+                type: 'POST',
+                url: {link getPayments!},
+                data: {'shippingId': $('.shipping-select:checked').val()}
+            });
+        });
+        $('.country-select').change(function() {
+            $.nette.ajax({
+                type: 'POST',
+                url: {link getShippings!},
+                data: {'countryId': $('.country-select').val()}
+            });
+        });
+        parent.on('click', '.other-address-toggle', function() {
+            $('.other-address').toggle();
+        });
+        parent.on('click', '.company-toggle', function() {
+            $('.company-data').toggle();
+        });
+    </script>
+{/block}
+
+{block title}
+    {_cart.cart}
+{/block}
+
+{block conversionjs}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            currency: {$currency},
+            pageType: 'cart',
+            products: [
+                {var $total = 0}
+                {if $items}
+                {foreach $items as $item}
+                {var $total += getPriceVat($item['id']) * $item['amount']}
+                {
+                    productId: {$item['id']},
+                    productSku: {$item['sku']},
+                    quantity: {$item['amount']},
+                    price: {getPriceVat($item['id'])}
+                },
+                {/foreach}
+                {/if}
+            ],
+            total: {$total}
+        });
+    </script>
+{/block}

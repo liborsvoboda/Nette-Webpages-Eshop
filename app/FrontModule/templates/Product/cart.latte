@@ -1,0 +1,27 @@
+<div class="row align-items-center my-2">
+    <div class="col px-2 text-center text-md-right text-lg-left">
+    	<a href="#" n:class="btn, btn-outline-primary, add-favorite, isset($favorites[$product->id]) ? d-none, my-1, mx-2" data-add-favourite>
+    		<i class="fa fa-fw fa-heart"></i>
+			{_products.add_favourite}
+		</a>
+		<a href="#" n:class="btn, btn-outline-primary, add-favorite, !isset($favorites[$product->id]) ? d-none, my-1, mx-2" data-remove-favourite>
+			<i class="fa fa-fw fa-heart-broken"></i>
+			{_products.remove_favourite}
+		</a>
+        {*{if $user->isLoggedIn()}
+            <a href="#" n:class="btn, btn-outline-primary, add-dog, $isDog ? d-none, my-1, mx-2" data-add-dog>
+                <i class="fa fa-fw fa-eye"></i>
+                {_products.watchdog_add}
+            </a>
+            <a href="#" n:class="btn, btn-outline-primary, add-dog, !$isDog ? d-none, my-1, mx-2" data-remove-dog>
+                <i class="fa fa-fw fa-eye-slash"></i>
+                {_products.watchdog_remove}
+            </a>
+        {/if*}
+    </div>
+    <div class="col-lg-7 col-xl-7 my-2 text-center text-md-right">
+        {control addToCart}
+    </div>
+</div>
+
+<a n:if="$allowEdit" n:href=":Admin:Product:edit, id => $product->id" target="_blank">{_strings.edit_product}</a>

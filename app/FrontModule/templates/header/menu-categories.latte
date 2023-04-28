@@ -1,0 +1,16 @@
+{define menuLevel}
+    {default $level = 0}
+    {default $slug = 'root'}
+
+    <ul id="catMenu-{$slug}" n:class="topMenu__ul, catMenu">
+        <li n:foreach="$items as $item" class="catMenu__item">
+            <a href="/{$item['slug']}" class="catMenu__link">{$item['name']}</a>
+            {ifset $item['children']}
+                {include menuLevel, items => $item['children'], level => $level + 1, slug => $item['slug']}
+            {/ifset}
+        </li>
+    </ul>
+{/define}
+
+
+{include menuLevel, items => $menuItems['mega']}

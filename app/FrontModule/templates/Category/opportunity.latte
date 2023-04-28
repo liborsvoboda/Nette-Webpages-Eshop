@@ -1,0 +1,44 @@
+{block content}
+    <section class="my-5">
+        <div class="container">
+            <div class="hero hero--category text-center py-5 px-3">
+                <div class="position-relative py-4">
+                    <h1 class="mb-3">{$category}</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb--white justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="/" class="text-white opacity-75">Úvod</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">{$category}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                {if $products->count()>0}
+                    {foreach $products as $product}
+                        <div class="col-sm-6 col-lg-4 col-xl-3 px-sm-0">
+                            <div class="scroller__card">
+                                {include '../components/Product/ProductBox/productBox.latte' product => $product}
+                            </div>
+                        </div>
+                    {/foreach}
+                {else}
+                    Nie sú žiadne produkty
+                {/if}
+            </div>
+            {*
+            <div class="text-center mt-3 mb-5">
+                <button type="button" class="btn btn-lg btn-success border-radius-none">Ďalších 12 produktov</button>
+            </div>
+            *}
+        </div>
+    </section>
+{/block}
+{block title}
+    {$category}
+{/block}

@@ -1,0 +1,28 @@
+{define list}
+    {default $cats = $tree}
+    <ul n:if="$cats" class="list-unstyled ml-1 mb-2">
+        <li n:foreach="$cats as $cat">
+            {var $isOpened = in_array($cat[id], $currentTree)}
+            <div class="row line-height-sm py-1">
+                <div class="col">
+                    <a href="/{$cat[slug]}" n:class="$isOpened ? text-success : text-black">{$cat[name]|noescape}</a>
+                </div>
+                <div n:if="$cat[sub_categories]" class="col-3 text-right pl-0">
+                    <a href="#catTree-{$cat[id]}" n:class="collapseTurn, d-inline-block, !$isOpened ? collapsed" data-toggle="collapse" aria-expanded="{$isOpened ? true : false}">
+                        <i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                </div>
+            </div>
+            <div n:if="$cat[sub_categories]" n:class="pl-2, collapse, $isOpened ? show" id="catTree-{$cat[id]}" aria-expanded="{$isOpened ? true : false}">
+                {include list, cats => $cat[sub_categories]}
+            </div>
+        </li>
+    </ul>
+{/define}
+
+<div class="d-none d-lg-block sticky-navbar">
+    <h2 class="filters__title my-3 bg-gray-400 rounded">
+        {_products.category}
+    </h2>
+    {include list}
+</div>

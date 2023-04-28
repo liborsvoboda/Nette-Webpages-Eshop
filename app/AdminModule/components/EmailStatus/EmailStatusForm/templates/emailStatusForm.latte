@@ -1,0 +1,79 @@
+{snippet emailStatusForm}
+<form n:name="form">
+    <nav>
+        <div class="nav nav-tabs" id="locales-tab" role="tablist">
+            {foreach $locales as $nlocale}
+                <a class="nav-item nav-link {if $iterator->first}active{/if}" id="nav-locale-{$nlocale->id}"
+                   data-toggle="tab"
+                   href="#tab-locale-{$nlocale->id}" role="tab"
+                   aria-controls="nav-locale-{$nlocale->id}"
+                   aria-selected="{if $iterator->first}true{else}false{/if}">
+                       <span>
+                           <img src="{$basePath}/assets/admin/img/flags/{$nlocale->lang->locale}.svg"
+                                alt="{$nlocale->lang->locale}"
+                                style="height: 15px;margin-top: -6px;" class="mr-2">
+                       </span>
+                    {$nlocale->lang->name}
+                </a>
+            {/foreach}
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        {foreach $locales as $tlocale}
+            {dump $tlocale}
+            <div class="tab-pane fade {if $iterator->first}show active{/if}" id="tab-locale-{$tlocale->id}"
+                 role="tabpanel"
+                 aria-labelledby="nav-locale-{$tlocale->id}">
+                {formContainer locale$tlocale->id}
+                    <fieldset class="mb-3">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label name2l$tlocale, class => required /}
+                                 {input name2l$tlocale, class => "form-control"}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label email2l$tlocale, class => required /}
+                                 {input email2l$tlocale, class => "form-control editor"}
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label name4l$tlocale, class => required /}
+                                 {input name4l$tlocale, class => "form-control"}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label email4l$tlocale, class => required /}
+                                 {input email4l$tlocale, class => "form-control editor"}
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="mb-3">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label name6l$tlocale, class => required /}
+                                 {input name6l$tlocale, class => "form-control"}
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                {label email6l$tlocale, class => required /}
+                                 {input email6l$tlocale, class => "form-control editor"}
+                            </div>
+                        </div>
+                    </fieldset>
+                {/formContainer}
+            </div>
+        {/foreach}
+    </div>
+    <hr>
+    <div class="form-group">
+        <button n:name="submit" class="btn btn-primary btn-lg">{_$_form[submit]->caption}</button>
+    </div>
+</form>
+{/snippet}

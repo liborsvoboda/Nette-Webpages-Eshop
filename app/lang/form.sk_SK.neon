@@ -1,0 +1,36 @@
+priceReg: "Vernostná cena"
+
+required: 'Pole %label je povinné.'
+password_not_match: 'Hesla nesúhlasia.'
+gdpr_required: 'Musíte sa oboznámiť s Ochranou osobných udajov.'
+gdpr_consent: 'Oboznámil som sa s <a href="/ochrana-osobnych-udajov" target="_blank">Ochranou osobných údajov</a>'
+
+saved_success: 'Dáta bola úspešne uložená.'
+
+ic_not_found: 'Firma nebola podľa IČ nájdená.'
+
+vies:
+    not_available: 'Ospravedlňujeme sa, ale služba na overenie Ič DPH nie je k dispozícii. Pokračujte prosím bez Ič DPH, alebo to skúste neskôr.'
+    country_not_match: 'Nebol zadaný správny kód krajiny pre overenie Ič DPH.'
+    invalid: 'Zadaný identifikátor firmy (DIČ alebo IČ DPH) nie je platný. Zadajte platnú hodnotu.'
+
+
+product:
+    identification: 'Identifikácia'
+    price_politics: 'Cenová politika'
+    attributes: 'Atribúty'
+    active: 'Aktivný'
+    image: 'Hlavný obrázok'
+    image_formats: 'Pouze .jpg, .png nebo .gif'
+    group_settings: 'Nastavenie pre zákaznícku skupinu'
+    featured: 'Zobraziť na hlavnej stránke'
+    stock: 'Skladovosť'
+    new_tag: 'Novinka'
+    sale_tag: 'Výpredaj'
+    tip_tag: 'Tip'
+    gift_tag: 'Darček'
+    not_for_sale: 'Predaj skončil'
+    shop_only: 'Na predajni'
+    free_delivery_disabled: 'Zakázať dopravu zdarma'
+    custom_variants: 'Vlastní velikosti produktu'
+    size: 'Velkosť'

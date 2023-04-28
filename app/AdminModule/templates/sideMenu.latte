@@ -1,0 +1,37 @@
+{*
+<hr>
+<li @if($navItem->getCurrent()) class="active" @endif>
+    <a href="{{ $navItem->getUrl() }}" title="Go to {{ $navItem->getTitle() }}">
+        {{ $navItem->getTitle() }}
+    </a>
+
+    @if (count($navItem->getSubItems()) > 0)
+    <div class="drop-menu">
+        <ul>
+            @foreach ($navItem->getSubItems() as $subItem)
+            <li><a href="{{ $subItem->getUrl() }}" title="Go to {{ $subItem->getTitle() }}">{{ $subItem->getTitle() }}</a></li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+</li>
+<hr>
+*}
+
+
+<div class="card">
+    <div class="card-header text-center">
+        <strong>ADMIN</strong>
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-pills flex-column">
+            {foreach $menuItems as $menuItem}
+                <li n:class="nav-item">
+                    <a n:href="$menuItem['action']" n:class="$presenter->isLinkCurrent($menuItem['presenter']) ? active, nav-link">
+                        {$menuItem['label']}
+                    </a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>

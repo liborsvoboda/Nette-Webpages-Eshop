@@ -1,0 +1,14 @@
+<div class="gallery sticky-navbar mb-3 " style="z-index: 1">
+	<a href="{$product->image}" class="glightbox">
+		<img src="{$basePath}{if $product->image !== NULL}{imgSize($product->image,'lg')}{else}/assets/front/img/no-image.png{/if}" alt="{$product->name}" class="img-fluid mb-2">
+	</a>
+	<div n:if="count($gallery) > 0" class="mx--1">
+		<div class="row no-gutters">
+			<div n:foreach="$gallery as $img" class="col-6 col-sm-4 col-md-6 col-lg-4 px-1 text-center">
+				<a href="{$img->image}" class="gallery__thumb glightbox">
+					<img src="{$basePath}{imgSize($img->image, 'sm')}" alt="{$product->name}" class="img-fluid">
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

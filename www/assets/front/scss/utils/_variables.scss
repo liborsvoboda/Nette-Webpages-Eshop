@@ -1,0 +1,173 @@
+/**
+ * SCSS variables and Bootstrap overrides
+ */
+
+/** Paths */
+$imgPath: '../../img';
+$svgPath: '../../svg';
+$fontPath: '../../font';
+
+/** Breakpoints, container widths */
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
+);
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1120px,
+	xxl: 1310px
+	//xxl: 1743px
+);
+
+
+/** Colors */
+$white: #fff;
+$gray-100: #fcfcfc; // Header background
+$gray-200: #d8ddde; // Teaser and separator borders
+$gray-300: /*#f5eade#*/#faf3eb; // Input borders/ Nelapek light gray - content section
+$gray-400: #434242; // Features & BazenyLiptov gray
+$gray-500: #4a565a; // Input text
+$gray-600: #333b3e; // Banner
+$gray-700: #2a3a3d; // Price color
+$gray-800: #202528; // Footer background
+$gray-900: #000305; // Menu text
+$black: #000;
+
+
+$orange: #eba802;// Nelapek logo color
+$green: #4ea556;//Free delivery tag
+$teal: #619300;
+$red: #ec1b2e;// BazenyLiptov Red
+$yellow: #ffe500;
+$lighGreen:#93CC68;
+$blue: #00A8E7; // BazenyLiptov Blue
+$brown: #6f252d; // Nelapek logo brown
+$pink: #FFB6C1; // Buy buttons Nelapek
+
+$green-app: #6da050;
+
+$primary: $green-app;
+$secondary: $orange;
+$dark: $gray-400;
+$success: $green;
+$danger: $pink;
+$light: $red;
+
+$text-muted: $gray-400;
+
+$body-color: $gray-400;
+
+/** Quick options */
+$enable-caret: false;
+$enable-responsive-font-sizes: true;
+
+
+/** Fonts */
+/*$alegreya: 'Alegreya', serif;*/
+//$open-sans: /*'Alegreya Sans', sans-serif;*/ 'Open Sans', sans-serif; /*2. 'Roboto', sans-serif;*/ /*3. 'Montserrat', sans-serif;*/ /*4. 'Source Sans Pro', sans-serif;*/ /*'Dosis', sans-serif;*/
+
+/*$raleway: 'Raleway', sans-serif;
+$font-family-sans-serif: /*$alegreya-sans*//*$open-sans$raleway;
+$headings-font-family: /*$open-sans $raleway;*/
+
+$poppins: 'Poppins', sans-serif;
+$font-family-sans-serif: /*$alegreya-sans*//*$open-sans*/$poppins;
+$headings-font-family: /*$open-sans*/$poppins;
+
+
+
+//$font-size-sm: 14/16*1rem;
+
+$font-size-base:  0.85rem; // Assumes the browser default, typically `16px`
+$font-size-lg:    $font-size-base * 1.15;
+$font-size-sm:    /*$font-size-base * .875;*/15px;
+$font-size-xs:	  /*0.625rem*/12px;
+
+$line-height-sm: 1.2;
+
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$headings-font-weight: $font-weight-bold;
+
+/**Border shadows*/
+$box-shadow-sm:               0 3px 3px rgba($black, .04);
+$box-shadow:                  0 3px 3px rgba($black, .04), 0 -3px 3px rgba($black, .04); // custom Nelapek menu-shadow opacity
+$box-shadow-lg:               0 1rem 3rem rgba($black, .175);
+
+
+/** Components */
+$border-color: $white/*gray-200*/;
+$border-radius: 9/16*1rem;
+$border-radius-lg: 9/16*1rem;
+
+$nprogress-height: 3px;
+$nprogress-spinner-border-width: 2px;
+
+
+/** Form, buttons */
+$btn-font-weight: $font-weight-bold;
+
+$input-padding-x: 19/16*1rem;
+$input-padding-y-lg: 6/16*1rem;
+$input-padding-x-lg: 24/16*1rem;
+
+$input-font-weight: $font-weight-bold;
+
+/** Dropdowns */
+// $dropdown-bg: $gray-100;
+// $dropdown-border-width: 0px;
+// $dropdown-link-color: $black;
+// $dropdown-link-hover-color: $white;
+// $dropdown-link-hover-bg: $primary;
+// $dropdown-link-active-color: $white;
+// $dropdown-link-active-bg: $primary;
+
+/** Alerts */
+$alert-border-radius: 0;
+$alert-border-width: 0;
+
+
+/** Breadcrumbs */
+$breadcrumb-font-size: $font-size-sm;
+$breadcrumb-active-color: $secondary;
+$breadcrumb-bg: transparent;
+$breadcrumb-padding-y: 0;
+$breadcrumb-item-padding: 14px;
+// $breadcrumb-divider: quote('>');
+
+
+/** Modal */
+$modal-content-border-width: 0;
+$modal-content-border-radius: 0;
+
+
+/** Table */
+// $table-head-bg: $blue2;
+// $table-head-color: $white;
+// $table-border-color: $gray-100;
+// $table-border-width: 2px;
+
+
+/** Hamburgers */
+$hamburger-padding-x: 5px;
+$hamburger-padding-y: 5px;
+$hamburger-layer-width: 35px;
+$hamburger-layer-height: 4px;
+$hamburger-layer-spacing: 5px;
+$hamburger-layer-color: $primary;
+$hamburger-layer-border-radius: 2px;
+$hamburger-hover-opacity: 1;
+$hamburger-active-layer-color: $hamburger-layer-color;
+$hamburger-active-hover-opacity: $hamburger-hover-opacity;
+$hamburger-hover-use-filter: false;
+$hamburger-hover-filter: opacity(50%);
+$hamburger-active-hover-filter: $hamburger-hover-filter;
+$hamburger-types: (spring, spring-r);
+
+$input-border-radius: 50px;

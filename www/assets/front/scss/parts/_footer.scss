@@ -1,0 +1,16 @@
+/**
+ * Footer styles
+ */
+.newsletter {
+	position: relative;
+	&__input {
+		padding-right: 46px;
+	}
+	&__button {
+		text-align: center;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+}

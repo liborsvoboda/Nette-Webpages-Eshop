@@ -1,0 +1,66 @@
+<nav class="top-level">
+    <div class="logo" style="padding: 22px 34px;">
+        {*<img src="{$basePath}{$tplSetting->getAdminLogo('bazenyliptov.svg')}" alt="{$tplSetting->getSiteName()}" class="img-fluid" />*}
+        <img src="{$basePath}/assets/front/mobir/images/logo-big-238x100.png" alt="{$tplSetting->getSiteName()}" class="img-fluid" />
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </div>
+
+    <!-- Slide out menu -->
+    <div class="slide-out">
+        <ul>
+            <li class="catalogue-manager">
+                <a n:href="Homepage:default">{_menu.summary} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <div class="drop-menu">
+                    <ul>
+                        <li><a n:href="Order:default">{_menu.orders}</a></li>
+                        <li><a n:href="Customer:default">{_menu.customers}</a></li>
+                        <li><a n:href="UserLevel:default">{_menu.user_levels}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="catalogue-manager">
+                <a n:href="Product:default">{_menu.catalogue} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <div class="drop-menu">
+                    <ul>
+                        <li><a n:href="Product:default">{_menu.products}</a></li>
+                        <li><a n:href="ProductCategory:default">{_menu.categories}</a></li>
+                        <li><a n:href="Producer:default">{_menu.manufacturers}</a></li>
+                        <li><a n:href="ProductAttribute:default">{_menu.atributes}</a></li>
+                        <li><a n:href="Profit:default">{_menu.margins}</a></li>
+                        <li><a n:href="Voucher:default">Slevové kupóny</a></li>
+                        <li><a n:href="ProductReview:default">{_menu.review}</a></li>
+                        <li><a n:href="Product:featured">Produkty na HP</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="catalogue-manager">
+                <a n:href="Product:default">{_menu.content} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <div class="drop-menu">
+                    <ul>
+                        <li><a n:href="Page:default">{_menu.pages}</a></li>
+                        <li><a n:href="Blog:default">{_menu.blog_posts}</a></li>
+                        <li><a n:href="Menu:default">{_menu.menu}</a></li>
+                        <li><a n:href="Slider:default">{_menu.slider}</a></li>
+                        <li><a n:href="Slider:banner">{_menu.banners}</a></li>
+                        <li><a n:href="Gallery:default">{_menu.gallery}</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="catalogue-manager">
+                <a n:href="Company:default">{_menu.settings} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <div class="drop-menu">
+                    <ul>
+                        <li><a n:href="Company:default">{_menu.settings}</a></li>
+                        <li><a n:href="Enum:default">{_menu.enum}</a></li>
+                        <li><a n:href="Shipping:default">{_menu.shipping}</a></li>
+                        <li><a n:href="Payment:default">{_menu.payments}</a></li>
+                        <li><a n:href="EmailStatus:default">{_menu.email_statuses}</a></li>
+                        <li><a n:href="Locale:default">{_menu.locale}</a></li>
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+</nav>

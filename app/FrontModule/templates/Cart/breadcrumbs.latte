@@ -1,0 +1,78 @@
+{default $active = 1}
+{default $showBackLink = true}
+{capture $backLink}
+	{if $active === 1}{link Homepage:}
+	{elseif $active === 2}{link Cart:}
+	{else}{link Cart:summary}
+	{/if}
+{/capture}
+
+<nav class="border-top border-bottom mt-4 mb-5" aria-label="breadcrumb">
+	<div class="row align-items-center py-2">
+		<div class="col-7 col-sm-9">
+			<ol class="breadcrumb breadcrumb--cart">
+				<li n:class="$active == 1 ? active">
+					<a n:href="Cart:default" class="svg-icon">
+						<svg class="mr-2 mb-1" width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<g transform="translate(-61.000000, -153.000000)">
+									<g transform="translate(62.000000, 153.000000)">
+										<path class="styleStroke" d="M14.3420151,10.8161719 C15.325121,11.3087202 16,12.3255469 16,13.5 C16,15.1568542 14.6568542,16.5 13,16.5 L3,16.5 C1.34314575,16.5 2.02906125e-16,15.1568542 0,13.5 C-1.45393084e-16,12.3127754 0.689636639,11.286624 1.69016601,10.8002898 L2.67098819,6.9973932 C2.89880146,6.1141033 3.69541799,5.49687685 4.60761311,5.49687685 L11.4889777,5.49687685 C12.4138249,5.49687685 13.21805,6.1309884 13.4337974,7.03031895 L14.3420151,10.8161719 Z" stroke="#141414" stroke-width="2"></path>
+										<path class="styleStroke" d="M1.57446793,10.9984384 L14.3863692,10.9984384" stroke="#141414" stroke-width="2"></path>
+										<path class="styleStroke" d="M8,6 L8.89864294,10.5" stroke="#141414" stroke-width="2"></path>
+										<path class="styleStroke" d="M10.5,4.93490616 L10.5,2.05119487" stroke="#141414" stroke-width="2"></path>
+										<path d="M9,0 L12,0 C12.5522847,-1.01453063e-16 13,0.44771525 13,1 L13,2.5 C13,3.05228475 12.5522847,3.5 12,3.5 L9,3.5 C8.44771525,3.5 8,3.05228475 8,2.5 L8,1 C8,0.44771525 8.44771525,1.01453063e-16 9,0 Z" fill="#141414"></path>
+									</g>
+								</g>
+							</g>
+						</svg>{_cart.cashier}
+					</a>
+				</li>
+				<li n:class="$active == 2 ? active">
+					<a n:href="Cart:summary">
+						<svg class="mr-2 mb-1" width="14px" height="13px" viewBox="0 0 14 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<g transform="translate(-186.000000, -157.000000)">
+									<g transform="translate(186.000000, 157.000000)">
+										<circle fill="#A4A4A4" cx="1.5" cy="1.5" r="1.5"></circle>
+										<circle fill="#A4A4A4" cx="1.5" cy="6.25" r="1.5"></circle>
+										<circle fill="#A4A4A4" cx="1.5" cy="11" r="1.5"></circle>
+										<path class="styleStroke" d="M5.37997871,1.5 L12.701701,1.5" stroke="#A4A4A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										<path class="styleStroke" d="M5.37997871,6.25 L12.701701,6.25" stroke="#A4A4A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+										<path class="styleStroke" d="M5.37997871,11 L12.701701,11" stroke="#A4A4A4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+									</g>
+								</g>
+							</g>
+						</svg>{_cart.overview}
+					</a>
+				</li>
+				<li n:class="$active == 3 ? active">
+					<a n:href="Cart:finish">
+						<svg class="mr-2 align-text-bottom" width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+								<g transform="translate(-296.000000, -154.000000)">
+									<g transform="translate(296.000000, 154.000000)">
+										<circle fill="#A4A4A4" cx="9.5" cy="9.5" r="9.5"></circle>
+										<polyline stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="6.33664596 9.40992463 8.39791951 11.5032648 12.336646 7.50326477"></polyline>
+									</g>
+								</g>
+							</g>
+						</svg>{_cart.ordered}
+					</a>
+				</li>
+			</ol>
+		</div>
+		<div n:if="$showBackLink" class="col text-right">
+			<a href="{$backLink}" class="btn btn-gray-100 btn-smallHeight svg-icon">
+				<svg class="align-baseline mr-1" width="10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve">
+					<path class="changeFill" d="M198.608,246.104L382.664,62.04c5.068-5.056,7.856-11.816,7.856-19.024c0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12
+						C361.476,2.792,354.712,0,347.504,0s-13.964,2.792-19.028,7.864L109.328,227.008c-5.084,5.08-7.868,11.868-7.848,19.084
+						c-0.02,7.248,2.76,14.028,7.848,19.112l218.944,218.932c5.064,5.072,11.82,7.864,19.032,7.864c7.208,0,13.964-2.792,19.032-7.864
+						l16.124-16.12c10.492-10.492,10.492-27.572,0-38.06L198.608,246.104z" fill="#858585"/>
+				</svg>
+				{_strings.back}
+			</a>
+		</div>
+	</div>
+</nav>

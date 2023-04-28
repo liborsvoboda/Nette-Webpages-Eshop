@@ -1,0 +1,65 @@
+{if $menuName == 'mega'}
+    <a href="#" class="topMenu__link" data-toggle="megamenu" data-target="#mega-1">Naša ponuka<span
+                class="caret ml-1">{include 'svg.latte', slug => 'Arrow-dropdown-white'}</span></a>
+    <div class="megaMenu text-left" id="mega-1">
+        <a href="#" class="megaMenu__close" data-toggle="megamenu" data-target="#mega-1">
+            {include 'svg.latte', slug => 'Close'}
+        </a>
+
+        <div class="container">
+            <div class="row justify-content-center my-5 mt-md-0">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                    <form action="/hladanie" method="get" class="formSearch display-1">
+                        <div class="main-search">
+                            <input id="mainSearch" name="search"
+                                   class="form-control form-control--invisible formSearch__input text-white" required
+                                   placeholder="Názov, druh...">
+                            <button type="submit" for="search" class="formSearch__icon formSearch__icon--white">
+                                {include 'svg.latte', slug => 'Magnifying-glass-black'}
+                            </button>
+                            {snippet searchSuggestion}
+                                {include mainSearch.latte searchResult => $searchResult}
+                            {/snippet}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="mx--2 my-lg-5">
+
+            <div class="row mb-4">
+                {foreach $menuItem as $menu}
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="row">
+                            <div class="col-3 pl-0 my-4 my-lg-5 text-right">
+                                {*
+                                {if isset($item[2])}
+                                    {include 'svg.latte', slug => $item[2]}
+                                {/if}
+                                *}
+                            </div>
+                            <div class="col-9 my-4 my-lg-5">
+                                <p class="font-size-lg my-2">
+                                    <a href="/{$menu[slug]}" class="text-white">{$menu['name']}</a>
+                                </p>
+
+                                {if isset($menu['children'])}
+                                    {foreach $menu['children'] as $subitem}
+                                        <div class="my-1">
+                                            <a href="/{$subitem[slug]}" class="text-muted">{$subitem['name']}</a>
+                                        </div>
+                                    {/foreach}
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+{/if}
+{if $menuName == 'menu'}
+    {foreach $menuItem as $menu2}
+        <a href="/{$menu2[slug]}" class="topMenu__link">{$menu2['name']}</a>
+    {/foreach}
+{/if}

@@ -1,0 +1,41 @@
+priceReg: "Věrnostní cena"
+
+required: 'Pole %label je povinné.'
+password_not_match: 'Hesla nesouhlasí.'
+gdpr_required: 'Musíte se obeznámit s Ochranou osobních údajů.'
+gdpr_consent: 'Obeznámil jsem se s <a href="/ochrana-osobnich-udaju" target="_blank">Ochranou osobních údajů</a>'
+
+saved_success: 'Data byla úspěšně uložena.'
+
+ic_not_found: 'Firma nebyla podle IČ nalezena.'
+
+vies:
+    not_available: 'Omlouváme se, ale služba na ověření DIČ není k dispozici. Pokračujte prosím bez DIČ, nebo to zkuzte později.'
+    country_not_match: 'Nebyl zadán správný kód země pro ověření DIČ.'
+    invalid: 'Zadaný identifikátor firmy (DIČ nebo Ič DPH) není platný. Zadejte platnou hodnotu.'
+
+message:
+    error: 'Bohužel se něco pokazilo. Prosíme, opakujte akci znovu.'
+
+valid:
+    EQUAL: 'V poli %label zadejte %s.'
+    NOT_EQUAL: 'Hodnota v poli %label by neměla být %s.'
+    FILLED: 'Pole %label je povinné.'
+    BLANK: 'Pole %label by mělo být prázdné.'
+    MIN_LENGTH: 'V poli %label zadejte alespoň %d znaků.'
+    MAX_LENGTH: 'V poli %label zadejte maximálně %d znaků.'
+    LENGTH: 'V poli %label zadejte hodnotu mezi %d a %d znaků.'
+    EMAIL: 'V poli %label zadejte platnou e-mailovou adresu.'
+    URL: 'V poli %label zadejte platnou URL.'
+    INTEGER: 'V poli %label zadejte platné reálné číslo.'
+    FLOAT: 'V poli %label zadejte platné číslo.'
+    MIN: 'V poli %label zadejte hodnotu vyšší nebo rovno %d.'
+    MAX: 'V poli %label zadejte hodnotu nižší nebo rovno %d.'
+    RANGE: 'V poli %label zadejte hodnotu mezi %d a %d.'
+    MAX_FILE_SIZE: 'Maximální velikost souboru v poli %label může být až %d bytů.'
+    MAX_POST_SIZE: 'Nahraná data v poli %label přesáhla maximální velikost %d bytů.'
+    MIME_TYPE: 'Soubor v poli %label není v požadovaném formátu.'
+    IMAGE: 'Soubor v poli %label musí být obrázek ve formátu JPEG, GIF, PNG nebo WebP.'
+    Nette\Forms\Controls\SelectBox::VALID: 'Prosím vyberte v poli %label platnou možnost.'
+    Nette\Forms\Controls\UploadControl::VALID: 'Vyskytla se chyba při nahrávání souboru v poli %label.'
+    Nette\Forms\Controls\CsrfProtection::PROTECTION: 'Vaše sezení vypršelo. Prosím přejděte na domovskou stránku a opakujte akci znovu.'

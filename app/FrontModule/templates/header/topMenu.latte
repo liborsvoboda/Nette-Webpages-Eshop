@@ -1,0 +1,37 @@
+{define menuLevel}
+    {default $level = 0}
+    {default $slug = 'root'}
+
+    <ul id="mainMenu-{$slug}" n:class="mainMenu__list, 'mainMenu__list--level-' . $level, $level > 0 ? collapse">
+        <li n:foreach="$items as $item" class="mainMenu__item mainMenu__item--level-{$level}">
+            <div class="row">
+                <div class="col-12">
+                    <a href="/{$item['slug']}" class="mainMenu__link mainMenu__link--level-{$level} font-size-sm  font-weight-bold text-white">{$item['name']|noescape}</a>
+                </div>
+
+                {if $level < 1 && isset($item['children']) && $item['children']}
+                    <div class="col-2 col-sm-1 pl-0 text-right d-lg-none">
+                        <button type="button" class="btn btn-link btn-sm btn-collapse collapsed" data-toggle="collapse" data-target="#mainMenu-{$item['slug']}">
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="col-12 mainMenu__submenu mainMenu__submenu--level-{$level}">
+                        {include menuLevel, items => $item['children'], level => $level + 1, slug => $item['slug']}
+                    </div>
+                {/if}
+            </div>
+        </li>
+    </ul>
+    
+{/define}
+
+{cache expire => '1 second'}
+<nav class="bg-primary">
+    <div class="container">
+        <div class="mainMenu--topMenu">
+            {include menuLevel, items => array_merge($menuItems['menu'])}
+        </div>
+
+    </div>
+</nav>    
+{/cache}

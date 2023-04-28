@@ -1,0 +1,28 @@
+{var $icons =
+[
+	['doručenie<br>do 24 hodín', 'clock.svg'],
+    ['doručenie<br>do 24 hodín', 'clock.svg'],
+    ['doprava nad<br>60€ zadarmo', 'doprava-zadarmo-big.svg'],
+    ['100% sortimentu<br>skladom', '100-percent-sortiment.svg'],
+    ['party<br>expert', 'party-expert.svg'],
+    ['party<br>expert', 'party-expert.svg']
+];
+}
+<section>
+    <div class="container">
+        <div class="row">
+            {foreach $icons as $icon}
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 line-height-md font-size-xs">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-4 pr-2 text-center">
+                        {include '../svg.latte', slug => $icon[1]}
+                    </div>
+                    <div class="col-8 pl-1">
+                        {$icon[0]|noescape}
+                    </div>
+                </div>
+            </div>
+            {/foreach}
+        </div>
+    </div>
+</section>

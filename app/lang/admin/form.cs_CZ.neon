@@ -1,0 +1,158 @@
+advance_invoice: "Zálohová faktura"
+invoice: "Faktura"
+credit_note: "Dobropis"
+order: "Objednávka"
+order_number: "Číslo objednávky"
+order_date: "Datum objednání"
+actual_order_status: "Aktuální stav objednávky"
+sum: "Suma"
+contact_informations: "Kontaktní údaje"
+invoice_informations: "Fakturační údaje"
+delivery_adress: "Dodací adresa"
+name: "Jméno"
+surname: "Příjmení"
+e-mail: "E-mail"
+phone: "Telefon"
+country: "Země"
+city: "Město"
+adress: "Adresa"
+zip_code: "PSČ"
+note: "Poznámka"
+items: "Položky"
+image: "Obrázek"
+current_image: 'Aktuální obrázek'
+sku: "SKU"
+width: "Šířka"
+unit_calc: "Přepočet za jednotku"
+unit: 'Jednotka'
+quantity: "Množství"
+inStock: "Skladem"
+price_per_quantity: "Cena za kus"
+items_price: "Cena za položky"
+sum_total: "Cena celkem"
+product_edit: "Upravit produkt"
+active: "Aktivní"
+sale_price_without_vat: "Prodejní cena bez DPH"
+sale_price_with: "Prodejní cena s DPH"
+original_price_without_vat: "Původní cena bez DPH"
+original_price_with: "Původní cena s DPH"
+without_margin: "Bez marže"
+vat: "DPH"
+ean: "EAN"
+title: "Název"
+description: "Popis"
+slug: "Slug"
+discount: "Sleva"
+manufacturer: "Výrobce"
+edit_product_gallery: "Upravit galerii produktu"
+edit_category: "Upravit kategorii"
+parent_category: "Nadřazená kategorie"
+parent_category_select_default_value: "Žádná nadřazená kategorie"
+heureka_category: "Heureka kategorie"
+heureka_category_select_default_value: "Žádná Heureka kategorie"
+pricemania_category_select: "Pricemania kategorie"
+pricemania_category_select_default_value: "Žádná Pricemania kategorie"
+seo_title: "SEO titulek"
+seo_description: "SEO popis"
+edit_manufacturer: "Upravit výrobce"
+text: "Text"
+category: "Kategorie"
+company_name: "Název firmy"
+company_adress: "Adresa firmy"
+business_id: "IČO"
+tax_id: "DIČ"
+vat_id: "IČ DPH"
+contact_person: "Kontaktní osoba"
+contact_e-mail: "Kontaktní e-mail"
+contact_phone: "Kontaktní telefon"
+bank_account_name: "Název bankovního účtu"
+bank_account_old_format: "Číslo účtu ve starém formátu"
+bank_account_iban: "Číslo účtu ve tvaru IBAN"
+bank_account_swift: "BIC/SWIFT kód"
+accounting_example: "Tyto znaky budou nahrazeny skutečnými hodnotami:</br>RRRR - Rok 4 číslice</br>RR - Rok 2 číslice</br>MM - Měsíc</br>DD - Deň</br>C - Pořadové číslo</br>Příklad: FA-RRRR/CCCC"
+advance_invoice_input_default_value: "ZF-RRRR/CCCC"
+invoice_input_default_value: "FA-RRRR/CCCC"
+credit_note_input_default_value: "DP-RRRR/CCCC"
+price: "Cena"
+mail_statuses_status_preparing: "Stav: Připravuje se"
+mail_statuses_status_sent: "Stav: Objednávka odeslána"
+mail_statuses_status_storno: "Stav: Objednávka stornována"
+save: 'Uložit'
+main_category: 'Hlavní kategorie'
+other_categories: 'Další kategorie'
+item: 'Položka'
+add: 'Přidat'
+change: 'Změnit'
+language: 'Jazyk'
+base_price_without_vat: "Standardizovaná cena bez DPH"
+base_price_with: "Standardizovaná cena s DPH"
+delivery_price_without_vat: "Náklady na dopravu bez DPH"
+purchase_price_without_vat: "Nákupní cena bez DPH"
+ideal_margin: "Ideální marže"
+sort: 'Pořadí'
+gtaxonomy: 'Google kategorie'
+
+user:
+	group: 'Skupina'
+	min_turnover: 'Min. obrat (EUR)'
+	min_turnover_cz: 'Min. obrat (CZK)'
+
+
+product:
+    identification: 'Identifikace'
+    price_politics: 'Ceny s DPH'
+    attributes: 'Atributy'
+    active: 'Aktivní'
+    image: 'Hlavní obrázek'
+    image_formats: 'Pouze .jpg, .png nebo .gif'
+    group_settings: 'Nastavení pro zákaznickou skupinu'
+    featured: 'Zobrazit na hlavní stránce'
+    stock: 'Skladovost'
+    new_tag: 'Novinka'
+    not_for_sale: "Neprodejný produkt"
+    commission: "Provizní produkt"
+    comProductAmount: "Počet provizních produktů"
+    gift: "Dárek"
+    ingredients: 'Složení'
+    taking: 'Užívání'
+    nutritional: 'Výživové hodnoty'
+    warnings: 'Upozornění'
+    faq: 'FAQ'
+    reviews: 'Reference'
+    below_button: 'Text pod tlačidlom Kúpiť'
+    commissions: 'Provize'
+    sale_tag: 'Výprodej'
+    benefits: 'Přínos užívání'
+
+review:
+    label: 'Hodnocení'
+    text: 'Text'
+    language: 'Jazyk'
+    status: 'Stav'
+
+group_order:
+    min: 'Minimální množství pro objednávku'
+    max: 'Maximální množství pro objednávku'
+
+valid:
+    EQUAL: 'V poli %label zadejte %s.'
+    NOT_EQUAL: 'Hodnota v poli %label by neměla být %s.'
+    FILLED: 'Pole %label je povinné.'
+    BLANK: 'Pole %label by mělo být prázdné.'
+    MIN_LENGTH: 'V poli %label zadejte alespoň %d znaků.'
+    MAX_LENGTH: 'V poli %label zadejte maximálně %d znaků.'
+    LENGTH: 'V poli %label zadejte hodnotu mezi %d a %d znaků.'
+    EMAIL: 'V poli %label zadejte platnou e-mailovou adresu.'
+    URL: 'V poli %label zadejte platnou URL.'
+    INTEGER: 'V poli %label zadejte platné reálné číslo.'
+    FLOAT: 'V poli %label zadejte platné číslo.'
+    MIN: 'V poli %label zadejte hodnotu vyšší nebo rovno %d.'
+    MAX: 'V poli %label zadejte hodnotu nižší nebo rovno %d.'
+    RANGE: 'V poli %label zadejte hodnotu mezi %d a %d.'
+    MAX_FILE_SIZE: 'Maximální velikost souboru v poli %label může být až %d bytů.'
+    MAX_POST_SIZE: 'Nahraná data v poli %label přesáhla maximální velikost %d bytů.'
+    MIME_TYPE: 'Soubor v poli %label není v požadovaném formátu.'
+    IMAGE: 'Soubor v poli %label musí být obrázek ve formátu JPEG, GIF, PNG nebo WebP.'
+    Nette\Forms\Controls\SelectBox::VALID: 'Prosím vyberte v poli %label platnou možnost.'
+    Nette\Forms\Controls\UploadControl::VALID: 'Vyskytla se chyba při nahrávání souboru v poli %label.'
+    Nette\Forms\Controls\CsrfProtection::PROTECTION: 'Vaše sezení vypršelo. Prosím přejděte na domovskou stránku a opakujte akci znovu.'

@@ -1,0 +1,104 @@
+{*<div class="row">
+    <div class="col-lg-2 col-md-3 col-6 menu">
+        <p class="title__menu mbr-fonts-style display-7">{_strings.about_purchase}</p>
+        <ul class="foot__menu">
+            {foreach $footerColumn2 as $col2}
+                <li class="menu__items mbr-fonts-style display-4">
+                    <a href="{$col2['slug']}">{$col2['title']}</a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-6 menu">
+        <p class="title__menu mbr-fonts-style display-7">{_strings.partners_info}</p>
+        <ul class="foot__menu">
+            {foreach $footerColumn3 as $col3}
+                <li class="menu__items mbr-fonts-style display-4">
+                    <a href="{$col3['slug']}">{$col3['title']}</a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-6 menu">
+        <p class="title__menu mbr-fonts-style display-7">{_products.products}</p>
+        <ul class="foot__menu">
+            {foreach $menuItems['mega'] as $mega}
+                <li class="menu__items mbr-fonts-style display-4">
+                    <a n:href="Category:default $mega['id']">{$mega['name']}</a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-6 menu">
+        <p class="title__menu mbr-fonts-style display-7">{_strings.my_account}</p>
+        <ul class="foot__menu">
+        {if $user->isLoggedIn()}
+            <li class="menu__items mbr-fonts-style display-4"><a n:href="Account:default">{_strings.my_account}</a></li>
+        {else}
+            <li class="menu__items mbr-fonts-style display-4"><a n:href="Sign:in">{_strings.login}</a></li>
+            <li class="menu__items mbr-fonts-style display-4"><a n:href="Sign:up">{_strings.register}</a></li>
+        {/if}
+
+        </ul>
+    </div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-2 col-md-4 social">
+        <p class="title__menu text-sm-left text-center mbr-fonts-style display-7">Sledujte nás</p>
+        <div class="social__wrap">
+
+
+            <a href="#"><span class="mbr-iconfont socicon-facebook socicon"
+                              style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);"></span></a><a href="#"><span
+                        class="mbr-iconfont socicon-instagram socicon"
+                        style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);"></span></a><a href="#"><span
+                        class="mbr-iconfont socicon-linkedin socicon"
+                        style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);"></span></a></div>
+    </div>
+</div>*}
+<div class="row">
+    <div class="col-lg-4 menu">
+        <p class="title__menu mbr-fonts-style display-7"><img
+                    src="{$basePath}/assets/front/mobir/images/logo-big-238x100.png" alt="app"
+                    style="height: 3.5rem;"></p>
+        {* <p>{_footer.column1_text1|noescape}</p> *}
+        <p>{_footer.column1_text2|noescape}</p>
+        <div class="social__wrap">
+            <a href="https://www.facebook.com/app" target="_blank">
+                <span class="mbr-iconfont socicon-facebook socicon" style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);">
+                </span>
+            </a>
+            <a href="https://www.instagram.com/app/?hl=sk" target="_blank">
+                <span class="mbr-iconfont socicon-instagram socicon" style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);">
+                </span>
+            </a>
+            <a href="https://www.youtube.com/channel/UCReMlBnE0OWkdTwbFlIJ2rA" target="_blank">
+                <span class="mbr-iconfont socicon-youtube socicon" style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);">
+                </span>
+            </a>
+            <a href="https://www.linkedin.com/company/app/about/" target="_blank">
+                <span class="mbr-iconfont socicon-linkedin socicon" style="color: rgb(0, 0, 0); fill: rgb(0, 0, 0);">
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-4 menu">
+        <p class="title__menu mbr-fonts-style display-7">{_footer.column2_heading}</p>
+        <ul class="foot__menu">
+            {foreach $footerColumn2 as $col2}
+                <li class="menu__items mbr-fonts-style display-4">
+                    <a href="{$col2['slug']}">{$col2['title']}</a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+    <div class="col-sm-6 col-lg-4 menu">
+        <p class="title__menu mbr-fonts-style display-7">{_footer.column3_heading}</p>
+        <ul class="foot__menu">
+            {foreach $footerColumn3 as $col3}
+                <li class="menu__items mbr-fonts-style display-4">
+                    <a href="{$col3['slug']}">{$col3['title']}</a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>

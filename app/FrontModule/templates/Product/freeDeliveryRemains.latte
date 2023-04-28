@@ -1,0 +1,23 @@
+{*if getPriceVat($product->id) < $freeDelivery}
+<p class="line-height-md pt-3 mb-0">
+    {if $freeDeliveryRemains > 0}
+        <i class="fas fa-car font-size-h5"></i> <span class="d-inline-block align-middle">Nakúpte eště za {$freeDeliveryRemains|number:2} € a získajte dopravu ZDARMA</span>
+    {else}
+
+    {/if}
+</p>
+{/if*}
+
+{if $freeDeliveryShow}
+<p class="alert alert-info">
+	<i class="fa fa-fw fa-info-circle mr-2 d-inline-block"></i>
+    {if $freeDeliveryRemains > 0}
+    	{capture $freeDeliveryFormatted}
+    		{$freeDeliveryRemains|price}
+    	{/capture}
+        {_products.delivery_free_remains, [price => $freeDeliveryFormatted]}
+    {else}
+        {_products.delivery_free}
+    {/if}
+</p>
+{/if}

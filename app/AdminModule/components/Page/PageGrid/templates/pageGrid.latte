@@ -1,0 +1,21 @@
+{snippet langForm}
+    <div class="card mb-3">
+        <div class="card-body">
+            <form n:name="langForm" class="form-inline">
+                <div class="col-auto ml-auto">
+                    {input lang_id class => "form-control mr-2 lang-select", onchange => "this.form.submit()"}
+                    {input submit class => 'btn btn-primary lang-submit d-none'}
+                </div>
+            </form>
+        </div>
+    </div>
+{/snippet}
+{snippet pageGrid}
+    {control grid}
+{/snippet}
+
+{* <div class="card mt-3">
+    <div class="card-body">
+        {control form}
+    </div>
+</div> *}

@@ -1,0 +1,152 @@
+parameters:
+	app:
+		prod: true
+		wwwDir: %wwwDir%
+		appDir: %appDir%
+		templatesDir: '%appDir%/templates'
+		componentsTemplatesDir: '%appDir%/FrontModule/templates/components'
+		emailTemplatesDir: '%appDir%/FrontModule/templates/emailTemplates'
+		pdfTemplatesDir: '%appDir%/FrontModule/templates/pdfTemplates'
+		orderMail: 'noreply@app.com'
+		orderMailName: 'app.com'
+		ekosystemApi: ''
+	tpl:
+		distAssets: %app.prod%
+		assetsVersion: 6
+		siteName: 'app'
+		metaTitle: 'app'
+		metaAuthor: 'CMP sro s.r.o., https://www.CMPsro.com'
+		metaRobots: 'index,follow'
+		defaultLocale: sk
+		whitelistLocales: [sk, cs]
+		currency: 'EUR' # ISO 4217
+		defaultVat: 20
+		copyright: '&copy; 2020 app'
+		adminLogo: ''
+		emailLogo: '/assets/front/mobir/images/logo-big-238x100.png'
+		invoiceLogo: '/assets/front/mobir/images/logo-big-238x100.png'
+		fbPagePluginAppId: false #
+		mailchimpFormAction: false #
+		instagramUserName: false
+		gtmLang: [
+			1: 'GTM-KCCBBHK',
+			2: 'GTM-W8Z75MK'
+		]
+		socials:
+			facebook: '#'
+			instagram: '#'
+			twitter: ''
+			youtube: ''
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+		Apitte: Apitte\Presenter\*Presenter
+
+mail:
+	smtp: true
+	host: smtp.aaa.sk
+	port: 465
+	username: test
+	password: test
+	secure: ssl
+
+
+session:
+	expiration: 14 days
+
+extensions:
+	translation: Contributte\Translation\DI\TranslationExtension
+	api: Apitte\Core\DI\ApiExtension
+	resource: Contributte\DI\Extension\ResourceExtension
+	cardPay: PaySys\CardPay\DI\CardPayExtension
+
+resource:
+	resources:
+		App\ApiModule\Controllers\:
+			paths: [%appDir%/ApiModule/Controllers]
+			decorator:
+				inject: true
+		App\ApiModule\Decorator\:
+			paths: [%appDir%/ApiModule/Decorator]
+			decorator:
+				inject: true
+
+api:
+	plugins:
+		Apitte\Core\DI\Plugin\CoreDecoratorPlugin:
+		Apitte\Core\DI\Plugin\CoreMappingPlugin:
+
+
+translation:
+	locales:
+		whitelist: %tpl.whitelistLocales%
+		default: %tpl.defaultLocale%
+	dirs:
+		- %appDir%/lang
+
+cardPay:
+    mid: '9999'
+    key: ''
+    rurl: Front:Cart:processCardpay
+
+latte:
+	macros:
+		- App\Components\Macros\CustomMacros::install
+
+services:
+	routerFactory: App\RouterFactory
+	router: @routerFactory::createRouter(%tpl.defaultLocale%, %tpl.whitelistLocales%)
+	priceFilter: App\Components\Macros\PriceFilter(%tpl.currency%, %tpl.defaultLocale%)
+	userPrice: App\Model\LatteFunc\UserPrice
+	emailService: App\Model\Email\EmailService(%app.orderMail%, %app.orderMailName%)
+	ekosystemService: App\Model\Services\EkosystemService(%app.ekosystemApi%)
+	- App\Model\Services\AppSettingsService(%app%)
+	- App\Model\Services\TplSettingsService(%tpl%)
+	- App\Model\Services\UserManager
+	- App\Model\Factory\FormFactory
+	- App\Model\Factory\GridFactory
+	- Apitte\Presenter\ApiPresenter
+
+	nette.latteFactory:
+		setup:
+			- addFilter('price', [@priceFilter, price])
+			- addFunction('getPrice', [@userPrice, getPrice])
+			- addFunction('getPriceVat', [@userPrice, getPriceVat])
+			- addFunction('getBasePrice', [@userPrice, getBasePrice])
+			- addFunction('getBasePriceVat', [@userPrice, getBasePriceVat])
+			- addFunction('getPriceMargin', [@userPrice, getPriceMargin])
+			- addFunction('getOrigPriceVat', [@userPrice, getOrigPriceVat])
+			- addFunction('getOrigPrice', [@userPrice, getOrigPrice])
+			- addFunction('hasOrigPrice', [@userPrice, hasOrigPrice])
+			- addFunction('getVat', [@userPrice, getVat])
+
+	#Repositories
+	baseRepository:
+		class: App\Model\BaseRepository
+		autowired: no
+
+search:
+	repository:
+		in: %appDir%/model
+		classes:
+			- *Repository
+			- *Service
+			- *Facade
+		exclude:
+			classes: [BaseRepository]
+	adminfactory:
+		in: %appDir%/AdminModule/components
+		classes:
+			- *Factory
+	frontfactory:
+		in: %appDir%/FrontModule/components
+		classes:
+			- *Factory
+
+decorator:
+	App\Model\Control\BaseControl:
+		setup:
+			- setTranslator

@@ -1,0 +1,35 @@
+account: 'Účet'
+log_out: 'Odhlásit se'
+log_in: 'Přihlášení'
+registration: 'Registrace'
+reset_password: 'Obnovení hesla'
+favourites: 'Oblíbené'
+favourite_products: 'Oblíbené produkty'
+my_account: 'Můj účet'
+my_orders: 'Moje objednávky'
+downloads: 'Ke stažení'
+product_dog: 'Sledování ceny'
+
+orders:
+	number: 'Číslo'
+	order_number: 'Číslo objednávky'
+	date: 'Datum'
+	order_date: 'Datum objednání'
+	price: 'Cena'
+	detail: 'Detail'
+	order: 'Objednávka č. %number%'
+	state: 'Stav'
+	current_state: 'Aktuální stav'
+	items: 'Položky'
+	shipping: 'Doprava'
+	payment: 'Platba'
+
+watchdog:
+	name: 'Název'
+	remove: 'Odebrat'
+
+log:
+	in: 'Přihlášení'
+	login_link: 'Máte účet? Prihlašte se'
+	reset_password_link: 'Zapomněli jste heslo?'
+	register_link: 'Nemáte účet? Registrujte se'

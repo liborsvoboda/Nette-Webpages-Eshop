@@ -1,0 +1,15 @@
+<div class="col-lg-4 col-md-7 col-sm-10 d-flex align-items-start card__product">
+    {include '../Product/productTag.latte'}
+    <div class="image__card">
+        <img src="{$product->image}" alt="" class="flex-shrink-0" title="">
+    </div>
+    <div class="content__card">
+        <p class="card__title mbr-medium mbr-fonts-style display-4">{$product->name}</p>
+        <p class="card__text mbr-fonts-style display-4">{$product->perex}</p>
+        <div class="card__btn">
+            {if $product->origPriceVat}<del>{$product->originalPrice|price}</del>{/if}
+            <a class="btn btn-sm btn-warning-outline display-4" n:href="Product:default $product->id">{getPriceVat($product->id)|price}</a>
+        </div>
+    </div>
+</div>
+

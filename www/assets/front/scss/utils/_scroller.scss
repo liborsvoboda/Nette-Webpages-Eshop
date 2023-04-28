@@ -1,0 +1,292 @@
+/**
+ * Horizontal scroller
+ */
+
+.scroller {
+	position: relative;
+
+	&--blur::before,
+	&--blur::after,
+	&--blurRight::after,
+	&--blurLeft::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		z-index: 9;
+		background: transparent;
+		width: $grid-gutter-width/2;
+
+		@include media-breakpoint-up(sm) {
+			max-width: 2*$grid-gutter-width;
+		}
+
+		@each $breakpoint, $width in $container-max-widths {
+			@include media-breakpoint-up($breakpoint) {
+				width: calc((100vw - #{$width - $grid-gutter-width}) / 2);
+			}
+		}
+	}
+	&--hasScrollbar {
+		&.scroller--blur::before,
+		&.scroller--blur::after,
+		&.scroller--blurRight::after,
+		&.scroller--blurLeft::before {
+			bottom: 10px;
+		}
+	}
+	&--blur::before,
+	&--blurLeft::before {
+		left: 0;
+		background: linear-gradient(90deg, rgba($white, 1) 0%, rgba($white,0) 100%);
+	}
+	&--blur::after,
+	&--blurRight::after {
+		right: 0;
+		background: linear-gradient(270deg, rgba($white, 1) 0%, rgba($white,0) 100%);
+	}
+
+	&__arrow {
+		display: block;
+		position: absolute;
+		top: 50%;
+		z-index: 10;
+		margin-top: -15px;
+		width: 40px;
+		height: 40px;
+		text-align: center;
+		background-color: $primary;
+		border-radius: 10px;
+		opacity: 1;
+		transition: opacity .25s ease-in-out, background .25s ease-in-out;
+		will-change: opacity, background;
+
+		@include media-breakpoint-up(xl) {
+			opacity: 0;
+		}
+
+		&:hover {
+			background: $black;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 1em;
+			height: 1em;
+			margin-left: -0.5em;
+			margin-top: -0.5em;
+		}
+
+		&--left {
+			left: 10px;
+			&::before {
+				background: transparent url($svgPath + '/caret-left-white.svg') no-repeat center center;
+			}
+		}
+		&--right {
+			right: 10px;
+			&::before {
+				background: transparent url($svgPath + '/caret-right-white.svg') no-repeat center center;
+			}
+		}
+		@each $breakpoint, $width in $container-max-widths {
+			@include media-breakpoint-up($breakpoint) {
+				&--left {
+					left: calc((100vw - #{$width - $grid-gutter-width}) / 2 - 15px);
+				}
+				&--right {
+					right: calc((100vw - #{$width - $grid-gutter-width}) / 2 - 15px);
+				}
+			}
+		}
+
+		svg {
+			width: 50%;
+			height: auto;
+		}
+	}
+
+	&:hover .scroller__arrow {
+		opacity: 1;
+	}
+
+	&__inner {
+		width: 100%;
+		white-space: nowrap;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scroll-behavior: smooth;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&--scrollbar {
+			padding-bottom: 16px;
+
+			&::-webkit-scrollbar {
+				display: block;
+				background: $gray-100;
+				height: $border-width;
+			}
+			&::-webkit-scrollbar-thumb {
+				background: $gray-200;
+				cursor: pointer;
+			}
+
+			&:hover {
+				padding-bottom: 7px;
+				-ms-overflow-style: thin;
+				scrollbar-width: thin;
+
+				&::-webkit-scrollbar {
+					height: 10px;
+				}
+			}
+		}
+	}
+
+
+	// Cards in scroller
+	&--cards {
+		margin-left: -$grid-gutter-width/2;
+		margin-right: -$grid-gutter-width/2;
+
+		.scroller__inner {
+			display: flex;
+			width: 100%;
+			padding-bottom: $grid-gutter-width;
+			padding-top: $grid-gutter-width;
+		}
+
+		@include media-breakpoint-up(sm) {
+			margin-left: -$grid-gutter-width;
+			margin-right: -$grid-gutter-width;
+		}
+	}
+
+	&__card {
+		flex: 0 0 280px;
+		margin-left: $grid-gutter-width/2;
+		margin-right: $grid-gutter-width/2;
+		white-space: normal;
+		@include media-breakpoint-up(sm) {
+			flex: 0 0 360px;
+		}
+
+		&--half {
+			flex: 0 0 320px;
+
+			@include media-breakpoint-up(sm) {
+				flex: 0 0 467px;
+			}
+		}
+	}
+
+
+	// Scrollers, which stretch to whole viewport width
+	&--stretchRight {
+		width: 100vw;
+
+		&.scroller--blur::before,
+		&.scroller--blur::after,
+		&.scroller--blurRight::after,
+		&.scroller--blurLeft::before {
+			max-width: none;
+		}
+
+		// Allow to scroll last product to container
+		.scroller__inner::after {
+			content: '';
+			display: block;
+			flex: 0 0 1px;
+		}
+
+		@each $breakpoint, $width in $container-max-widths {
+			@include media-breakpoint-up($breakpoint) {
+				margin-left: calc((100vw - #{$width - $grid-gutter-width}) / -2);
+
+				.scroller__inner {
+					padding-left: calc((100vw - #{$width}) / 2);
+
+					&::after {
+						flex: 0 0 calc((100vw - #{$width}) / 2);
+					}
+				}
+			}
+		}
+	}
+
+
+	// Thumbs in scroller
+	&--cards--thumbs {
+		@include media-breakpoint-up(lg) {
+			width: auto;
+			margin-left: -$grid-gutter-width/2;
+			margin-right: -$grid-gutter-width/2;
+
+			&.scroller--blur::before,
+			&.scroller--blur::after,
+			&.scroller--blurRight::after,
+			&.scroller--blurLeft::before {
+				max-width: $grid-gutter-width/2;
+			}
+
+			.scroller__inner {
+				padding-left: 0;
+
+				&::after {
+					flex: 0 0 1px;
+				}
+			}
+		}
+		@include media-breakpoint-up(xl) {
+			&.scroller--blur::before,
+			&.scroller--blur::after,
+			&.scroller--blurRight::after,
+			&.scroller--blurLeft::before {
+				max-width: none;
+				width: auto;
+				height: $grid-gutter-width/2;
+				left: 0;
+				right: 0;
+			}
+			&.scroller--blur::before,
+			&.scroller--blurLeft::before {
+				bottom: auto;
+				top: 0;
+				background: linear-gradient(180deg, rgba($white, 1) 0%, rgba($white,0) 100%);
+			}
+			&.scroller--blur::after,
+			&.scroller--blurRight::after {
+				top: auto;
+				bottom: 0;
+				background: linear-gradient(0deg, rgba($white, 1) 0%, rgba($white,0) 100%);
+			}
+
+			.scroller__inner {
+				white-space: normal;
+				display: block;
+				padding-top: 0;
+				padding-bottom: 0;
+				overflow-x: hidden;
+				overflow-y: auto;
+
+				max-height: 472px; // Default value, count in JS
+			}
+		}
+	}
+	&__card--thumb {
+		flex: 0 0 150px;
+
+		@include media-breakpoint-up(xl) {
+			margin-top: $grid-gutter-width/2;
+			margin-bottom: $grid-gutter-width/2;
+		}
+	}
+}

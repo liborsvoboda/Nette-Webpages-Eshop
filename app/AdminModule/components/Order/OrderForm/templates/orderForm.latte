@@ -1,0 +1,193 @@
+{snippet orderForm}
+    <form n:name="form">
+        <div class="form-row">
+            <div class="col-md-3">
+                <h3 class="semi-bold">Kontaktné údaje</h3>
+                <div class="form-group ">
+                {label companyName, class => $_form[companyName]->isRequired() ? required}
+                    {input companyName, class => form-control}
+                </div>
+                <div class="form-group ">
+                {label firstName, class => $_form[firstName]->isRequired() ? required}
+                    {input firstName, class => form-control}
+                </div>
+               <div class="form-group ">
+                 {label lastName, class => $_form[lastName]->isRequired() ? required}
+                    {input lastName, class => form-control}
+                 </div>
+                  <div class="form-group ">
+                 {label email, class => $_form[email]->isRequired() ? required}
+                    {input email, class => form-control}
+                 </div>
+                  <div class="form-group ">
+                 {label phone, class => $_form[phone]->isRequired() ? required}
+                    {input phone, class => form-control}
+                 </div>
+                   <div class="form-group ">
+                 {label ico, class => $_form[ico]->isRequired() ? required}
+                    {input ico, class => form-control}
+                 </div>
+                    <div class="form-group ">
+                 {label dic, class => $_form[dic]->isRequired() ? required}
+                    {input dic, class => form-control}
+                 </div>
+                    <div class="form-group ">
+                 {label icdph, class => $_form[icdph]->isRequired() ? required}
+                    {input icdph, class => form-control}
+                 </div> 
+                </div>
+                <div class="col-md-3">
+                    <h3 class="semi-bold">Fakturačné údaje</h3>
+                    <div class="form-group ">
+                        {label street, class => $_form[street]->isRequired() ? required}
+                        {input street, class => form-control}
+                    </div>
+                 <div class="form-group ">
+                 {label city, class => $_form[city]->isRequired() ? required}
+                    {input city, class => form-control}
+                 </div>
+                  <div class="form-group ">
+                 {label zip, class => $_form[zip]->isRequired() ? required}
+                    {input zip, class => form-control}
+                 </div>
+                 <div class="form-group ">
+                 {label country_id, class => $_form[country_id]->isRequired() ? required}
+                    {input country_id, class => form-control}
+                 </div>
+                </div>
+                <div class="col-sm-3">
+                    <h3 class="semi-bold">Adresa doručenia</h3>
+                     <div class="form-group ">
+                    {label otherName, class => $_form[otherName]->isRequired() ? required}
+                    {input otherName, class => form-control}
+                 </div>
+                  <div class="form-group ">
+                    {label otherSurname, class => $_form[otherSurname]->isRequired() ? required}
+                    {input otherSurname, class => form-control}
+                 </div>
+                  <div class="form-group ">
+                    {label otherStreet, class => $_form[otherStreet]->isRequired() ? required}
+                    {input otherStreet, class => form-control}
+                 </div>
+                 <div class="form-group ">
+                    {label otherCity, class => $_form[otherCity]->isRequired() ? required}
+                    {input otherCity, class => form-control}
+                 </div>
+                 <div class="form-group ">
+                    {label otherZip, class => $_form[otherZip]->isRequired() ? required}
+                    {input otherZip, class => form-control}
+                 </div>
+                 <div class="form-group ">
+                 {label otherCountry, class => $_form[otherCountry]->isRequired() ? required}
+                    {input otherCountry, class => form-control}
+                 </div>
+                 <div class="form-group ">
+                 {label otherPhone, class => $_form[otherPhone]->isRequired() ? required}
+                    {input otherPhone, class => form-control}
+                 </div>
+                </div>
+                  <div class="col-sm-3">
+                    <h3 class="semi-bold">Preprava platby a poznámka</h3>
+                    <div class="form-group ">
+                 {label shipping_id, class => $_form[shipping_id]->isRequired() ? required}
+                    {input shipping_id, class => form-control}
+                 </div>
+                 <div class="form-group ">
+                 {label payment_id, class => $_form[payment_id]->isRequired() ? required}
+                    {input payment_id, class => form-control}
+                 </div>
+                 
+                 <div class="form-group ">
+                 {label note, class => $_form[note]->isRequired() ? required}
+                    {input note, class => form-control}
+                 </div>
+                </div>
+                 
+            </div>
+            <div class="form-group">
+                <button n:name="submit" class="btn btn-primary btn-lg">{_$_form[submit]->caption}</button>
+            </div>
+        </form>
+            <form n:name="addForm">
+                  <h3> Pridat položku </h3>
+            <div class="form-row">
+                <div class="col-md-3">
+                    <div class="form-group ">
+                         {label count, class => $_form[count]->isRequired() ? required}
+                            {input count, class => form-control}
+                       
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                          {label product_id, class => $_form[product_id]->isRequired() ? required}
+                            {input product_id, class => select2}
+                    </div>
+                </div>
+                         </div>
+                    <div class="form-row">
+                    <div class="col-md-3">
+                         <div class="form-group">
+                            <button n:name="submit" class="btn btn-primary btn-lg">{_$_form[submit]->caption}</button>
+                        </div>
+                    </div>
+              </div>
+             </form>  
+            <div class="form-row">
+            
+            <h3> Položky </h3>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Obrázok</th>
+                            <th>Kód</th>
+                            <th>Položka</th>
+                            <th>Množstvo</th>
+                            <th>Cena za kus</th>
+                            <th>Cena dokopy</th>
+                            <th>Akcia</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach $items as $item}
+                            <tr>
+                                <td><img width="100" src="{$item->product->image}"></td>
+                                <td>{$item->product->sku}</td>
+                                <td><a href="/{$item->product->related('product_lang')->fetch()->slug}" target="_blank">
+                                        {$item->product->related('product_lang')->fetch()->name}</a></td>
+                                <td>{$item->count}</td>
+                                <td>{$item->price}</td>
+                                <td>{$item->price * $item->count}</td>
+                                <td><a n:href="deleteItem! $item->id" onclick="return confirm('Zmazať?');">Zmazať</a></td>
+                            </tr>
+                        {/foreach}
+                        <tr>
+                            <td colspan="6">Doprava</td>
+                            <td><strong>{$order->shipping->price}</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">Spôsob platby</td>
+                            <td><strong>{$order->payment->price}</strong></td>
+                        </tr>
+                        {*
+                        {if $order->rp}
+                            <tr>
+                                <td colspan="5">RP/AP</td>
+                                <td><strong>{priceFormat($order->rp)} {getCurrency()}</strong></td>
+                            </tr>
+                        {/if}
+                        {if $order->voucher}
+                            <tr>
+                                <td colspan="5">Zľava: ( Kupón - {$order->voucher} )</td>
+                                <td><strong>{priceFormat($order->pr - $order->price)} {getCurrency()}</strong></td>
+                            </tr>
+                        {/if}
+                        *}
+                        <tr>
+                            <td colspan="6">Dokopy</td>
+                            <td><strong>{$order->price}</strong></td>
+                        </tr>
+                       </tbody>
+                    </table>
+            </div>
+        {/snippet}

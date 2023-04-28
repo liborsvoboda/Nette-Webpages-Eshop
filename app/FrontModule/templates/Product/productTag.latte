@@ -1,0 +1,21 @@
+<div class="productTagsLeft">
+    {if getPriceVat($product->id) > $freeDelivery}
+        <span class="productTag productTag--freeDelivery">DOPRAVA ZDARMA</span>
+    {/if}
+    {if $product->new_tag == 1}
+        <span class="productTag productTag--new">NOVINKA</span>
+    {/if}
+</div>
+
+<div class="productTagsRight mt-2" style="right: 1px;">
+        {if getOrigPriceVat($product->id) > getPriceVat($product->id)}
+                <span class="productTag productTag--discount"><p class="productTagText">-{round(100-(getPriceVat($product->id)/getOrigPriceVat($product->id))*100)}% AKCIA</p></span>
+        {/if}
+        {if $product->tip_tag == 1}
+                <div class="productTag productTag--tip" style="margin-left: 20px;background: #BB9468;color: #fff;font-size: 11px;border-radius: 100%;width: 36px;height: 36px;display: block;position: relative;"><p class="productTagText font-weight-normal">TIP</p></div>
+        {/if}
+
+        {if $product->sale_tag == 1}
+                <div class="productTag productTag--new" style="background: #ffc107">Výpredaj</div>
+        {/if}
+</div>

@@ -1,0 +1,24 @@
+
+{if $product->not_for_sale == 0}
+	<form n:name="form" n:class="ajax, d-flex, $tpl !== 'button-sm' ? justify-content-center">
+		<div n:class="input-group, input-group-lg, spinner__input-group, align-middle, $tpl === 'button' || $tpl === 'button-sm' ? 'd-none'">
+			<input type="number" n:name="amount" min="1" required class="form-control text-center px-2" value="1" data-spinner="productCount">
+			<div class="input-group-append">
+				<span class="spinner">
+					<button type="button" class="spinner__btn spinner__btn--more" data-spin-more="productCount">
+						<i class="fa fa-chevron-up"></i>
+					</button>
+					<button type="button" class="spinner__btn spinner__btn--less" data-spin-less="productCount">
+						<i class="fa fa-chevron-down"></i>
+					</button>
+				</span>
+			</div>
+		</div>
+		<button n:name="submit" type="submit" n:class="btn, btn-success, align-middle, rounded-pill, $tpl === 'button-sm' ? 'mx-0 mt-3 btn-sm display-4' : 'btn-lg my-0 px-4' ">
+			<i n:if="$tpl !== button-sm" class="fa fa-fw fa-shopping-cart mr-1"></i>
+			{_products.buy}
+		</button>
+	</form>
+{else}
+	<p class="text-center text-md-right font-size-h4 font-weight-bold text-gray-400 border-danger mb-0">{_products.from_bakery}</p>
+{/if}

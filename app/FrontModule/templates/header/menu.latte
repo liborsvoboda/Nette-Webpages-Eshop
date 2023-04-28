@@ -1,0 +1,81 @@
+{*define menuLevel}
+    {default $level = 0}
+    {default $slug = 'root'}
+    
+    <ul id="mainMenu-{$slug}" n:class="mainMenu__list, 'mainMenu__list--level-' . $level, $level > 0 ? collapse">
+        {*Natvrdo vložené li s odkazem a Úvod na Homepage:default*}
+        {*<li n:if="$level == 0" class="mainMenu__item mainMenu__item--level-{$level}"> 
+            <a n:href="Homepage:default" class="mainMenu__link mainMenu__link--level-{$level} font-weight-bold text-primary">Úvod</a>
+        </li>
+        <li n:foreach="$items as $item" class="mainMenu__item mainMenu__item--level-{$level}">
+            <div class="row">
+                <div class="col-10 col-sm-11 col-lg-12">
+                    <a href="/{$item['slug']}" class="mainMenu__link mainMenu__link--level-{$level} font-weight-bold  text-primary">{$item['name']|noescape}</a>
+                </div>
+
+                {if $level < 1 && isset($item['children']) && $item['children']}
+                    <div class="col-2 col-sm-1 pl-0 text-right d-lg-none">
+                        <button type="button" class="btn btn-link btn-sm btn-collapse collapsed" data-toggle="collapse" data-target="#mainMenu-{$item['slug']}">
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="col-12 mainMenu__submenu mainMenu__submenu--level-{$level}">
+                        {include menuLevel, items => $item['children'], level => $level + 1, slug => $item['slug']}
+                    </div>
+                {/if}
+            </div>
+        </li>
+    </ul>
+{/define}
+
+{cache expire => '1 second'}
+    <div class="mainMenu">
+        {include menuLevel, items => array_merge($menuItems['mega'])}
+    </div>
+{/cache*}
+
+{define menuLevel}
+    {default $level = 0}
+    {default $slug = 'root'}
+    
+    <ul id="mainMenu-{$slug}" n:class="mainMenu__list, 'mainMenu__list--level-' . $level, $level > 0 ? collapse">
+        {*Natvrdo vložené li s odkazem a Úvod na Homepage:default*}
+        <li n:if="$level == 0" class="mainMenu__item mainMenu__item--level-{$level} text-nowrap"> 
+            <a n:href="Homepage:default" class="mainMenu__link mainMenu__link--level-{$level} font-weight-bold text-primary">Úvod</a>
+        </li>
+        <li n:foreach="$items as $item" class="mainMenu__item mainMenu__item--level-{$level} text-nowrap">
+            <div class="row">
+                <div class="col-4 col-lg-12">
+                    <a href="/{$item['slug']}" class="mainMenu__link mainMenu__link--level-{$level} font-weight-bold  text-primary">{$item['name']|noescape}</a>
+                </div>
+
+                {*if $level < 1 && isset($item['children']) && $item['children']}
+                    <div class="col-8 pl-0 text-right d-lg-none">
+                        <button type="button" class="btn btn-link btn-sm btn-collapse collapsed" data-toggle="collapse" n:if="$item['slug'] != '#'" data-target="#mainMenu-{$item['slug']}">
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="col-12 mainMenu__submenu mainMenu__submenu--level-{$level}">
+                        {include menuLevel, items => $item['children'], level => $level + 1, slug => $item['slug']}
+                    </div>
+                {/if*}
+                {if $level < 1 && isset($item['children']) && $item['children']}
+                    <div class="col-8 pl-0 text-right d-lg-none">
+                        <button type="button" class="btn btn-link btn-sm btn-collapse collapsed" data-toggle="collapse" n:if="$item['slug'] != '#'" data-target="#mainMenu-{$item['slug']}">
+                            <i class="fa fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="col-12 mainMenu__submenu mainMenu__submenu--level-{$level}">
+                        {include menuLevel, items => $item['children'], level => $level + 1, slug => $item['slug']}
+                    </div>
+                {/if}
+            </div>
+        </li>
+    </ul>
+{/define}
+
+{cache expire => '1 second'}
+    <div class="mainMenu">
+        {include menuLevel, items => array_merge($menuItems['mega'])}
+    </div>
+{/cache}

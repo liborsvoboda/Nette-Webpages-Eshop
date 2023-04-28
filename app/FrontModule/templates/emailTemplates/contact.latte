@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{ifset $title}{$title}{else}{$tplSetting->getMetaTitle()} - {_email.contact_form}{/ifset}</title>
+
+    {include 'order/_orderStyles.latte'}
+</head>
+
+<body bgcolor="#f7f7f7">
+<table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
+    {include 'emailHeader.latte'}
+    <tr>
+        <td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
+            <center>
+                <table cellspacing="0" cellpadding="0" width="600" class="w320">
+                    <tr>
+                        <td>
+                            <p>{_email.hello}</p>
+                            <p>{_email.contact}</p>
+
+                            <p>
+                                <strong>{_strings.contact.name}:</strong> {$values->name} {$values->surname}<br>
+                                <strong>{_strings.contact.phone}:</strong> {$values->phone}<br>
+                                <strong>{_strings.contact.email}:</strong> {$values->email}<br>
+                                <strong>{_strings.contact.country}:</strong> {$values->country}
+                            </p>
+                            <p>
+                                <strong>{_strings.contact.message}:</strong><br>
+                                {$values->message}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </td>
+    </tr>
+    {include 'emailFooter.latte'}
+</table>
+</body>
+</html>

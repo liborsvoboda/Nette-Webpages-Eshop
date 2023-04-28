@@ -1,0 +1,9 @@
+<section class="slideshow">
+	<div class="slideshow__slides" data-slideshow="home">
+		<div n:foreach="$slides as $slide" class="slideshow__slide">
+			<a n:tag-if="$slide->url" href="{$slide->url}">
+				<img data-src="{$basePath}{$slide->background|noescape}" class="img-fluid tns-lazy-img slideshow__img" alt="{$slide->heading}">
+			</a>
+		</div>
+	</div>
+</section>

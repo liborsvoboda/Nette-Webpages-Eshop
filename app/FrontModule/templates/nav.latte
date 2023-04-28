@@ -1,0 +1,18 @@
+<nav class="topMenu bg-gray text-center text-white sticky sticky--belowTray">
+    <div class="container-fluid">
+        <div class="topMenu__item topMenu__item--first">
+            {include 'menu-link.latte' menuItem => $menuItems['mega'], menuName => 'mega', searchResult => $searchResult}
+        </div>
+        <button type="button" class="hamburger hamburger--spring d-sm-none pb-0 pt-2 mt-1 float-right"
+                data-toggle-top-menu>
+            <div class="hamburger-box">
+                <div class="hamburger-inner"></div>
+            </div>
+        </button>
+        <ul class="topMenu__list list-unstyled">
+            <li class="topMenu__item">
+                {include 'menu-link.latte' menuItem => $menuItems['menu'], menuName => 'menu'}
+            </li>
+        </ul>
+    </div>
+</nav>

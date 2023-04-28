@@ -1,0 +1,89 @@
+<p n:foreach="$flashes as $flash" class="col-sm-8 alert alert-{$flash->type} form-control-radius">{_$flash->message}</p>
+<form n:name="form" class="row">
+    <div class="col-sm-8">
+        <h2 class="h6 title title--border font-family-normal font-weight-bold mb-3">{_cart.address.private_info}</h2>
+        <div class="form-group mb-4">
+            <input n:name="firstName" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.name}">
+        </div>
+        <div class="form-group mb-4">
+            <input n:name="lastName" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.surname}">
+        </div>
+        <div class="form-group mb-4">
+            <input n:name="email" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_strings.email}">
+        </div>
+        <div class="form-group mb-4">
+            <input n:name="phone" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.phone}">
+        </div>
+        <div class="form-group mb-4">
+          <select n:name="country_id" class="form-control form-control-semitrans border-info form-control-radius"></select>
+        </div>
+      
+    </div>
+    <div class="col-sm-8">
+        <h2 class="h6 title title--border font-family-normal font-weight-bold mb-3">{_cart.address.delivery_info}</h2>
+        <div class="form-group mb-4">
+            <input n:name="street" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.street}">
+        </div>
+        <div class="form-group mb-4">
+            <input n:name="city" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.city}">
+        </div>
+        <div class="form-group mb-4">
+            <input n:name="zip" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.zip}">
+        </div>
+        <div class="form-check mt-2 mt-sm-3 mb-3">
+            <input class="form-check-input" n:name="isCompany" data-b2btoggle>
+            <label class="form-check-label" n:name="isCompany">
+                {_cart.address.b2b_request}
+            </label>
+        </div>
+    </div>
+
+    <div class="col-sm-8" data-b2bdata style="{if $form['isCompany']->getValue() == true}display: block;{else}display:none;{/if}">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group mt-3 mb-4">
+                    <input n:name="companyName" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.company}">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group mt-3 mb-4">
+                    <input n:name="iban" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.iban}">
+                </div>
+            </div>          
+            <div class="col-sm-8">
+                <div class="form-group mt-3 mb-4">
+                    <input n:name="ico" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.ico}">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group mt-3 mb-4">
+                    <input n:name="dic" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.dic}">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group mt-3 mb-4">
+                    <input n:name="icdph" class="form-control form-control--underlined border border-info form-control-radius" placeholder="{_cart.address.icdph}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <div class="text-right pt-1">
+            <button name="submit" type="submit" class="btn btn-primary btn-lg">
+                {_strings.save}
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    (function() {
+        var $toggle = document.querySelector('[data-b2btoggle]');
+        var $b2b = document.querySelector('[data-b2bdata]');
+        $toggle.addEventListener('change', function(e) {
+            if ($toggle.checked) $b2b.style.display = 'block';
+            else $b2b.style.display = 'none';
+        });
+    })();
+</script>

@@ -1,0 +1,8 @@
+#AuthType Basic
+#AuthName "Members Only"
+#AuthUserFile /var/www/clients/client0/web78/web/.htpasswd
+#Require valid-user
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+RewriteEngine On
+RewriteRule (.*) www/$1 [L]

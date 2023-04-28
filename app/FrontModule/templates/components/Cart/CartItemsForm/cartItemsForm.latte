@@ -1,0 +1,7 @@
+<h2 class="h6 title title--border">{_cart.order}</h2>
+<form n:name="form" class="ajax">
+    {foreach $items as $key => $item}
+        {control cartRow-$key}
+    {/foreach}
+    <button n:name="recount" class="ajax-hide sr-only">{_cart.recount}</button>
+</form>

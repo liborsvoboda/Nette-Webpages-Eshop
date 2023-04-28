@@ -1,0 +1,25 @@
+{control searchForm}
+{snippet searchGrid}
+    {if $showSearchgrid}
+        {control searchGrid}
+    {/if}
+{/snippet}
+{snippet customerGrid}
+    {control grid}
+{/snippet}
+<style>
+    .form-control {
+        border-radius: 0;
+    }
+    .col-per-page {
+        visibility: hidden;
+    }
+    .btn-sm {
+        height:auto;
+    }
+</style>
+<script>
+    $('.search-string').on('keyup', function(e) {
+        $(this).closest('form').submit();
+    })
+</script>

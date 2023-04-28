@@ -1,0 +1,36 @@
+<form n:name="form" data-filter-form class="ajax filters" data-disable-ajax-append="productList" style="max-height: none;">
+    <h2 class="filters__title rounded" data-toggle-filters> {*pomocí syntaxe bg-gray-400 aktivujeme třídu, kterou jsme si definovali v _helpers.scss na řádku 17-19*}
+        <span class="d-flex justify-content-between align-items-center py-1">
+            {_products.filters}
+            <i class="fa fa-fw fa-filter float-right"></i>
+            <i class="fa fa-fw fa-times float-right"></i>
+        </span>
+    </h2>
+    <div class="filters__options">
+        {* <fieldset n:if="$minPrice !== null && $maxPrice && $minPrice < $maxPrice" class="my-4">
+            <h3 class="h6 title title--border">{_products.price_range}</h3>
+
+            <div data-range="{$minPrice},{$maxPrice}" class="mt-4 noUi-wrapper">
+                <input n:name="priceFrom" data-range-start class="d-none price-filter-input" data-auto-submit>
+                <input n:name="priceTo" data-range-end class="d-none price-filter-input" data-auto-submit>
+                <div data-range-slider></div>
+                <div class="row">
+                    <div class="col-6">
+                        &euro; <strong data-range-start-value>{$priceFrom}</strong>
+                    </div>
+                    <div class="col-6 text-right">
+                        &euro; <strong data-range-end-value>{$priceTo}</strong>
+                    </div>
+                </div>
+            </div>
+        </fieldset> *}
+
+		<fieldset n:foreach="$attributeNames as $id => $name" n:class="my-4, !$iterator->first ? 'border-top pt-4'">
+			<h3 class="h6 title title--border">{$name}</h3>
+			<div n:foreach="$attributes[$id] as $attrId => $attrLabel" class="custom-control custom-checkbox my-2">
+				<input type="checkbox" n:name="param$id:$attrId" class="custom-control-input" data-auto-submit>
+				<label class="custom-control-label" n:name="param$id:$attrId">{$attrLabel}</label>
+			</div>
+		</fieldset>
+    </div>
+</form>

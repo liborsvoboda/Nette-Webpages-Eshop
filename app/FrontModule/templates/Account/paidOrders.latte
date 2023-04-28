@@ -1,0 +1,56 @@
+{block content}
+<section class="pt-3 bg-white">
+    {include 'menu.latte'}
+    <div class="container py-4">
+        <div class="card border">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        Uhradené objednávky
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <tr>
+                                <th>Číslo</th>
+                                <th>Datum</th>
+                                <th>Email</th>
+                                <th>Telefon</th>
+                                <th>Suma</th>
+                                <th>Zpôsob platby</th>
+                            </tr>
+                            {foreach $paidOrders as $unpaid}
+                                <tr>
+                                    <td>
+                                        {$unpaid->number}
+                                    </td>
+                                    <td>
+                                        {$unpaid->timestamp|date:'d.m.Y'}
+                                    </td>
+                                    <td>
+                                        {$unpaid->email}
+                                    </td>
+                                    <td>
+                                        {$unpaid->phone}
+                                    </td>
+                                    <td>
+                                        {$unpaid->price}
+                                    </td>
+                                    <td>
+                                        {$unpaid->payment->name}
+                                    </td>
+                                    <td>
+                                        <a n:href="Account:order $unpaid->id">Otvoriť</a>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,369 @@
+/**
+ * Custom elements styles
+ */
+
+// Body smooth scrolling
+html, body, .smooth-container {
+	scroll-behavior: smooth;
+}
+
+// Lazyloaded with fade
+.lazyloaded {
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+	will-change: opacity;
+
+	&.loaded {
+		opacity: 1;
+	}
+}
+
+// Z-index of WA media box
+.wa-mediabox-overlay {
+	z-index: $zindex-fixed + 10;
+}
+
+// Fixed cookie banner
+.cookieBanner {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: $zindex-fixed;
+	padding: 15px 0;
+	border-top: 1px solid $border-color;
+	background: $white;
+}
+
+// Product box
+.productBox {
+	height: calc(100% - 20px);
+	margin-bottom: 20px;
+	display: flex;
+	flex-flow: column;
+
+	&__figure {
+		height: 185px;
+		text-align: center;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			max-height: 185px;
+		}
+	}
+
+	&__header {
+		flex: 1 0 auto;
+	}
+
+	&__title {
+		font-family: $font-family-sans-serif;
+		font-weight: $font-weight-bold;
+		a {
+			color: /*$body-color*/$gray-400; //Product name color
+			transition: color .15s ease-in-out;
+			will-change: color;
+		}
+		a:hover {
+			color: $primary;
+			text-decoration: none;
+		}
+	}
+}
+
+
+// Banner
+.banner {
+	display: block;
+	padding: 0 15px;
+	border-radius: $border-radius;
+	//background:/* #e3f6da*/$brown url($imgPath + '/background-banner-green.jpg') no-repeat center center; //Banner color
+	background-size: cover;
+	color: $gray-400;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: stretch;
+	position: relative;
+	height: 100%;
+	min-height: 250px;
+	overflow: hidden;
+
+	&__content {
+		// background: rgba($white, .5);
+		padding: 10px 15px;
+		// text-shadow: 1px 1px 1px $white;
+	}
+	&__title {
+		margin-bottom: 10px;
+		text-transform: uppercase;
+	}
+	&__text {
+		@include font-size($font-size-lg);
+		margin-bottom: 0;
+	}
+
+	&__img {
+		// position: absolute;
+		// top: 0;
+		// bottom: 0;
+		// left: 0;
+		// right: 0;
+		// z-index: -1;
+		// width: 100%;
+		// height: 100%;
+		// object-fit: cover;
+		max-height: 200px;
+		transform: scale(1);
+		transition: transform .25s ease-in-out;
+		will-change: transform;
+	}
+
+	&:hover {
+		color: $body-color;
+		text-decoration: none;
+		.banner {
+			&__img {
+				transform: scale(1.15);
+			}
+		}
+	}
+}
+
+// Breadcrumbs
+.breadcrumb {
+	font-weight: $font-weight-bold;
+
+	a {
+		color: $black;
+		transition: color .15s ease-in-out;
+		will-change: color;
+		&:hover {
+			color: $secondary;
+			text-decoration: none;
+		}
+	}
+}
+
+
+// Expandable text
+.expandable {
+	position: relative;
+	max-height: 20px;
+	overflow: hidden;
+	transition: max-height .25s ease-in-out;
+	will-change: max-height;
+
+	&__btn {
+		@include button-variant(transparent, transparent);
+		@include button-size($btn-padding-y-sm, 0, $btn-font-size-sm, $btn-line-height-sm, 0);
+		color: $body-color;
+		font-weight: $font-weight-bold;
+		margin-top: 5px;
+
+		&:hover,
+		&:focus,
+		&:not(:disabled):not(.disabled):active,
+		&:not(:disabled):not(.disabled).active {
+			color: $primary;
+		}
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 0 $btn-focus-width rgba($primary, .5);
+		}
+	}
+
+	&--catChildren {
+		max-height: 130px;
+	}
+	&--bestSellers {
+		max-height: 240px;
+		@include media-breakpoint-up(md) {
+			max-height: 180px;
+		}
+	}
+	&--filters {
+		max-height: 280px;
+	}
+}
+
+
+// Link box (ie. subcategories)
+.linkBox {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	min-height: 55px;
+	padding: 5px 15px;
+	border: 1px solid $danger;
+	border-radius: $border-radius;
+	color: $primary;
+	line-height: $line-height-sm;
+	font-weight: $font-weight-bold;
+
+	&__img {
+		max-width: 20%;
+		margin-right: 10px;
+		margin-left: -10px;
+	}
+}
+a.linkBox {
+	background: $white;
+	transition: background .25s ease-in-out, color .25s ease-in-out;
+	will-change: background, color;
+
+	&:hover {
+		background: $secondary;
+		text-decoration: none;
+		color: $white;
+	}
+}
+
+
+// Gallery in product detail
+.gallery {
+	&__thumb {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100px;
+		margin: 4px 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+.collapseTurn {
+	transform: rotate(-180deg);
+	transition: transform .3s ease-in-out;
+	will-change: transform;
+
+	&.collapsed {
+		transform: rotate(0deg);
+	}
+}
+
+.fullPage {
+	min-height: 100vh; 
+	display: flex;
+	justify-items: stretch;
+	align-items: center;
+}
+
+@include media-breakpoint-down(xs) {
+	.basicInfo{
+		padding-bottom: 56px;
+	}	
+}
+
+@include media-breakpoint-up(sm) {
+	.basicInfo{
+		padding-bottom: 80px;
+	}	
+}
+
+@include media-breakpoint-up(lg) {
+	.basicInfo{
+		padding-bottom: 123px;
+	}	
+}
+
+@include media-breakpoint-up(xl) {
+	.basicInfo{
+		padding-bottom: 109px;
+	}	
+}
+
+@include media-breakpoint-up(xxl) {
+	.basicInfo{
+		padding-bottom: 94px;
+	}	
+}
+
+
+// Home blog teaser
+.blogTeaser {
+	display: block;
+	position: relative;
+	text-decoration: none;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		background: rgba($black, 0.4);
+		border-radius: 10px;
+	}
+
+	&__title {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		left: 10px;
+		z-index: 2;
+		margin-bottom: 0;
+		@include font-size($font-size-sm);
+		color: $white;
+
+		@include media-breakpoint-up(sm) {
+			bottom: 15px;
+			right: 15px;
+			left: 15px;
+		}
+	}
+
+	&::before,
+	&__title {
+		opacity: 1;
+		@include transition(opacity .25s ease-in-out);
+		will-change: opacity;
+	}
+
+	&:hover {
+		&::before,
+		.blogTeaser__title {
+			opacity: 0;
+		}
+	}
+}
+
+.shop-items {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+
+	text-align: center;
+
+	.mbr-gallery-item {
+		max-width: 250px;
+		width: 100% !important;
+		@include media-breakpoint-up(sm) {
+			width: 49% !important;
+		}
+
+		@include media-breakpoint-up(md) {
+			width: 32% !important;
+		}
+	}
+
+	.galleryItem {
+		height: 100%;
+		display: flex !important;
+		flex-flow: column;
+
+		> a {
+			flex-grow: 1;
+		}
+	}
+}

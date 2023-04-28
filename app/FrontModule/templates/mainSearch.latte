@@ -1,0 +1,16 @@
+{if $searchResult}
+    <div class="main-search-suggestion">
+        {foreach $searchResult as $item}
+            <a href="/{$item['slug']}">
+                <div class="row">
+                    <div class="col-1">
+                        <img src="{$item['img']}" alt="" style="max-height: 32px;">
+                    </div>
+                    <div class="col">
+                        <p>{$item['name']}</p>
+                    </div>
+                </div>
+            </a>
+        {/foreach}
+    </div>
+{/if}

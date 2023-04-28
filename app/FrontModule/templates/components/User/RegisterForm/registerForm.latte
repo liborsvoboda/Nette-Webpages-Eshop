@@ -1,0 +1,147 @@
+<form n:name="form" class="px-3 py-4 mb-5 loginForm">
+    {if $form->hasErrors()}
+        {foreach $form->errors as $error}
+            <div class="alert alert-danger">{$error}</div>
+        {/foreach}
+    {/if}
+    <div class="row justify-content-center">
+        <div class="col-sm-9 col-md-6 col-lg-8 col-xl-7">
+            <h2 class="h3 mt-2 mb-4 text-center">{_account.registration}</h2>
+            <div class="form-group">
+                <input n:name="email" class="form-control form-control-semitrans border-info form-control-mail" placeholder="{_strings.email}*" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <input n:name="password" class="form-control form-control-semitrans border-info form-control-mail" placeholder="{_strings.password}*" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <input n:name="rpassword" class="form-control form-control-semitrans border-info form-control-lock" placeholder="{_strings.password_repeat}*" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <input n:name="parent_ref_no" class="form-control form-control-semitrans border-info form-control-mail" placeholder="{_strings.parent_ref_no}" autocomplete="off">
+            </div>
+          <div class="form-group">
+            <input n:name="firstName" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.name}">
+            </div>
+          <div class="form-group">
+            <input n:name="lastName" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.surname}">
+          </div>          
+          
+            <div class="form-check mt-2 mb-3">
+                <input class="form-check-input" n:name="b2bRequest" data-b2btoggle>
+                <label class="form-check-label" n:name="b2bRequest">
+                    {_cart.address.b2b_request}
+                </label>
+            </div>
+        </div>
+        <div class="col-9"></div>
+
+        <div class="col-9" data-b2bdata style="{if $form['b2bRequest']->getValue() == true}display: block;{else}display:none;{/if}">
+          <div class="form-group">
+              <div class="input-group">
+                  <input n:name="ico" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.ico}">
+                  <div class="input-group-append">
+                      <button class="btn btn-secondary btn-sm px-2" type="button" data-load-ares>
+                          <i class="fa fa-fw fa-search"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <input n:name="dic" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.dic}">
+          </div>
+
+
+          <div class="form-group">
+              <input n:name="icdph" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.icdph}">
+          </div>
+
+          <div class="form-group">
+              <input n:name="companyName" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.company}">
+          </div>
+          <div class="form-group">
+                <input n:name="iban" class="form-control form-control-semitrans border-info" placeholder="{_strings.iban}">
+          </div>
+          <div class="form-group">
+              <input n:name="street" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.street}">
+          </div>
+          <div class="form-group">
+              <input n:name="city" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.city}">
+          </div>
+          <div class="form-group">
+              <input n:name="zip" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.zip}">
+          </div>
+          <div class="form-group">
+              <select n:name="countryCode" class="form-control form-control-semitrans border-info"></select>
+          </div>
+          <div class="form-group">
+              <input n:name="phone" class="form-control form-control-semitrans border-info" placeholder="{_cart.address.phone}">
+          </div>
+        </div>
+
+        <div class="col-sm-9 col-md-6 col-lg-8 col-xl-7">
+            <div class="form-check mt-2 mb-3">
+                <input class="form-check-input" n:name="gdpr">
+                <label class="form-check-label" n:name="gdpr">
+                    {_form.gdpr_consent|noescape}
+                </label>
+            </div>
+            <div class="form-group pt-2 mb-2">
+                <button type="submit" class="btn btn-secondary btn-lg btn-block btn-rounded">
+                    {_strings.register}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    (function() {
+        var $toggle = document.querySelector('[data-b2btoggle]');
+        var $b2b = document.querySelector('[data-b2bdata]');
+        $toggle.addEventListener('change', function(e) {
+            if ($toggle.checked) $b2b.style.display = 'block';
+            else $b2b.style.display = 'none';
+        });
+    })();
+
+    jQuery(document).ready(function() {
+        $('[data-load-ares]').on('click', function(e) {
+            e.preventDefault();
+            var $inputs = {
+                ic: $('#' + {$form[ico]->getHtmlId()}),
+                dic: $('#' + {$form[dic]->getHtmlId()}),
+                icdph: $('#' + {$form[icdph]->getHtmlId()}),
+                company: $('#' + {$form[companyName]->getHtmlId()}),
+                street: $('#' + {$form[street]->getHtmlId()}),
+                city: $('#' + {$form[city]->getHtmlId()}),
+                zip: $('#' + {$form[zip]->getHtmlId()})
+            }
+            var $country = $('#' + {$form[countryCode]->getHtmlId()});
+
+            var ic = $inputs.ic.val();
+            var country = $country.val();
+            if ($.trim(ic) == '') $inputs.ic.focus();
+            else if ($.trim(country) == '') $country.focus();
+            else {
+                for (var i in $inputs) $inputs[i].attr('readonly', true);
+                $.nette.ajax({
+                    url: {link ares!} + '&ic=' + ic + '&country=' + country,
+                    success: function(res) {
+                        if (res.success) {
+                            $inputs.dic.val(res.data.tin);
+                            $inputs.icdph.val(res.data.vatin);
+                            $inputs.company.val(res.data.name);
+                            $inputs.street.val(res.data.formatted_street);
+                            $inputs.city.val(res.data.municipality);
+                            $inputs.zip.val(res.data.postal_code);
+                        } else {
+                            alert(res.error);
+                        }
+                        for (var i in $inputs) $inputs[i].removeAttr('readonly');
+                    }
+                });
+            }
+        });
+    });
+</script>

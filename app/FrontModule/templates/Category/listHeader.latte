@@ -1,0 +1,30 @@
+<section class="container mt-5">
+	<div class="row">
+		<div class="col-md-6 col-lg-8 pr-md-0 mb-3">
+			{include children.latte}
+		</div>
+		<div class="col-md-6 col-lg-4 pl-lg-2 mb-3 text-center text-md-right">
+			{*
+			<button class="btn btn-gray-100 btn-sm mr-2 collapsed" data-toggle="collapse" data-target="#categoryFilters">
+				<svg class="mr-2 my--1" width="19px" height="24px" viewBox="0 0 19 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<g transform="translate(-908.000000, -621.000000)" stroke="#FFFFFF" stroke-width="2">
+							<g transform="translate(884.000000, 604.000000)">
+								<path d="M26.0138918,21.0916276 L30.5563071,28.0649202 C30.7678658,28.3896946 30.8804941,28.7689456 30.8804941,29.1565478 L30.8804941,37.1436544 C30.8804941,37.436075 31.0084887,37.7138441 31.2307807,37.9038337 L33.2991792,39.6716618 C33.7190146,40.0304886 34.350245,39.9810314 34.7090718,39.561196 C34.8638486,39.3801037 34.9488926,39.1497057 34.9488926,38.9114826 L34.9488926,29.3035049 C34.9488926,28.8254405 35.1201355,28.3631894 35.4315941,28.0005063 L41.1831609,21.3029986 C41.9027871,20.4650178 41.8068418,19.2023278 40.968861,18.4827016 C40.6061779,18.171243 40.1439268,18 39.6658624,18 L27.6897048,18 C26.5851353,18 25.6897048,18.8954305 25.6897048,20 C25.6897048,20.3876022 25.8023331,20.7668532 26.0138918,21.0916276 Z"></path>
+							</g>
+						</g>
+					</g>
+				</svg>
+				{_products.filter}
+			</button>
+			*}
+			{control productSort}
+		</div>
+	</div>
+
+	<div id="categoryFilters" class="collapse">
+		{snippet productFilter}
+			{control productFilter}
+		{/snippet}
+	</div>
+</section>

@@ -1,0 +1,11 @@
+{snippet producerForm}
+    {ifset $image}
+        <div class="row">
+            <div class="col-sm-3">Obrázek kategorie</div>
+            <div class="col-sm-9">
+                <img src="{$image}" alt="" style="max-height: 100px;">
+            </div>
+        </div>
+    {/ifset}
+    {control form}
+{/snippet}

@@ -1,0 +1,87 @@
+<h1 class="h2 mb-4">{$product->name}</h1>
+
+{if $product->perex}
+	{$product->perex|noescape}
+{/if}
+
+{if getPriceVat($product->id) !== 0.01}
+<table class="table">
+	<tbody>
+		{* <tr>
+			<th>{_products.sku}</th>
+			<td class="text-right">{$product->sku}</td>
+		</tr> *}
+		
+		{* <tr>
+			<th>{_products.price_without_vat}</th>
+			<td class="text-right"><strong>{getPrice($product->id)|price}</strong></td>
+		</tr> *}
+		<tr>
+			<th class="align-middle pb-0 font-size-h4 font-weight-bold text-gray-400 border-danger py-2">{_products.your_price}</th>
+			{if $product->width > 0}
+			<td class="text-right pb-0 font-size-h4 font-weight-bold text-gray-400 border-danger">{getPriceVat($product->id)*$product->width|price}</td>
+			{else}
+			<td class="text-right pb-0 font-size-h4 font-weight-bold text-gray-400 border-danger">{getPriceVat($product->id)|price}</td>
+			{/if}
+		</tr>
+		<tr>
+			<th class="align-middle pb-0 font-weight-normal border-danger py-2">{_products.price_without_vat}</th>
+			{if $product->width > 0}
+			<td class="text-right pb-0 font-size-h6 font-weight-bold text-gray-400 border-danger">{getPrice($product->id)*$product->width|price}</td>
+			{else}
+			<td class="text-right pb-0 font-size-h6 font-weight-bold text-gray-400 border-danger">{getPrice($product->id)|price}</td>
+			{/if}
+		</tr>
+
+		<tr>
+			<th class="align-middle pb-0 font-weight-normal border-danger py-2">{_products.vat}</th>
+			<td class="text-right pb-0 font-size-h6 font-weight-bold text-gray-400 border-danger">{getVat($product->id)} %</td>
+			
+		</tr>
+
+		{if hasOrigPrice($product->id)} {*if getOrigPriceVat($product->id) > 0*} 
+		<tr>
+			<th class="align-middle pb-0 font-weight-normal border-danger py-2">{_products.regular_price}</th>
+			{if $product->width > 0}
+			<td class="text-right pb-0 font-size-h6 font-weight-bold text-gray-400 border-danger">{getOrigPriceVat($product->id)*$product->width|price}</td>
+			{else}
+			<td class="text-right pb-0 font-size-h6 font-weight-bold text-gray-400 border-danger">{getOrigPriceVat($product->id)|price}</td>
+			{/if}
+			
+		</tr>
+		<tr>
+			<th class="align-middle pb-0 font-weight-normal border-danger py-2">{_products.save}</th>
+			{if $product->width > 0}
+			<td class="text-right pb-0 font-weight-bold text-gray-400 border-danger">{(getOrigPriceVat($product->id))-(getPriceVat($product->id))*$product->width|price}</td>
+			{else}
+			<td class="text-right pb-0 font-weight-bold text-gray-400 border-danger">{(getOrigPriceVat($product->id))-(getPriceVat($product->id))|price}</td>
+			{/if}
+			
+		</tr>
+		{/if}
+		
+		<tr>
+			<th class="font-weight-normal border-danger py-2">{_products.availability}</th>
+			<td n:class="border-danger, text-right, $product->inStock > 0 ? text-success : text-light">
+							{*if $product->onStock > 0}
+					{_products.in_stock} {$product->onStock} {$product->unit}
+				{else}
+				    {_products.out_of_stock}
+				{/if*}
+				<small n:class="text-right, font-size-h6, font-weight-bold, $product->inStock > 0 ? text-success : text-light">
+					{* {if isset($product->stock)}
+						{$product->stock|noescape}
+					{else}
+						{_products.out_of_stock}
+					{/if} *}
+					{if $product->inStock == 1}
+						{_products.on_stock} {*{$product->onStock} {$product->unit}*}
+					{else}
+						{_products.out_of_stock}
+					{/if}
+				</small>
+			</td>
+		</tr>
+	</tbody>
+</table>
+{/if}

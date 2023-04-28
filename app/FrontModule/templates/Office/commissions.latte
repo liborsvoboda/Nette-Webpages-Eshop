@@ -1,0 +1,41 @@
+{block content}
+<div class="container-fluid my-5 bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    {include sideMenu.latte}
+                </div>
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        {control commissionsGrid}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .datagrid .form-control {
+        border-radius: 0;
+        padding: .2rem;
+        line-height: initial;
+    }
+</style>
+{/block}
+{block addJs}
+    <script src="{$basePath}/bower_components/happy/dist/happy.js"></script>
+    <script src="{$basePath}/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid.js"></script>
+    <script src="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid-instant-url-refresh.js"></script>
+    <script src="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid-spinners.js"></script>
+{/block}
+{block addCss}
+    <link rel="stylesheet" type="text/css" href="{$basePath}/bower_components/happy/dist/happy.css">
+    <link rel="stylesheet" type="text/css"
+          href="{$basePath}/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" type="text/css" href="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid.css">
+    <link rel="stylesheet" type="text/css"
+          href="{$basePath}/bower_components/ublaboo-datagrid/assets/datagrid-spinners.css">
+
+{/block}

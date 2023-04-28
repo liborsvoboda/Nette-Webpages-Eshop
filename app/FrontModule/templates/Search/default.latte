@@ -1,0 +1,20 @@
+{block content}
+    <section class="container">
+        {snippetArea listHeader}
+            {include listHeader.latte}
+        {/snippetArea}
+        {snippetArea products}
+            {include ../Category/productsList.latte}
+            {include ../Category/pagination.latte}
+        {/snippetArea}
+
+
+        <h2 class="mt-5 pt-3 mb-3 text-center text-sm-left">{_strings.found_categories}</h2>
+        <div class="mb-4 text-center text-sm-left">
+            {control categorySearch}
+        </div>
+    </section>
+{/block}
+{block title}
+    {_strings.search_string, [search => $search]}
+{/block}

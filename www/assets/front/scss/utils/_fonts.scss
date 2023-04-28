@@ -1,0 +1,175 @@
+/**
+ * Typography
+ */
+
+// Hide unloaded font to prevent FOUT
+html.wf-loading * {
+	color: transparent !important;
+}
+
+// Text selection
+::selection {
+	background-color: $primary;
+	color: $white;
+}
+
+// Heading font sizes
+$heading-sizes: (
+	"h1": $h1-font-size,
+	"h2": $h2-font-size,
+	"h3": $h3-font-size,
+	"h4": $h4-font-size,
+	"h5": $h5-font-size,
+	"h6": $h6-font-size
+);
+@each $name, $size in $heading-sizes {
+	.font-size-#{$name} {
+		@include font-size($size);
+	}
+
+	@each $breakpoint, $width in $container-max-widths {
+		@include media-breakpoint-up($breakpoint) {
+			.#{$name}-#{$breakpoint} {
+				@include font-size($size);
+			}
+		}
+	}
+}
+
+// Font sizes
+.font-size-normal {
+	@include font-size($font-size-base);
+}
+.font-size-lg {
+	@include font-size($font-size-lg);
+}
+.font-size-sm {
+	@include font-size($font-size-sm);
+}
+.font-size-xs {
+	@include font-size($font-size-xs);
+}
+.font-size-0 {
+	font-size: 0;
+}
+
+.line-height-normal {
+	line-height: $line-height-base;
+}
+.line-height-lg {
+	line-height: $line-height-lg;
+}
+.line-height-sm {
+	line-height: $line-height-sm;
+}
+
+// Gray text colors
+@each $color, $value in $grays {
+	.text-gray-#{$color} {
+		color: $value !important;
+	}
+}
+.text-black {
+	color: $black;
+}
+.text-teal {
+	color: $teal;
+}
+
+// Font family
+.font-family-normal {
+	font-family: $font-family-sans-serif;
+}
+
+// Title
+.title {
+	text-transform: uppercase;
+	font-family: $font-family-sans-serif;
+
+	&--border {
+		padding-bottom: 10/32*1em;
+		//border-bottom: 1px solid $border-color;
+	}
+}
+
+
+// Underline decoration
+.link-underline {
+	text-decoration: underline !important;
+	&:hover {
+		text-decoration: none !important;
+	}
+
+	&-none {
+		text-decoration: none !important;
+		&:hover {
+			text-decoration: underline !important;
+		}
+	}
+	&-never {
+		text-decoration: none !important;
+		&:hover {
+			text-decoration: none !important;
+		}
+	}
+	&-allways {
+		text-decoration: underline !important;
+		&:hover {
+			text-decoration: underline !important;
+		}
+	}
+}
+
+.text-wrap {
+	white-space: normal;
+}
+
+.table {
+	tbody,
+	thead {
+		> tr:first-child {
+			td, th {
+				border-top: none;
+			}
+		}
+	}
+}
+
+.hasSecondaryLinks {
+	a {
+		color: $secondary;
+	}
+}
+
+.text-striked {
+	position: relative;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: -10%;
+		right: -10%;
+		margin-top: -1px;
+		height: 2px;
+		background: $primary;
+		transform: rotate(-10deg);
+	}
+}
+
+ul.checks {
+	padding-left: 0;
+	li {
+		position: relative;
+		list-style: none;
+		padding-left: 40px;
+
+		&::before {
+			position: absolute;
+			top: 2px;
+			left: 10px;
+			content: '\2713';
+			color: $green-app;
+			font-weight: bold;
+		}
+	}
+}

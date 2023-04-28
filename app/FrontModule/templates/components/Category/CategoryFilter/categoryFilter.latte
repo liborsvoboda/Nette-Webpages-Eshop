@@ -1,0 +1,20 @@
+{snippet categoryFilter}
+    <form n:name="form">
+        <div class="scroller scroller--blurRight scroller--hasScrollbar">
+            <div class="scroller__inner scroller__inner--scrollbar">
+                {foreach $form[type]->items as $key => $label}
+                    <div class="btn-group-toggle d-inline-block mr-3 ajax-click-submit" data-toggle="buttons">
+                        <label class="btn btn-light px-4">
+                            <input n:name="type:$key" autocomplete="off">
+                            {*
+                            <?php svg($btn[1]) ?>
+                            *}
+                            <span class="ml-2">{$label}</span>
+                        </label>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+        <button n:name="filter" class="ajax-hide"></button>
+    </form>
+{/snippet}

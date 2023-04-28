@@ -1,0 +1,48 @@
+<div n:snippet="productsList" class="wrapper-shop-items col-lg-9 px-0 pr-lg-4">
+	<p>{_strings.products_description_1}</p>
+	<p>{_strings.products_description_2}</p>
+
+    <div class="mbr-gallery-row">
+        <div>
+            <div class="shop-items">
+
+                {foreach $products as $product}
+                    <div class="mbr-gallery-item">
+                        <div class="productTagsLeft" style="position: absolute; background: inherit">
+                            <span n:if="getPriceVat($product->id) > $freeDelivery" class="productTag productTag--freeDelivery">DOPRAVA ZDARMA</span>
+                            <span n:if="$product->new_tag == 1" class="productTag productTag--new">NOVINKA</span>
+                            <div  n:if="$product->sale_tag == 1" class="productTag productTag--new" style="background: #ffc107;  text-transform: uppercase;" >Výpredaj</div>
+                            <span n:if="$product->shop_only == 1" class="productTag productTag--new" style="background: #6972e0f0; text-transform: uppercase; ">Na predajni</span>
+                            <span n:if="$product->inStock >= 1" class="productTag productTag--new" style="background: #6972e0f0; text-transform: uppercase; ">Na sklade</span>
+                        </div>
+                        <div class="productTagsRight" style="position: absolute; background: inherit; right: 41px; top: 8px;">
+                            <span n:if="getOrigPriceVat($product->id) > getPriceVat($product->id)" class="productTag productTag--discount" style="background: #ff0000a6; height: 36px;width: 36px;"><p class="productTagText font-weight-normal" style="font-size: 12px;"> -{round(100-(getPriceVat($product->id)/getOrigPriceVat($product->id))*100)}%</p></span>
+                            <div  n:if="$product->tip_tag == 1" style="background: #BB9468;color: #fff;font-size: 11px;border-radius: 100%;width: 36px;height: 36px;display: block;position: relative;"><p class="productTagText font-weight-normal">TIP</p></div>
+                        </div>
+                        <div class="galleryItem">
+                            <a n:href="Product:default $product->id">
+                                <div class="img_wraper">
+                                    <img src="{$product->image}" alt="">
+                                </div>
+                            </a>
+                            {*<span class="onsale mbr-fonts-style display-4">Výpredaj</span>*}
+
+                            <div class="sidebar_wraper">
+                                <h4 class="item-title mbr-fonts-style mbr-text display-5">
+                                    {$product->name}
+                                </h4>
+                                <div class="price-block mb-2">
+                                    <span class="shop-item-price mbr-fonts-style display-5">{getPriceVat($product->id)|price}</span>
+                                    <span n:if="getOrigPriceVat($product->id) > getPriceVat($product->id)" class="mr-3 ml-2 price__block text-striked-gray" style="color:#bfc3c8; display: inline-block;">{getOrigPriceVat($product->id)|price}</span>
+                                    <span n:if="$product->not_for_sale == 1" class="productTag productTag--tip"><p class="pb-0 align-middle text-right font-size-h6 font-weight-normal text-success">Nepredajný produkt</p></span>
+                                </div>
+								{control addToCart-$product->id, button}
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

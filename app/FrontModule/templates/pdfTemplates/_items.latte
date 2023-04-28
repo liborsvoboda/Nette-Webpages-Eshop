@@ -1,0 +1,133 @@
+{var $paid = $type === 'proforma' ? 0 : $orderData->price}
+{var $toPay = $type === 'invoice' ? 0 : $orderData->price}
+{var $sign = $type === 'storno' ? '-' : ''}
+
+<h2>{_invoice.items}</h2>
+<table cellspacing="0" cellpadding="3" width="100%" style="font-size: 7px;">
+    <tr style="background-color: #f5f5f5;">
+        <td width="5%" style="border: 0.5px solid #dddddd;">
+            {_invoice.sku}
+        </td>
+        <td width="35%" style="border: 0.5px solid #dddddd;">
+            {_invoice.name}
+        </td>
+        <td width="12%" style="border: 0.5px solid #dddddd;">
+            {_invoice.amount}
+        </td>
+        <td width="10%" style="border: 0.5px solid #dddddd;">
+            {_invoice.unit_price}
+        </td>
+        <td width="15%" style="border: 0.5px solid #dddddd;">
+            {_invoice.price_without_vat}
+        </td>
+        <td width="10%" style="border: 0.5px solid #dddddd;">
+            {_invoice.vat}
+        </td>
+        <td width="13%" style="border: 0.5px solid #dddddd;">
+            {_invoice.total}
+        </td>
+    </tr>
+    {foreach $orderItems as $item}
+        <tr>
+            <td width="5%" style="border: 0.5px solid #dddddd;">
+                {$item->product->sku}
+            </td>
+            <td width="35%" style="border: 0.5px solid #dddddd;">
+                {$item->product->related('product_lang')->fetch()->name}
+            </td>
+            <td width="12%" style="border: 0.5px solid #dddddd;">
+                {$item->count}
+            </td>
+            <td width="10%" style="border: 0.5px solid #dddddd;">
+                {$sign}{$priceFacade->getUserPriceVat($item->product->id)|price}
+            </td>
+            <td width="15%" style="border: 0.5px solid #dddddd;">
+                {$sign}{$priceFacade->getUserPrice($item->product->id)*$item->count|price}
+            </td>
+            <td width="10%" style="border: 0.5px solid #dddddd;">
+                {$sign}{$priceFacade->getUserPriceVat($item->product->id)*$item->count - $priceFacade->getUserPrice($item->product->id)*$item->count|price}
+            </td>
+            <td width="13%" style="border: 0.5px solid #dddddd;">
+                {$sign}{$priceFacade->getUserPriceVat($item->product->id)*$item->count|price}
+            </td>
+        </tr>
+    {/foreach}
+    <tr>
+        <td width="5%" style="border: 0.5px solid #dddddd;">
+
+        </td>
+        <td width="35%" style="border: 0.5px solid #dddddd;">
+            {_invoice.delivery}: {$orderData->shipping->name}
+        </td>
+        <td width="12%" style="border: 0.5px solid #dddddd;">
+
+        </td>
+        <td width="10%" style="border: 0.5px solid #dddddd;">
+            {$sign}{$orderData->shipping->price|price}
+        </td>
+        <td width="15%" style="border: 0.5px solid #dddddd;">
+            {var $vat = $orderData->shipping->price - ($orderData->shipping->price/((100 + $orderData->shipping->vat)/100))}
+            {$sign}{$orderData->shipping->price-$vat|price}
+        </td>
+        <td width="10%" style="border: 0.5px solid #dddddd;">
+            {$sign}{$vat|price}
+        </td>
+        <td width="13%" style="border: 0.5px solid #dddddd;">
+            {$sign}{$orderData->shipping->price|price}
+        </td>
+    </tr>
+    <tr>
+        <td width="5%" style="border: 0.5px solid #dddddd;">
+
+        </td>
+        <td width="35%" style="border: 0.5px solid #dddddd;">
+            {_invoice.payment}: {$orderData->payment->name}
+        </td>
+        <td width="12%" style="border: 0.5px solid #dddddd;">
+
+        </td>
+        <td width="10%" style="border: 0.5px solid #dddddd;">
+            {$sign}{$orderData->payment->price|price}
+        </td>
+        <td width="15%" style="border: 0.5px solid #dddddd;">
+            {var $vat = $orderData->payment->price - ($orderData->payment->price/((100 + $orderData->payment->vat)/100))}
+            {$sign}{$orderData->payment->price-$vat|price}
+        </td>
+        <td width="10%" style="border: 0.5px solid #dddddd;">
+            {$sign}{$vat|price}
+        </td>
+        <td width="13%" style="border: 0.5px solid #dddddd;">
+            {$sign}{$orderData->payment->price|price}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" style=""><h3>{_invoice.note}:</h3> {$orderData->note}</td>
+        <td colspan="3" style="border-left: 0.5px solid #ddd">
+            <table style="width: 100%;">
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    {var $vat = $orderData->price / 1.2}
+                    <td>{_invoice.total_without_vat}: </td>
+                    <td align="right">{$vat|price}</td>
+                </tr>
+                <tr>
+                    <td>{_invoice.vat_total}:</td>
+                    <td align="right">{$orderData->price - $vat|price}</td>
+                </tr>
+                <tr style="font-weight: bold;">
+                    <td><strong>{_invoice.paid}:</strong></td>
+                    <td align="right"><strong>{$paid|price}</strong></td>
+                </tr>
+                <tr>
+                    <td>{_invoice.to_pay}:</td>
+                    <td align="right">{$sign}{$toPay|price}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

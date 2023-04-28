@@ -1,0 +1,41 @@
+priceReg: "Loyalty price"
+
+required: 'Input %label is required.'
+password_not_match: "Passwords doesn't match."
+gdpr_required: 'You must get familiar with Protection of personal data.'
+gdpr_consent: 'I am familiar with <a href="/privacy-policy" target="_blank">the Protection of personal data</a>'
+
+saved_success: 'Data saved successfully.'
+
+ic_not_found: "The company was not found by it's ID."
+
+vies:
+    not_available: 'We are sorry, but the VAT number verification service is not available. Please continue without VAT number, or try again later.'
+    country_not_match: 'The provided country you entered was not correct to verify the VAT number code.'
+    invalid: 'The entered company VAT number is not valid. Please enter a valid value.'
+
+message:
+    error: 'Unfortunately, something went wrong. Please try again.'
+
+valid:
+    EQUAL: 'Fill in %s to input %label.'
+    NOT_EQUAL: 'Value of the input %label must not be %s.'
+    FILLED: 'Input %label is required.'
+    BLANK: 'Input %label must not be empty.'
+    MIN_LENGTH: 'Fill at least %d characters in the input %label.'
+    MAX_LENGTH: 'Fill a maximum of %d characters in the input %label.'
+    LENGTH: 'Fill a value between %d and %d characters in the input %label.'
+    EMAIL: 'Fill a valid e-mail address in the input %label.'
+    URL: 'Fill a valid URL address in the input %label.'
+    INTEGER: 'Fill a valid real number in the input %label.'
+    FLOAT: 'Fill a valid number in the input %label.'
+    MIN: 'Fill a value greater than or equal to %d in the input %label.'
+    MAX: 'Fill a value lower than or equal to %d in the input %label.'
+    RANGE: 'Fill a value between %d and %d in the input %label.'
+    MAX_FILE_SIZE: 'Maximal file size in the input %label is %d bytes.'
+    MAX_POST_SIZE: 'Uploaded data in the input %label exceeded the maximum size of %d bytes.'
+    MIME_TYPE: 'Uploaded file in the input %label is not in required format.'
+    IMAGE: 'Uploaded file in the input %label must be in the format of JPEG, GIF, PNG or WebP.'
+    Nette\Forms\Controls\SelectBox::VALID: 'Please select valid value in the input %label.'
+    Nette\Forms\Controls\UploadControl::VALID: 'There was an error when uploading file form the input %label.'
+    Nette\Forms\Controls\CsrfProtection::PROTECTION: 'Your session has expired. Please go to the homepage and try again.'

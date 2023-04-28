@@ -1,0 +1,36 @@
+{default $title = ''}
+{default $icon = ''}
+<section n:if="count($products) > 0" class="my-5 py-lg-4">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-7 mb-3 mb-sm-0">
+                <h2 n:if="$title" class="h4 mb-0">
+                    <img n:if="$icon" src="{$basePath}{$tplSetting->getSvg($icon)}" alt="{$title}" class="align-bottom mr-2 mt--1">
+                    {$title}
+                </h2>
+            </div>
+            <div class="col-sm-5 text-right text-muted">
+                {if isset($totalProducts)}{_strings.total_products, [count => $totalProducts]}{/if}
+                {* <a href="#" class="text-gray-400 mr-2 h4 align-bottom">{_products.all}</a> *}
+
+                {* <a href="#" class="btnArrow btnArrow--prev" aria-label="{_products.previous}" data-scroller-left="productsList">&nbsp;</a>
+                <a href="#" class="btnArrow btnArrow--next mr--1" aria-label="{_products.next}" data-scroller-right="productsList">&nbsp;</a> *}
+            </div>
+        </div>
+
+        <div class="scroller scroller--cards scroller--stretchRight scroller--blur">
+			<div class="scroller__inner py-0" data-scroller="productsList">
+                <div n:foreach="$products as $product" class="scroller__card" data-scroller-item="{$iterator->counter}">
+                    {include '../ProductBox/productBox.latte', product => $product}
+                </div>
+            </div>
+            
+            <a href="#" class="scroller__arrow scroller__arrow--left" aria-label="{_products.previous}" data-scroller-left="productsList">&nbsp;</a>
+            <a href="#" class="scroller__arrow scroller__arrow--right" aria-label="{_products.next}" data-scroller-right="productsList">&nbsp;</a>
+        </div>
+
+        <div class="d-none" data-scroller-nav="productsList">
+			<span n:foreach="$products as $product" data-scroller-to-item="{$iterator->counter}"></span>
+		</div>
+    </div>
+</section>

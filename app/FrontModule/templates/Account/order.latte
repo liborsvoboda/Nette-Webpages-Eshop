@@ -1,0 +1,143 @@
+{block content}
+    <section class="pt-3 bg-white">
+        {include 'menu.latte'}
+        <div class="container py-4">
+            <div class="row">
+                <article class="col-12">
+                    <h1 class="h2 title title--border mb-3"><i class="fa fa-fw fa-barcode mr-3"></i>{_account.orders.order, [number => $order->number]}</h1>
+
+                    <div class="bg-black text-white px-3 py-3 mb-5 text-center">
+                        <div class="row">
+                            <div class="col-sm-4 my-2">
+                                <div class="mb-1">{_account.orders.order_number}</div>
+                                <strong class="font-size-h3 text-white">{$order->number}</strong>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="mb-1">{_account.orders.order_date}</div>
+                                <strong class="font-size-h3 text-white">{$order->timestamp|date:'d.m.Y G:i'}</strong>
+                            </div>
+                            <div class="col-sm-4 my-2">
+                                <div class="mb-1">{_account.orders.current_state}</div>
+                                <strong class="font-size-h3 bg-{$order->order_status->color} px-2 py-1">{$order->order_status->name}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-between mb-4">
+                        <div class="col-12">
+                            <h2 class="h4 title title--border mb-2">{_cart.address.delivery_info}</h2>
+                        </div>
+                        <div class="col-sm-6 my-2">
+                            <h3 class="h6 title title--border font-family-normal font-weight-bold mb-3">{_cart.address.private_info}</h3>
+                            <div class="text-muted">
+                                <p class="pb-1 mb-2">{$order->firstName}</p>
+                                <p class="pb-1 mb-2">{$order->lastName}</p>
+                                <p class="pb-1 mb-2">{$order->email}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 my-2">
+                            <h3 class="h6 title title--border font-family-normal font-weight-bold mb-3">{_cart.address.invoice_address}</h3>
+                            <address class="text-muted">
+                                <p class="pb-1 mb-2">{$order->street}</p>
+                                <p class="pb-1 mb-2">{$order->city}</p>
+                                <p class="pb-1 mb-2">{$order->zip}</p>
+                                <p class="pb-1 mb-2">{$order->country->name}</p>
+                            </address>
+                        </div>
+                        <div n:if="$order->isCompany" class="col-sm-6 my-2">
+                            <h3 class="h6 title title--border font-family-normal font-weight-bold mb-3">{_cart.address.company_info}</h3>
+                            <div class="text-muted">
+                                <p class="pb-1 mb-2">{$order->companyName}</p>
+                                <p class="pb-1 mb-2">{_cart.address.ico}: {$order->ico}</p>
+                                <p class="pb-1 mb-2">{_cart.address.dic}: {$order->dic}</p>
+                                <p class="pb-1 mb-2">{_cart.address.icdph}: {$order->icdph}</p>
+                            </div>
+                        </div>
+                        <div n:if="$order->otherAddress" class="col-sm-6 my-2">
+                            <h3 class="h6 title title--border font-family-normal font-weight-bold mb-3">{_cart.address.delivery_address}</h3>
+                            <address class="text-muted">
+                                <p class="pb-1 mb-2">{$order->otherName} {$order->otherSurname}</p>
+                                <p class="pb-1 mb-2">{$order->otherStreet}</p>
+                                <p class="pb-1 mb-2">{$order->otherCity}</p>
+                                <p class="pb-1 mb-2">{$order->otherZip}</p>
+                            </address>
+                        </div>
+
+                        <div class="col-sm-6 my-2">
+                            <h3 class="h6 title title--border mb-3">{_cart.payment}</h3>
+                            <p class="pb-1 mb-2 text-muted">{$order->payment->name}</p>
+                        </div>
+                        <div class="col-sm-6 my-2">
+                            <h3 class="h6 title title--border mb-3">{_cart.delivery}</h3>
+                            <p class="pb-1 mb-2 text-muted">{$order->shipping->name}</p>
+                        </div>
+                    </div>
+
+                    <h2 class="h4 title title--border mb-3">{_account.orders.items}</h2>
+                    <div n:foreach="$items as $item" class="border-bottom py-2">
+                        {var $product = $item->product}
+                        {var $productLang = $product->related('product_lang')->fetch()}
+                        <div class="row align-items-center">
+                            <div class="col-3 col-md-1 my-1 pr-0 text-center">
+                                <a href="/{$productLang->slug}">
+                                    <img src="{$basePath}{if $product->image !== NULL}{$product->image}{else}/assets/front/img/no-image.png{/if}" alt="{$productLang->name}" class="img-fluid my--1" style="max-height: 50px">
+                                </a>
+                            </div>
+                            <div class="col-9 col-md-6 my-1">
+                                <h3 class="h6 mb-0 font-family-normal font-weight-bold"><a href="/{$productLang->slug}" class="text-body">{$productLang->name}</a></h3>
+                            </div>
+                            <div class="col-3 col-md-1 my-1 pr-0 pl-md-0 text-center text-md-right">
+                                {$item->count} {$product->unit}
+                            </div>
+                            <div class="col-5 col-md-2 pr-md-0 text-muted text-center text-md-right">
+                                {dump $item->price}
+                               {$item->price|price}{if $product->unit} / {$product->unit}{/if}
+                            </div>
+                            <div class="col-4 col-md-2 my-1 text-right">
+                                <strong class="font-size-h6 text-primary">{($item->count * $item->price)|price}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-bottom py-2">
+                        <div class="row align-items-center">
+                            <div class="col-8 col-md-7 offset-md-1 my-1">
+                                <h3 class="h6 mb-0 font-family-normal">{_account.orders.shipping}: <strong>{$order->shipping->name}</strong></h3>
+                            </div>
+                            <div class="col-4 my-1 text-right">
+                                <strong class="font-size-h6 text-primary">{$shippingPrice|price}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-bottom py-2">
+                        <div class="row align-items-center">
+                            <div class="col-8 col-md-7 offset-md-1 my-1">
+                                <h3 class="h6 mb-0 font-family-normal">{_account.orders.payment}: <strong>{$order->payment->name}</strong></h3>
+                            </div>
+                            <div class="col-4 my-1 text-right">
+                                <strong class="font-size-h6 text-primary">{$order->payment->price|price}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-right mt-4">
+                        {*
+                        <div class="mt-3">
+                            <p class="text-muted mb-0">{_cart.total.without_vat}</p>
+                            <strong class="font-size-h5 font-weight-bold">{$order->price|price}</strong>
+                            <p class="text-muted mt-3 mb-0">{_cart.total.vat}</p>
+                            <strong class="font-size-h5 font-weight-bold">{$order->price|price}</strong>
+                        </div>
+                        *}
+                        <div n:class="mt-3">
+                            <p class="text-muted mb-0">{_cart.total.with_vat}</p>
+                            <strong class="font-size-h3 font-weight-bold text-primary">{$order->price|price}</strong>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {_account.orders.order, [number => $order->number]}
+{/block}

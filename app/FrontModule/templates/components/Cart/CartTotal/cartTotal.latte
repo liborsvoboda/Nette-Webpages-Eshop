@@ -1,0 +1,48 @@
+<form n:name="form" class="ajax">
+    <div class="row align-items-center pr-xl-3">
+        <div n:if="!$isSummary" class="col-sm-7 order-2 order-sm-1 my-3 my-sm-4 d-flex">
+            <div class="input-group input-group-lg">
+                <input n:name="coupon" class="form-control" placeholder="{_cart.coupon.title}">
+                <div class="input-group-append">
+                    <button n:name="submit" class="btn btn-secondary">{_cart.coupon.apply}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col order-1 order-sm-2 text-right my-3 my-sm-4 line-height-sm">
+            {if isset($discount)}
+                <div class="mb-3">
+                    <p class="text-muted mb-0 font-weight-bold">{_cart.total.before_discount}</p>
+                    <strong class="font-size-h5 font-weight-bold">{$totalPrice|price}</strong>
+                </div>
+                <div class="mb-3">
+                    <p class="text-muted mb-0 font-weight-bold">{_cart.total.discount}: {$voucherCode}</p>
+                    <strong class="font-size-h5 font-weight-bold">-{$discount|price}</strong>
+                </div>
+                <div class="mt-3">
+                    <p class="text-muted mb-0 font-weight-bold">{_cart.total.without_vat}{if $isSummary} <small class="d-block">{_cart.total.include_shipping}</small>{/if}</p>
+                    <strong class="font-size-h5 font-weight-bold">{$totalPriceWOVat|price}</strong>
+                    <p class="text-muted mt-3 mb-0 font-weight-bold">{_cart.total.vat}</p>
+                    <strong class="font-size-h5 font-weight-bold">{$totalVat|price}</strong>
+                </div>
+                <p class="text-muted mb-0">{_cart.total.with_vat_after_discount}</p>
+                <strong class="h2">{$totalPriceWithDiscount|price}</strong>
+            {else}
+                <div class="mt-3">
+                    <p class="text-muted mb-0 font-weight-bold">{_cart.total.without_vat}{if $isSummary} <small class="d-block">{_cart.total.include_shipping}</small>{/if}</p>
+                    <strong class="font-size-h5 font-weight-bold">{$totalPriceWOVat|price}</strong>
+                    <p class="text-muted mt-3 mb-0 font-weight-bold">{_cart.total.vat}{if $isSummary} <small class="d-block">{_cart.total.include_shipping}</small>{/if}</p>
+                    <strong class="font-size-h5 font-weight-bold">{$totalVat|price}</strong>
+                </div>
+                <div n:class="mt-3">
+                    <p class="text-muted mb-0 font-weight-bold">{_cart.total.with_vat}{if $isSummary} <small class="d-block">{_cart.total.include_shipping}</small>{/if}</p>
+                    <strong class="font-size-h3 font-weight-bold text-success">{$totalPrice|price}</strong>
+                </div>
+            {/if}
+        </div>
+    </div>
+    {if $couponMessage}
+        <div class="row">
+            <p>{$couponMessage}</p>
+        </div>
+    {/if}
+</form>

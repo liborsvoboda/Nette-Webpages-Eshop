@@ -1,0 +1,58 @@
+<div class="col-6">
+    {control form}
+</div>
+<div class="col-6">
+    {snippet userData}
+        {if $userData}
+            <table class="table table-bordered">
+                <tr>
+                    <th>Meno:</th>
+                    <td>{$userData['firstName']} {$userData['lastName']}</td>
+                </tr>
+                <tr>
+                    <th>Adresa:</th>
+                    <td>{$userData['street']}</td>
+                </tr>
+                <tr>
+                    <th>Mesto:</th>
+                    <td>{$userData['zip']} {$userData['city']}</td>
+                </tr>
+                <tr>
+                    <th>Telefon:</th>
+                    <td>{$userData['phone']}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{$userData['email']}</td>
+                </tr>
+                {if $userData->isCompany}
+                    <tr>
+                        <th>Názov firmy:</th>
+                        <td>{$userData['companyName']}</td>
+                    </tr>
+                    <tr>
+                        <th>IBAN:</th>
+                        <td>{$userData['iban']}</td>
+                    </tr>              
+                    <tr>
+                        <th>IČO:</th>
+                        <td>{$userData['ico']}</td>
+                    </tr>
+                    <tr>
+                        <th>DIČ:</th>
+                        <td>{$userData['dic']}</td>
+                    </tr>
+                {/if}
+            </table>
+        {/if}
+    {/snippet}
+</div>
+<script>
+    $('.customer-select').on('change', function (e){
+        e.preventDefault();
+        var id = $('.customer-select').val();
+        $.nette.ajax({
+            url: {link getUserData!} + '&id=' + id,
+        })
+    })
+</script>

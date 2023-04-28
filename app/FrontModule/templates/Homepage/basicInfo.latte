@@ -1,0 +1,106 @@
+{block content}
+
+    <div class="basicInfo">
+    {*<div class="container pb-5 pl-0 pr-0">*}
+        {*<iframe class="d-block" width="100%" height="440px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=18.160829544067386%2C48.0044168485942%2C18.167910575866703%2C48.00769726298698&amp;layer=mapnik&amp;marker=48.00605708187012%2C18.16437005996704"></iframe>*}
+            
+
+            <div class="container text-center">
+                <div class="title title--border mb-4">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-sm-8 text-center text-sm-left">
+                            <h2 class="h4 mb-0 font-family-normal">{_strings.where_to_find_us}</h2>
+                        </div>
+                        {*<div class="col text-center text-sm-right mt-3 mt-sm-0" id="homeSorting">
+                            {* {control productSort} *}
+                        {*</div>*}
+                    </div>
+                </div>
+                <div class="row mt-sm-3">
+                    <div class="col-lg-4">
+                        <address class="bg-secondary border-radius p-4 font-size-sm h-100">
+                            <strong class="text-primary font-size-h4">{$tplSetting->getSetting('companyName')}</strong><br><br>
+                            {$tplSetting->getSetting('companyStreet')}<br>
+                            {$tplSetting->getSetting('companyZip')} {$tplSetting->getSetting('companyCity')}<br>
+                            {$tplSetting->getSetting('companyCountry')}<br>
+                            <a href="mailto:{$tplSetting->getSetting('companyContactEmail')}">{$tplSetting->getSetting('companyContactEmail')}</a><br>
+                            {$tplSetting->getSetting('companyContactPhone')}<br>
+                            {$tplSetting->getSetting('companyContactPesron')}
+                        </address>
+                    </div>
+                    <div class="col-lg-4 position-relative my-2 my-lg-0">
+                        <img src="{$basePath}{$tplSetting->getImg('nela_1.jpg')}" class="img-fluid img-cover rounded h-100">
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <iframe class="d-block rounded h-100" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=18.160829544067386%2C48.0044168485942%2C18.167910575866703%2C48.00769726298698&amp;layer=mapnik&amp;marker=48.00605708187012%2C18.16437005996704"></iframe>
+                    </div>
+                </div>
+
+                {*<div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-9 col-xl-7 mb-5">
+                        <h2 class="mb-4">{_strings.contact_us}</h2>
+                        {control contactForm}
+                    </div>
+                </div>*}
+            </div>
+    </div>
+    {* {include '../others/newsletter.latte'} *}
+{/block}
+
+{block addjsModule}
+    {* <script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/tiny-slider.js')}"></script> *}
+{/block}
+
+{*block content}
+
+    <div class="">
+    {*<div class="container pb-5 pl-0 pr-0">*}
+        {*<iframe class="d-block" width="100%" height="440px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=18.160829544067386%2C48.0044168485942%2C18.167910575866703%2C48.00769726298698&amp;layer=mapnik&amp;marker=48.00605708187012%2C18.16437005996704"></iframe>*}
+            
+
+            {*<div class="container text-center">
+                <div class="title title--border">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-12 col-sm-8 text-center text-sm-left">
+                            <h2 class="h4 mb-0 font-family-normal">{_strings.where_to_find_us}</h2>
+                        </div>
+                        <div class="col text-center text-sm-right mt-3 mt-sm-0" id="homeSorting">
+                            {* {control productSort} *}
+                        {*</div>
+                    </div>
+                </div>
+                <div class="row mt-sm-3">
+                    <div class="col-lg-4">
+                        <address class="bg-secondary border-radius p-4 font-size-sm h-100">
+                            <strong class="text-primary font-size-h4">{$tplSetting->getSetting('companyName')}</strong><br><br>
+                            {$tplSetting->getSetting('companyStreet')}<br>
+                            {$tplSetting->getSetting('companyZip')} {$tplSetting->getSetting('companyCity')}<br>
+                            {$tplSetting->getSetting('companyCountry')}<br>
+                            <a href="mailto:{$tplSetting->getSetting('companyContactEmail')}">{$tplSetting->getSetting('companyContactEmail')}</a><br>
+                            {$tplSetting->getSetting('companyContactPhone')}
+                        </address>
+                    </div>
+                    <div class="col-lg-4 position-relative my-2 my-lg-0">
+                        <img src="{$basePath}{$tplSetting->getImg('nela_1.jpg')}" class="img-fluid img-cover rounded h-100">
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <iframe class="d-block rounded h-100" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=18.160829544067386%2C48.0044168485942%2C18.167910575866703%2C48.00769726298698&amp;layer=mapnik&amp;marker=48.00605708187012%2C18.16437005996704"></iframe>
+                    </div>
+                </div>
+
+                {*<div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-9 col-xl-7 mb-5">
+                        <h2 class="mb-4">{_strings.contact_us}</h2>
+                        {control contactForm}
+                    </div>
+                </div>*}
+            {*</div>
+    </div>
+    {* {include '../others/newsletter.latte'} *}
+{*/block}
+
+{block addjsModule}
+    {* <script src="{$basePath}{$tplSetting->getAssetPath('js/vendor/tiny-slider.js')}"></script> *}
+{*/block*}

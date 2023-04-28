@@ -1,0 +1,48 @@
+{*block content}
+    <section class="container pt-3 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                {*include '../others/breadcrumbs.latte', breads => ['blog' => $title, $blog->slug => $blog->title], align => left*}
+
+                {*<h1 class="mb-3 mt-3">{$gallery->title}</h1>
+                <p>
+                    {$gallery->description|noescape}
+                </p>
+        
+                <article class="content content--post my-5">
+                    <div n:foreach="$images as $img" class="col-6 col-sm-4 col-md-6 col-lg-4 px-1 text-center">
+                        <a href="{$img->image}" class="gallery__thumb glightbox">
+                            <img src="{$basePath}{imgSize($img->image, 'sm')}" alt="{$gallery->title}" class="img-fluid img-thumbnail">
+                        </a>
+			        </div>
+                </article>
+            </div>
+        </div>
+    </section>
+{/block}
+{block title}
+    {$gallery->title}
+{/block*}
+{block content}
+    <section class="container pt-3 pb-5">
+        {if $userLevel > 2}
+        <div class="row">
+            <div class="col-lg-10 col-xl-9">
+
+                <h1 class="mb-3 mt-3">{$gallery->title}</h1>
+                <div class="row">
+                <div n:foreach="$images as $img" class="col-6 col-sm-4 col-md-6 col-lg-4 px-1">
+                                    <a href="{$img->image}" >
+                                        <img src="{$basePath}{$img->image}" alt="{$gallery->title}" class="d-block img-fluid img-thumbnail col-lg-10">
+                                    </a>
+                </div>
+                </div>
+                <p>{$gallery->description|noescape}</p>
+            </div>
+        </div>
+             {else}
+     <div class="alert alert-danger"><i class="fa fa-info-circle mr-2"></i> Na zobrazenie stránky nemáte dostatočné práva.</div>
+     {/if}
+    </section>        
+
+{/block}

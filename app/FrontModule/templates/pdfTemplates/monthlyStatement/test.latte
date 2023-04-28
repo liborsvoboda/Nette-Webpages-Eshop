@@ -1,0 +1,319 @@
+
+<style>
+    body {
+        font-size: 11px;
+        line-height: 18px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    table td,
+    table th {
+        padding: 2mm;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    table.no-border tr td,
+    table.no-border tr th {
+        border-width: 0;
+        padding: .5mm 2mm;
+    }
+
+    table.border1 tr td,
+    table.border1 tr th {
+        border-width: thin;
+        border-color: black;
+        border-style: solid;
+    }
+
+    table.border2 {
+        border-collapse: separate;
+    }
+
+    table.border2 tr td,
+    table.border2 tr th {
+        border-width: 0;
+        background-color: rgba(0,0,0,0.025);
+    }
+
+    table.border3 tr td,
+    table.border3 tr th {
+        border-width: 0 0 thin 0;
+        border-color: black;
+        border-style: dotted;
+    }
+
+
+    table.style1 {
+        border: 0 solid black;
+    }
+
+    table.style1 th,
+    table.style1 td {
+        padding: .5mm 1mm;
+    }
+
+</style>
+
+<table>
+    <tr>
+        <td style="text-align: left;">
+            <img src="{$basePath}{$tplSetting->getInvoiceLogo()}" style="height:1.2cm;" />
+        </td>
+        <td style="text-align: right">
+            <h1 style="margin:0 0 2mm 0;">{_statement.title} {$month}/{$year}</h1>
+        </td>
+    </tr>
+</table>
+
+<br>
+
+<table>
+    <tr>
+
+        <td style="width:45%; padding: 0;">
+            <table class="no-border">
+                <tr>
+                    <th colspan="2" style="padding-left: 0;">app s. r. o.</th>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-left: 0;">Vajnorská 142</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-left: 0;">SK - 831 04  Bratislava</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0; width: 2cm;">IČO: </td>
+                    <td>51181401</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0; width: 2cm;">DIČ: </td>
+                    <td>2120619171</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0; width: 2cm;">IČ DPH: </td>
+                    <td>SK2120619171</td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0; width: 2cm;">E-mail: </td>
+                    <td>info@app.com</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0; width: 2cm;">Tel.č.: </td>
+                    <td>+421&nbsp;908&nbsp;942&nbsp;147</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 0; width: 2cm;">WWW: </td>
+                    <td>www.app.com</td>
+                </tr>
+            </table>
+            <br /><br />
+
+        </td>
+
+        <td style="width:55%;">
+
+            <div style="font-size: 14px; line-height: 24px;">
+                {_statement.partner}: &nbsp; <b>{if $data['user']['isCompany']}{$data['user']['companyName']} ({$data['user']['name']}){else}{$data['user']['name']}{/if}</b><br />
+                {_statement.ref_no}: &nbsp; <b>{$data['user']['ref_no']}</b>
+            </div>
+
+            <br />
+
+            {if $data['user']['isCompany']}
+            <table style="border: thin solid black; background-color: #eee;">
+                <tr>
+                    <td style="padding:3mm">
+                        <table class="style1">
+                            <tr>
+                                <th colspan="2">{$data['user']['companyName']}</th>
+                            </tr>
+                            <tr>
+                                <td colspan="2">{$data['user']['street']}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">{$data['user']['countryCode']} - {$data['user']['zip']} {$data['user']['city']}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 2cm;">IČO: </td>
+                                <td>{$data['user']['ico']}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 2cm;">DIČ: </td>
+                                <td>{$data['user']['dic']}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 2cm;">IČ DPH: </td>
+                                <td>{$data['user']['icdph']}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            {else}
+            <table style="border: thin solid black; background-color: #eee;">
+                <tr>
+                    <td style="padding:3mm">
+                        <table class="style1">
+                            <tr>
+                                <td colspan="2">{$data['user']['name']}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">{$data['user']['street']}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">{$data['user']['countryCode']} - {$data['user']['zip']} {$data['user']['city']}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            {/if}
+
+
+
+        </td>
+
+    </tr>
+
+</table>
+
+<br />
+
+<table class="">
+    <tr>
+        <td style="text-align: right; padding:0;">
+            <table class="border2" style="width: 70%;">
+                <tr>
+                    <td>{_statement.personal_product_commission}:</td>
+                    <td style="text-align: right;">0.00 {$symbol}</td>
+                </tr>
+                <tr>
+                    <td>{_statement.group_product_commission}:</td>
+                    <td style="text-align: right;">{$data['sum_product']|number:2} {$symbol}</td>
+                </tr>
+                <tr>
+                    <td>{_statement.bonus}:</td>
+                    <td style="text-align: right;">{$data['bonus']|number:2} {$symbol}</td>
+                </tr>
+                <tr>
+                    <td>{_statement.group_percentual_commission}:</td>
+                    <td style="text-align: right;">{$data['sum_percent']|number:2} {$symbol}</td>
+                </tr>
+                <tr>
+                    <th style="">{_statement.sum_commission}{*? =$date_month?*}:</th>
+                    <th style="text-align: right;">{$data['summ_comm'] + $data['bonus']|number:2} {$symbol}</th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: right; line-height: 2em;">
+            <p>{_statement.info_1}</p>
+            <p>{_statement.info_2}</p>
+        </td>
+    </tr>
+</table>
+
+<br />
+<br />
+
+<table class="border3">
+
+    <tr>
+        <th colspan="2" style="text-align:left;border-left:0;border-right:0;">
+            {_statement.sum_turnover} {$data['user']['name']}{if $data['user']['isCompany']}({$data['user']['companyName']}){/if}
+        </th>
+        <th colspan="2" style="text-align:right;border-left:0;border-right:0;">
+            {_statement.sum_turnover}
+        </th>
+        <th style="text-align:right; border-left:0; border-right:0;">
+            {_statement.personal_commission_turnover}
+        </th>
+    </tr>
+
+    <tr>
+        <td style="text-align: left; vertical-align: bottom;">{$data['user']['ref_no']}</td>
+        <td style="text-align: left; vertical-align: bottom;">{$data['user']['level']}</td>
+        <td style="text-align: left; vertical-align: bottom;">{$data['user']['name']}</td>
+        <td style="text-align: right; vertical-align: bottom;">{$data['sum_turnover']} {$symbol}</td>
+        <td style="text-align: right; vertical-align: bottom;">0,00 {$symbol}</td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="border:0;">
+
+        </td>
+    </tr>
+
+    <tr>
+        <th colspan="5" style="text-align:left;border-left:0;border-right:0;text-transform:uppercase;">
+            {_statement.product_commission}
+        </th>
+    </tr>
+    <tr>
+        <th style="text-align: left; vertical-align: bottom;">{_statement.ref_no_short}</th>
+        <th style="text-align: left; vertical-align: bottom;">{_statement.level}</th>
+        <th style="text-align: left; vertical-align: bottom;">{_statement.name}</th>
+        <th style="text-align: right; vertical-align: bottom;">{_statement.sum_turnover}</th>
+        <th style="text-align: right; vertical-align: bottom;">{_statement.commission}</th>
+    </tr>
+    {foreach $data['product_commissions'] as $prodkey => $prod}
+        <tr>
+            <td style="text-align: left; vertical-align: bottom;">{$users[$prodkey]->ref_no}</td>
+            <td style="text-align: left; vertical-align: bottom;">
+                {ifset $run[$prodkey]}
+                    {if $users[$prodkey]->user_level_id == 3 && $users[$prodkey]->user_level_id > $run[$prodkey]}
+                        {$users[$prodkey]->user_level->name}
+                    {else}
+                        {$levels[$run[$prodkey]]}
+                    {/if}
+                {else}
+                    {$users[$prodkey]->user_level->name}
+                {/ifset}
+            </td>
+            <td style="text-align: left; vertical-align: bottom;">{$users[$prodkey]->firstName} {$users[$prodkey]->lastName}</td>
+            <td style="text-align: right; vertical-align: bottom;">{$prod['turnover']|number:2} {$symbol}</td>
+            <td style="text-align: right; vertical-align: bottom;">{$prod['commission']|number:2} {$symbol}</td>
+        </tr>
+
+    {/foreach}
+</table>
+
+<formfeed />
+
+<table class="border3">
+
+    <tr>
+        <th colspan="5" style="text-align:left;border-left:0;border-right:0;text-transform:uppercase;">
+            {_statement.percent_commission}
+        </th>
+    </tr>
+    <tr>
+        <th style="text-align: left; vertical-align: bottom;">{_statement.ref_no_short}</th>
+        <th style="text-align: left; vertical-align: bottom;">{_statement.level}</th>
+        <th style="text-align: left; vertical-align: bottom;">{_statement.name}</th>
+        <th style="text-align: right; vertical-align: bottom;">{_statement.percent}</th>
+        <th style="text-align: right; vertical-align: bottom;">{_statement.commission_no_vat}</th>
+    </tr>
+
+    {foreach $data['percent_commissions'] as $perckey => $perc}
+    <tr>
+        <td style="text-align: left; vertical-align: bottom;">{$users[$perckey]->ref_no}</td>
+        <td style="text-align: left; vertical-align: bottom;">{ifset $run[$perckey]}{$levels[$run[$perckey]]}{else}{$users[$perckey]->user_level->name}{/ifset}</td>
+
+        <td style="text-align: left; vertical-align: bottom;">
+            {$users[$perckey]->firstName} {$users[$perckey]->lastName}
+        </td>
+        <td  style="text-align: right; vertical-align: bottom;">{$perc['turnover']|number:0}&nbsp;%</td>
+        <td  style="text-align: right; vertical-align: bottom;">{$perc['commission']|number:2} {$symbol}</td>
+    </tr>
+    {/foreach}
+</table>
+
+

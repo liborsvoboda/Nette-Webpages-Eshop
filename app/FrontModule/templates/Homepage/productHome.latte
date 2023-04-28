@@ -1,0 +1,42 @@
+<section class="shop5 cid-skymqQgbcr pt-5 pb-4" id="shop5-3">
+
+    <div class="container">
+        <h2 class="mbr-section-title mbr-bold mbr-fonts-style display-5 mb-4">{_products.favourite}</h2>
+        <div class="row align-items-start align-items-lg-stretch wrapper__products">
+
+            {foreach $products as $product}
+                <div class="col-xl-6 col-lg-10 col-md-6 col-12 d-lg-flex align-items-stretch block__product">
+
+                    <div class="productTagsLeft" style="right: 1px;">
+                        <span n:if="getPriceVat($product->id) > $freeDelivery" class="productTag productTag--freeDelivery mr-1">DOPRAVA ZDARMA</span>
+                        <span n:if="$product->new_tag == 1" class="productTag productTag--new mr-1">NOVINKA</span>
+                        <div n:if="$product->sale_tag == 1" class="productTag productTag--new" style="background: #ffc107; text-transform: uppercase;">Výpredaj</div>
+                        <span n:if="$product->shop_only == 1" class="productTag productTag--new" style="background: #6972e0f0; text-transform: uppercase; ">Na predajni</span>
+                        <span n:if="$product->inStock >= 1" class="productTag productTag--new" style="background: #6972e0f0; text-transform: uppercase; ">Na sklade</span>
+                        <span n:if="$product->not_for_sale == 1" class="productTag productTag--tip" style="background: red; text-transform: uppercase; ">Nepredajný produkt</span>
+
+                    </div>
+
+                    <div class="productTagsRight" style="right: 320px; top: 10px;">
+                    <div n:if="$product->tip_tag == 1" class="productTag productTag--tip" style="background: #BB9468;color: #fff;font-size: 11px;border-radius: 100%;width: 36px;height: 36px;display: block;position: relative;"><p class="productTagText font-weight-normal">TIP</p></div>
+                        <span n:if="getOrigPriceVat($product->id) > getPriceVat($product->id)" class="productTag productTag--discount" style="background: #ff0000a6; height: 36px;width: 36px;"><p class="productTagText font-weight-normal" style="font-size: 12px;"> -{round(100-(getPriceVat($product->id)/getOrigPriceVat($product->id))*100)}%</p></span>
+                    </div>
+
+                    <div class="image align-self-start text-center">
+                        <a n:href="Product:default $product->id"><img src="{$basePath}{$product->image}"
+                                                  alt="{$product->name}" title="{$product->name}"></a>
+                    </div>
+                    <div class="block__content">
+                        <p class="title__block mbr-fonts-style display-7"><a n:href="Product:default $product->id">{$product->name}</a></p>
+                        <span class="price__block mbr-medium mbr-fonts-style display-4">{getPriceVat($product->id)|price}</span>
+                        <span n:if="getOrigPriceVat($product->id) > getPriceVat($product->id)" class="mt-3 ml-3 mb-3 price__block text-striked-gray" style="color:#bfc3c8;">  {getOrigPriceVat($product->id)|price}</span>
+                        <p class="mbr-text mbr-fonts-style display-4 text-black">{$product->perex|noescape}</p>
+                        {* <div class="mbr-section-btn"><a class="btn btn-sm btn-success display-4"
+                                    n:href="Product:default $product->id">{_products.buy}</a></div> *}
+						{control addToCart-$product->id, button-sm}
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+    </div>
+</section>

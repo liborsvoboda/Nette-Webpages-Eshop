@@ -1,0 +1,89 @@
+{block content}
+    <section class="form1 cid-skDLu62rxJ" id="form1-19">
+        <div class="container">
+            <div class="row justify-content-center justify-content-md-start align-items-lg-center">
+                <div class="col-md-5 col-6 d-md-flex justify-content-center align-items-start">
+                    <div class="image md-0 mb-5">
+                        <img src="{$basePath}/assets/front/mobir/images/logo-big-238x100.png" alt="" title="" style="border-radius: 0;">
+                    </div>
+                </div>
+                <div class="col-md-1 d-none d-md-block"></div>
+                <div class="col-xl-5 col-md-6 col-sm-8 text-sm-left text-center">
+                    <h2 class="mbr-section-title mbr-bold mbr-fonts-style display-5">{_account.log.in}</h2>
+                    <div class="subscribe__form text-center text-sm-left">
+                        <div class="d-flex" data-form-type="formoid">
+                            <form n:name="signInForm" class="mbr-form form-with-styler" data-form-title="Mobirise Form">
+                                {if $flashes}
+                                    {foreach $flashes as $flash}
+                                        <div class="alert alert-{$flash->type}">{$flash->message}</div>
+                                    {/foreach}
+                                {/if}
+                                <div class="dragArea row align-items-end">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <label for="E-MAIL-form1-19"n:name="email" class="form-control-label mbr-fonts-style display-4">{_strings.email}</label>
+                                        <input n:name="email" class="form-control form-control-semitrans display-4 text-dark form-control-mail" placeholder="{_strings.email-placeholder}">
+                                    </div>
+                                    <div class="col-lg-12 col-md12 col-sm-12 form-group">
+                                        <label n:name="password" class="form-control-label mbr-fonts-style display-4">{_strings.password}</label>
+                                        <input n:name="password" class="form-control form-control-semitrans display-4 text-dark form-control-mail" placeholder="{_strings.password-placeholder}">
+                                    </div>
+                                    <div class="d-sm-flex flex-wrap align-items-center text-center text-sm-left w-100">
+                                        <div class="col-lg-4 col-md-5 col-sm-5 input-group-btn d-flex mb-4">
+                                            <button n:name="submit" class="btn btn-md btn-info display-4">{_strings.login}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <p class="my-4">
+                            <a n:href="Account:lostPassword">{_account.log.reset_password_link}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{/block}
+
+
+<section class="form1 cid-skDLu62rxJ" id="form1-19">
+    <div class="container">
+        <div class="row justify-content-center justify-content-md-start align-items-lg-center">
+            <div class="col-md-5 col-6 d-md-flex justify-content-center align-items-start">
+                <div class="image mb-md-0">
+                    <img src="{$basePath}/assets/front/mobir/images/logo-big-238x100.png" alt="" title="">
+                </div>
+            </div>
+            <div class="col-md-1 d-none d-md-block"></div>
+            <div class="col-xl-5 col-md-6 col-sm-8 text-sm-left text-center">
+                <h2 class="mbr-section-title mbr-bold mbr-fonts-style display-5">{_account.log.in}</h2>
+                <div class="subscribe__form text-center text-sm-left">
+                    <div class="d-flex" data-form-type="formoid">
+                        <form n:name="signInForm" class="mbr-form form-with-styler" data-form-title="Mobirise Form">
+                            {if $flashes}
+                                {foreach $flashes as $flash}
+                                    <div class="alert alert-{$flash->type}">{$flash->message}</div>
+                                {/foreach}
+                            {/if}
+                            <div class="dragArea row align-items-end">
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <label for="E-MAIL-form1-19"n:name="email" class="form-control-label mbr-fonts-style display-4">{_strings.email}</label>
+                                    <input n:name="email" class="form-control display-7" placeholder="{_strings.email}">
+                                </div>
+                                <div class="col-lg-12 col-md12 col-sm-12 form-group">
+                                    <label n:name="password" class="form-control-label mbr-fonts-style display-4">{_strings.password}</label>
+                                    <input n:name="password" class="form-control display-7" placeholder="{_strings.password}">
+                                </div>
+                                <div class="d-sm-flex flex-wrap align-items-center text-center text-sm-left w-100">
+                                    <div class="col-lg-4 col-md-5 col-sm-5 input-group-btn d-flex">
+                                        <button n:name="submit" class="btn btn-md btn-info display-4">{_strings.login}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

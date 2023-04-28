@@ -1,0 +1,52 @@
+{block content}
+    <section class="content7 cid-skDL11tZun" id="content7-15">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-11">
+                    <div class="text-left text-lg-center">
+                        <h2 class="mbr-section-title mbr-bold mbr-fonts-style display-5">{_strings.faq.title|noescape}</h2>
+                    </div>
+                    <div class="row justify-content-center">
+                        {foreach $faqs as $faq}
+                            <div class="card__block col-lg-10 mt-4">
+                                <h3 class="card__title mbr-bold mbr-fonts-style display-7 text-center">
+									<a href="#dotaz-{$faq->id}" aria-expanded="false" aria-controls="dotaz-{$faq->id}" data-toggle="collapse">
+										{$faq->question}
+									</a>
+								</h3>
+								<div class="collapse" id="dotaz-{$faq->id}">
+									<hr class="mt-0">
+									<p class="mbr-text mbr-fonts-style display-4 mt-0 text-black">{$faq->answer}</p>
+									<hr class="mb-0">
+								</div>
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+
+			<hr class="my-5">
+
+			<div class="text-center mb-5">
+				<h2 class="mb-4">{_strings.faq.help_title}</h2>
+				<p>
+					{_strings.faq.help_text1}<br>
+					{_strings.faq.help_text2}
+				</p>
+				<p>{_strings.faq.help_text3|noescape}</p>
+				<p>{_strings.faq.help_text4|noescape}</p>
+			</div>
+
+			<h3 class="text-center mb-4 text-uppercase">{_strings.faq.ask_doctor}</h3>
+			<div class="row justify-content-center">
+				<div class="col-lg-10 col-xl-8 mb-4 mb-sm-5 pt-sm-2">
+					<div class="text-center mb-3 float-sm-left mr-sm-3">
+						<img src="{$basePath}/assets/front/img/mudr-melita-hromadova.jpg" width="150" height="150" alt="MUDr. Melita Hromadová, CSc." class="img-fluid">
+					</div>
+					<p>{_strings.faq.doctor|noescape}</p>
+				</div>
+			</div>
+			{control contactForm}
+        </div>
+    </section>
+{/block}

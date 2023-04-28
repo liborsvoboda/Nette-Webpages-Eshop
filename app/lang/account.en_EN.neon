@@ -1,0 +1,35 @@
+account: 'Account'
+log_out: 'Log out'
+log_in: 'Log in'
+registration: 'Registration'
+reset_password: 'Password reset'
+favourites: 'Favourites'
+favourite_products: 'Favourite products'
+my_account: 'My account'
+my_orders: 'My orders'
+downloads: 'Downloads'
+product_dog: 'Price watch'
+
+orders:
+	number: 'Number'
+	order_number: 'Order number'
+	date: 'Date'
+	order_date: 'Order date'
+	price: 'Price'
+	detail: 'Detail'
+	order: 'Order no. %number%'
+	state: 'State'
+	current_state: 'Current state'
+	items: 'Items'
+	shipping: 'Shipping'
+	payment: 'Payment'
+
+watchdog:
+	name: 'Name'
+	remove: 'Remove'
+
+log:
+	in: 'Log in'
+	login_link: 'Already have an account? Sign in'
+	reset_password_link: 'Forgotten password?'
+	register_link: "Don't have an account? Register"

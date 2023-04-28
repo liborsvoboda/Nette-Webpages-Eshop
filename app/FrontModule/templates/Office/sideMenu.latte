@@ -1,0 +1,48 @@
+<div class="card" style="border: 1px #dee2e6 solid;">
+    <div class="card-header">
+        {$userData->firstName} {$userData->lastName}, {$userData->city}
+    </div>
+    <div class="card-body">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link {if $presenter->isLinkCurrent('Office:profile')}active{/if}" n:href="Office:profile, 'uid'=>$uid">Profil</a>
+            </li>
+          {if $userData->user_level_id > 2}
+            <li class="nav-item">
+              <a class="nav-link {if $presenter->isLinkCurrent('Office:default')}active{/if}" n:href="Office:default, uid=>$uid">Prehľad</a>
+            </li>
+          {/if}
+            <li class="nav-item">
+                <a class="nav-link {if $presenter->isLinkCurrent('Office:unpaidOrders')}active{/if}" n:href="Office:unpaidOrders, 'uid'=>$uid">Neuhradené objednávky</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {if $presenter->isLinkCurrent('Office:orders')}active{/if}" n:href="Office:orders, 'uid'=>$uid">Uhradené objednávky</a>
+            </li>
+          {if $userData->user_level_id > 2}
+                <li class="nav-item">
+                    <a class="nav-link {if $presenter->isLinkCurrent('Office:partners')}active{/if}" n:href="Office:partners, 'uid'=>$uid">Priami partneri</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {if $presenter->isLinkCurrent('Office:stats')}active{/if}" n:href="Office:stats, 'uid'=>$uid">Štatistiky</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {if $presenter->isLinkCurrent('Office:commissions')}active{/if}" n:href="Office:commissions, 'uid'=>$uid">Provízie</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a class="nav-link {if $presenter->isLinkCurrent('Account:marketingGallery')}active{/if}" n:href="Account:marketingGallery, 'uid'=>$uid">Marketingová galéria</a>
+                </li>
+            {/if}
+        </ul>
+    </div>
+</div>
+
+{if $userData->user_level_id > 2}
+  <div class="card mt-4" style="border: 1px #dee2e6 solid;">
+      <div class="card-body">
+          <a n:href="Office:default, 'uid' => null">
+              {$user->getIdentity()->data['firstName']} {$user->getIdentity()->data['lastName']}
+          </a>
+      </div>
+  </div>
+{/if}

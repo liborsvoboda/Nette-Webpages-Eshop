@@ -1,0 +1,104 @@
+<tr>
+    <td align="center" valign="top" width="100%"
+        style="border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;">
+        <center>
+            <table cellpadding="0" cellspacing="0" width="600" class="w320">
+                <tr>
+                    <td class="item-table">
+                        <table cellspacing="0" cellpadding="0" width="100%">
+                            <tr>
+                                <td class="title-dark" width="300">
+                                    {_email.item}
+                                </td>
+                                <td class="title-dark" width="163" style="text-align: center;">
+                                    {_email.amount}
+                                </td>
+                                <td class="title-dark" width="97" style="text-align: right;">
+                                    {_email.total}
+                                </td>
+                            </tr>
+
+                            {foreach $items as $item}
+                                <tr>
+                                    <td class="item-col item">
+                                        <table cellspacing="0" cellpadding="0" width="100%">
+                                            <tr>
+                                                <td class="mobile-hide-img">
+                                                    <a href="{ifset $item['slug']}{$baseUrl}/{$item['slug']}{/ifset}">
+                                                        {if isset($item['image']) && $item['image']}
+                                                            <img height="50" src="{$baseUrl}/{$item['image']}"
+                                                                 alt="{$item['name']}">
+                                                        {else}
+                                                            <img height="50" src="{$baseUrl}/{$blankImage}"
+                                                                 alt="{$item['name']}">
+                                                        {/if}
+                                                    </a>
+                                                </td>
+                                                <td class="product">
+                                                    <a href="{ifset $item['slug']}{$baseUrl}/{$item['slug']}{/ifset}">
+                                                        <span style="color: #4d4d4d; font-weight:bold;">{$item['name']}</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td class="item-col quantity" style="text-align: center;">
+                                        {$item['amount']}
+                                    </td>
+                                    <td class="item-col" style="text-align: right;">
+                                        {ifset $item['amount']}
+                                            {($item['amount'] * $item['price'])|price}
+                                        {else}
+                                            {($item['count'] * $item['price'])|price}
+                                        {/ifset}
+                                    </td>
+                                </tr>
+                            {/foreach}
+
+
+                            <tr>
+                                <td class="item-col item mobile-row-padding"></td>
+                                <td class="item-col quantity"></td>
+                                <td class="item-col price"></td>
+                            </tr>
+                            {ifset $order['isVoucher']}
+                                <tr>
+                                    <td class="item-col item">
+                                    </td>
+                                    <td class="item-col quantity"
+                                        style="text-align:left; padding-right: 10px; border-top: 1px solid #cccccc;">
+                                        <span class="total-space">{_cart.total.discount}: {$order['voucherCode']}</span> <br/>
+                                    </td>
+                                    <td class="item-col price"
+                                        style="text-align: right; border-top: 1px solid #cccccc;">
+                                        <span class="total-space"
+                                              style="font-weight:bold; color: #4d4d4d">- {$order['discount']|price}</span>
+                                    </td>
+                                </tr>
+                            {/ifset}
+                            <tr>
+                                <td class="item-col item">
+                                </td>
+                                <td class="item-col quantity"
+                                    style="text-align:left; padding-right: 10px; border-top: 1px solid #cccccc;">
+                                    <span class="total-space">{_email.delivery}: {$order['shippingName']}</span> <br/>
+                                    <span class="total-space">{_email.payment}: {$order['paymentName']}</span> <br/>
+                                    <span class="total-space"
+                                          style="font-weight: bold; color: #4d4d4d">{_email.total}</span>
+                                </td>
+                                <td class="item-col price"
+                                    style="text-align: right; border-top: 1px solid #cccccc;">
+                                    <span class="total-space">{$order['shippingPrice']|price}</span> <br/>
+                                    <span class="total-space">{$order['paymentPrice']|price}</span> <br/>
+                                    <span class="total-space"
+                                          style="font-weight:bold; color: #4d4d4d">{$order['price']|price}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </center>
+    </td>
+</tr>

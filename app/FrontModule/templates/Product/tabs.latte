@@ -1,0 +1,47 @@
+<div class="my-4">
+    <ul id="productTabs" class="nav nav-tabs font-size-lg" role="tablist">
+        <li class="nav-item" n:if="$product->description">
+            <a class="nav-link active" id="tab-nav-description" data-toggle="tab" href="#tab-description" role="tab"
+               aria-controls="tab-description" aria-selected="true">{_products.description}</a>
+        </li>
+        <li class="nav-item">
+            <a n:class="nav-link, !$product->description ? active" id="tab-nav-specification" data-toggle="tab"
+                                                                   href="#tab-specification" role="tab"
+                                                                   aria-controls="tab-specification"
+                                                                   aria-selected="false">{_products.specification}</a>
+        </li>
+    </ul>
+    <div class="tab-content my-4">
+        <div n:if="$product->description" class="tab-pane fade show active" id="tab-description" role="tabpanel"
+                                          aria-labelledby="tab-nav-description">
+            <article class="content">
+                {$product->description|noescape}
+            </article>
+        </div>
+        <div n:class="tab-pane, fade, !$product->description ? 'show active'" id="tab-specification" role="tabpanel"
+                                                                              aria-labelledby="tab-nav-specification">
+            <table class="table">
+                <tbody>
+                    {*<tr n:ifset="$product->producer->name">
+                        <th>{_strings.producer}</th>
+                        <td>{$product->producer->name}</td>
+                    </tr>*}
+                    <tr>
+                        <th class="border-bottom border-danger">{_products.sku}</th>
+                        <td class="border-bottom border-danger">{$product->sku}</td>
+                    </tr>
+                    <tr n:if="$product->ean">
+                        <th>{_products.ean}</th>
+                        <td>{$product->ean}</td>
+                    </tr>
+                    {foreach $attributes as $key => $value}
+                        <tr n:if="$value != ''">
+                            <th width="145">{$key}</th>
+                            <td>{$value|noescape}</td>
+                        </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

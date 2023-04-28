@@ -1,0 +1,16 @@
+<form n:name="form" class="mb-4 ajax">
+    <div class="row">
+        <div class="col-4 form-group">
+            <label n:name="dateFrom">Datum od:</label>
+            {input dateFrom, class=>"form-control datepicker2 change-submit"}
+        </div>
+        <div class="col-4 form-group">
+            <label n:name="dateTo">Datum do:</label>
+            {input dateTo, class=>"form-control datepicker2 change-submit"}
+        </div>
+        <div class="col-2 form-group">
+            <label>&nbsp;</label>
+            <button n:name="submit" class='btn btn-primary form-control'>Zobrazit</button>
+        </div>
+    </div>
+</form>

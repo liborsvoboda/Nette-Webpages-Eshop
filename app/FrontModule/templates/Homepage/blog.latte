@@ -1,0 +1,22 @@
+<h2 class="h4 mb-4 pb-2">
+    <img src="{$basePath}{$tplSetting->getSvg('blog-posts-icon')}" alt="{_strings.from_our_blog}" class="mr-2">
+    {_strings.from_our_blog}
+</h2>
+
+<div class="bg-gray-100 border-radius px-4 pt-4 pb-2 flex-grow-1">
+    <article n:foreach="$blogs as $blog" class="row mb-4">
+        <div class="col-sm-4 mb-3 mb-sm-0 text-center">
+            <a n:href="Blog:post, $blog->id" class="text-black">
+                <img src="{if $blog->image !== NULL}{imgSize($blog->image,'sm')}{else}{$basePath}/assets/front/img/no-image.jpg{/if}" alt="{$blog->title}" class="img-fluid border-radius">
+            </a>
+        </div>
+        <div class="col-sm-8 font-size-xs">
+            <h3 class="font-family-serif line-height-lg pb-1"><a n:href="Blog:post, $blog->id" class="text-black">{$blog->title}</a></h3>
+            <time class=" font-weight-bold text-primary">
+                <img src="{$basePath}{$tplSetting->getSvg('')}" alt="{$blog->timestamp->format('d. m. Y')}" class="align-text-top mr-1">
+                {$blog->timestamp->format('d. m. Y')}
+            </time>
+            <p class="text-gray-200 mt-2 pt-1">{$blog->text|striptags|truncate:80,'...'}</p>
+        </div>
+    </article>
+</div>

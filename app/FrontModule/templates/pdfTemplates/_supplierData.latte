@@ -1,0 +1,51 @@
+<table cellspacing="0" cellpadding="3" width="100%" style="font-size: 8px;">
+    <tr>
+        <td width="40%" style="border: 0.5px solid #dddddd; background-color: #f5f5f5;">{_invoice.bank_info}</td>
+        <td width="20%" style="padding: 15px;"></td>
+        <td width="40%" style="border: 0.5px solid #dddddd; background-color: #f5f5f5; border-radius: 5px;">{_invoice.contact_person}</td>
+    </tr>
+    <tr>
+        <td width="40%" style="border: 0.5px solid #dddddd;">
+            <table>
+                <tr>
+                    <td width="35%" style="font-weight: bold;">{_invoice.bank}:</td>
+                    <td width="65%">{$settings['companyBank']}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.account_number}:</td>
+                    <td>{$settings['companyAccount']}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.iban}:</td>
+                    <td>{$settings['companyIban']}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.swift}:</td>
+                    <td>{$settings['companySwift']}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.vs}:</td>
+                    <td>{$orderData->number}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.issued}:</td>
+                    <td>{$invoiceData->timestamp|date:'d. m. Y'}</td>
+                </tr>
+            </table>
+        </td>
+        <td width="20%" style="padding: 15px;"></td>
+        <td width="40%" style="border: 0.5px solid #dddddd;">
+            <table>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.email}:</td>
+                    <td>{$settings['companyContactEmail']}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">{_invoice.phone}:</td>
+                    <td>{$settings['companyContactPhone']}</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<br/>

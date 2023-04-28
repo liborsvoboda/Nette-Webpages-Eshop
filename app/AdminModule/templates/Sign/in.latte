@@ -1,0 +1,43 @@
+{block content}
+<body>
+<div class="container-fluid" id="app">
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <div class="login-form">
+                <div class="logo" style="text-align: center">
+                    <img src="{$basePath}/assets/front/mobir/images/logo-big-238x100.png" alt="{$tplSetting->getSiteName()}" class="img-fluid" />
+                </div>
+                <form n:name="signInForm">
+
+                    <div class="form-group">
+                        <label class="sr-only">Username</label>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email" n:name="email" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" placeholder="Password" n:name="password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <div class="checkbox">
+                                <input n:name="remember">
+                                <label n:name="remember"><span class="check"></span> <span class="faux-label">Remember Me</span></label>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 text-right">
+                            <button n:name="submit" type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+            </div>
+        </div>
+        <div class="login-img"></div>
+    </div>
+</div>
+<div class="main-purple-overlay"></div>
+</body>

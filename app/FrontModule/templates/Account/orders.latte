@@ -1,0 +1,33 @@
+<div class="container py-4" id="cart-step-1">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="h2 title title--border mb-3"><i class="fa fa-fw fa-barcode mr-3"></i>{_account.my_orders}
+            </h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{_account.orders.number}</th>
+                        <th class="text-center">{_account.orders.state}</th>
+                        <th class="text-right">{_account.orders.date}</th>
+                        <th class="text-right">{_account.orders.price}</th>
+                        <th class="text-right">{_account.orders.detail}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr n:foreach="$orders as $ord">
+                        <td>{$ord->number}</td>
+                        <td class="text-center"><span
+                                    class="bg-{$ord->order_status->color} text-white px-2 py-1">{$ord->order_status->name}</span>
+                        </td>
+                        <td class="text-right">{$ord->timestamp|date:'d. m. Y'}</td>
+                        <td class="text-right">{$ord->price|price}</td>
+                        <td class="text-right"><a n:href="Account:order $ord->id">{_account.orders.detail}</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
